@@ -1,0 +1,62 @@
+# ========================================
+# SHAHADAT AKBOR - PORTFOLIO .gitignore
+# ========================================
+
+# Dependencies
+node_modules/
+package-lock.json
+package.json
+
+# Test artifacts
+test-results/
+tests/
+playwright-report/
+*.spec.ts
+playwright.config.ts
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build output
+dist/
+build/
+doc/
+docs/
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+
+# PDF files (keep source CV separate)
+*.pdf
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.orig

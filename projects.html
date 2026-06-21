@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Projects Portfolio of Shahadat Akbor - Civil Engineering Projects">
+    <meta name="keywords" content="Civil Engineering Projects, Shahadat Akbor, Portfolio">
+    <meta name="author" content="Shahadat Akbor">
+    
+    <title>Projects - Shahadat Akbor | Professional Portfolio</title>
+    
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .project-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10001;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+        
+        .project-modal.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+        
+        .project-modal__content {
+            background: var(--color-background);
+            border-radius: var(--radius-2xl);
+            max-width: 900px;
+            width: 100%;
+            margin: 2rem auto;
+            overflow: hidden;
+        }
+        
+        .project-modal__header {
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            position: relative;
+        }
+        
+        .project-modal__close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .project-modal__title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-modal__role {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .project-modal__body {
+            padding: 2rem;
+        }
+        
+        .project-modal__info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .project-modal__info-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-modal__info-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--color-text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .project-modal__info-value {
+            font-size: 1rem;
+            color: var(--color-secondary);
+            font-weight: 500;
+        }
+        
+        .project-modal__section {
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-modal__section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .project-modal__section h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .project-modal__list {
+            list-style: disc;
+            padding-left: 1.5rem;
+        }
+        
+        .project-modal__list li {
+            font-size: 0.9375rem;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        
+        .project-modal__list--achievements li {
+            color: var(--color-success);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav container">
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="index.html" class="nav__link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="about.html" class="nav__link">About</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="projects.html" class="nav__link active">Projects</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="experience.html" class="nav__link">Experience</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="skills.html" class="nav__link">Skills</a>
+                    </li>
+                    <li class="nav__item">
+                    </li>
+                    <li class="nav__item">
+                        <a href="certifications.html" class="nav__link">Certifications</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="resume.html" class="nav__link">Resume</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="contact.html" class="nav__link">Contact</a>
+                    </li>
+                </ul>
+                
+                <div class="nav__close" id="nav-close">
+                    <span>&times;</span>
+                </div>
+            </div>
+            
+            <div class="nav__toggle" id="nav-toggle">
+                <span>&#9776;</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1 class="page-header__title">Projects</h1>
+                <p class="page-header__subtitle">Detailed Project Portfolio</p>
+            </div>
+        </section>
+
+        <!-- Projects Grid -->
+        <section class="projects" id="projects">
+            <div class="container">
+                <div class="projects__grid">
+                    <!-- Project 1 -->
+                    <article class="project-card" data-project="1">
+                        <div class="project-card__image"></div>
+                        <div class="project-card__content">
+                            <span class="project-card__role">Project Manager</span>
+                            <h3 class="project-card__title">Dhaka Environmentally Sustainable Water Supply Project</h3>
+                            <p class="project-card__description">Raw Water Pipeline project involving DI Pipe laying and associated infrastructure.</p>
+                            <div class="project-card__meta">
+                                <span class="project-card__meta-item"><span class="project-card__meta-label">Client:</span> Dhaka Wasa</span>
+                                <span class="project-card__meta-item"><span class="project-card__meta-label">Consultant:</span> SUEZ International</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Project 2 -->
+                    <article class="project-card" data-project="2">
+                        <div class="project-card__image" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);"></div>
+                        <div class="project-card__content">
+                            <span class="project-card__role">Assistant Quantity Survey Engineer</span>
+                            <h3 class="project-card__title">Construction of First Terminal and Ancillary Facilities of Payra Sea Port</h3>
+                            <p class="project-card__description">Construction of first terminal and ancillary facilities including connecting road, bridges, culverts, and toll plazas.</p>
+                            <div class="project-card__meta">
+                                <span class="project-card__meta-item"><span class="project-card__meta-label">Client:</span> Payra Port Authority</span>
+                                <span class="project-card__meta-item"><span class="project-card__meta-label">Status:</span> Current</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Project 3 -->
+                    <article class="project-card" data-project="3">
+                        <div class="project-card__image" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);"></div>
+                        <div class="project-card__content">
+                            <span class="project-card__role">Quantity Surveyor</span>
+                            <h3 class="project-card__title">Crystal Design & Construction</h3>
+                            <p class="project-card__description">Managed quantity surveying for multiple private construction projects including 5 multi-storeyed residential buildings and 2 commercial buildings.</p>
+                            <div class="project-card__meta">
+                                <span class="project-card__meta-item"><span class="project-card__meta-label">Clients:</span> Multiple Private</span>
+                                <span class="project-card__meta-item"><span class="project-card__meta-label">Projects:</span> 7 Buildings</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Project Modal 1 -->
+    <div class="project-modal" id="project-modal-1">
+        <div class="project-modal__content">
+            <div class="project-modal__header">
+                <button class="project-modal__close">&times;</button>
+                <h2 class="project-modal__title">Dhaka Environmentally Sustainable Water Supply Project</h2>
+                <p class="project-modal__role">Role: Project Manager</p>
+            </div>
+            <div class="project-modal__body">
+                <div class="project-modal__info">
+                    <div class="project-modal__info-item">
+                        <span class="project-modal__info-label">Employer</span>
+                        <span class="project-modal__info-value">AKI Infrastructures Ltd.</span>
+                    </div>
+                    <div class="project-modal__info-item">
+                        <span class="project-modal__info-label">Client</span>
+                        <span class="project-modal__info-value">Dhaka Wasa</span>
+                    </div>
+                    <div class="project-modal__info-item">
+                        <span class="project-modal__info-label">Consultant</span>
+                        <span class="project-modal__info-value">SUEZ International</span>
+                    </div>
+                </div>
+                
+                <div class="project-modal__section">
+                    <h3>Project Description</h3>
+                    <p>Raw Water Pipeline project involving DI Pipe laying and associated infrastructure.</p>
+                </div>
+                
+                <div class="project-modal__section">
+                    <h3>Responsibilities</h3>
+                    <ul class="project-modal__list">
+                        <li>Developed detailed project schedules using Primavera P6, improving schedule accuracy</li>
+                        <li>Successful completion of 150 pairs or 762m of DI Pipelaying</li>
+                        <li>Prepared 236 D.P.R (Daily Progress Report) Using Excel, MS Project and Primavera P6</li>
+                        <li>Completed 50m of critical pipelaying under 230KV electric line with proper safety</li>
+                        <li>Made and Completed 161 Daily Inspection Plan successfully under 69 RFI</li>
+                        <li>Successful completion of 9 wall lifts, 6 blinding concretes & bases of 8 Washouts casting</li>
+                        <li>Convert Di Pipe with the help of welding beat to 8 pairs and 2 pairs of restraint and semi-restraint pipe</li>
+                        <li>Successfully completed 150m pipe laying of 3 sites parallelly</li>
+                        <li>Successfully Coordinated and executed of 50m Pipe-Laying Operations and 5 Washout Construction program simultaneously at 6 sites</li>
+                    </ul>
+                </div>
+                
+                <div class="project-modal__section">
+                    <h3>Achievements</h3>
+                    <ul class="project-modal__list project-modal__list--achievements">
+                        <li>Awarded First place in Safety Campaign in Officials Category</li>
+                        <li>Successful completion of 150 pairs or 762m of DI Pipelaying</li>
+                        <li>Completed 50m of critical pipelaying under 230KV electric line with proper safety and without any single injury</li>
+                        <li>Successful completion of 9 wall lifts, 6 blinding concretes & bases of 8 Washouts casting according to British Standard</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Modal 2 -->
+    <div class="project-modal" id="project-modal-2">
+        <div class="project-modal__content">
+            <div class="project-modal__header" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                <button class="project-modal__close">&times;</button>
+                <h2 class="project-modal__title">Construction of First Terminal and Ancillary Facilities of Payra Sea Port</h2>
+                <p class="project-modal__role">Role: Assistant Quantity Survey Engineer</p>
+            </div>
+            <div class="project-modal__body">
+                <div class="project-modal__info">
+                    <div class="project-modal__info-item">
+                        <span class="project-modal__info-label">Employer</span>
+                        <span class="project-modal__info-value">Spectra Engineers Limited</span>
+                    </div>
+                    <div class="project-modal__info-item">
+                        <span class="project-modal__info-label">Client</span>
+                        <span class="project-modal__info-value">Payra Port Authority and Roads and Highway Division</span>
+                    </div>
+                    <div class="project-modal__info-item">
+                        <span class="project-modal__info-label">Status</span>
+                        <span class="project-modal__info-value">Current Position</span>
+                    </div>
+                </div>
+                
+                <div class="project-modal__section">
+                    <h3>Project Description</h3>
+                    <p>Construction of first terminal and ancillary facilities including connecting road, bridges, culverts, and toll plazas.</p>
+                </div>
+                
+                <div class="project-modal__section">
+                    <h3>Responsibilities</h3>
+                    <ul class="project-modal__list">
+                        <li>Developed detailed project schedules using MS Project, improving schedule accuracy</li>
+                        <li>Successfully Revised & completed Method Statement, Structural Shop drawing & full BBS</li>
+                        <li>Completed 1 Variation Estimate of Variation Order</li>
+                        <li>Made 300 Supplier, Sub-Contractor, Supplier Bill according to work order</li>
+                        <li>Delivered 240 material consumption report</li>
+                        <li>Completed 3 IPC (Interim Payment Certificate) and 1 variation report</li>
+                        <li>Made 480 Daily Work Program and 3000 R.F.I of 6.5 km 4+2 Lane Connecting Road</li>
+                        <li>Made BOQ of 400 Feed Canal & Collecting Ditch of Connecting Road</li>
+                    </ul>
+                </div>
+                
+                <div class="project-modal__section">
+                    <h3>Achievements</h3>
+                    <ul class="project-modal__list project-modal__list--achievements">
+                        <li>Revised & completed Method Statement, Structural Shop drawing & full BBS of 7 Small bridge, 5 Box Culvert 5 Toll Plaza, 1 Toll Plaza Building and 400 Feed Canal & Collecting Ditch</li>
+                        <li>Completed 3 IPC (Interim Payment Certificate) and 1 variation report</li>
+                        <li>Made 300 Supplier, Sub-Contractor, Supplier Bill according to work order</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Modal 3 -->
+    <div class="project-modal" id="project-modal-3">
+        <div class="project-modal__content">
+            <div class="project-modal__header" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
+                <button class="project-modal__close">&times;</button>
+                <h2 class="project-modal__title">Crystal Design & Construction</h2>
+                <p class="project-modal__role">Role: Quantity Surveyor</p>
+            </div>
+            <div class="project-modal__body">
+                <div class="project-modal__info">
+                    <div class="project-modal__info-item">
+                        <span class="project-modal__info-label">Employer</span>
+                        <span class="project-modal__info-value">Crystal Design & Construction</span>
+                    </div>
+                    <div class="project-modal__info-item">
+                        <span class="project-modal__info-label">Client</span>
+                        <span class="project-modal__info-value">Multiple Private Clients</span>
+                    </div>
+                    <div class="project-modal__info-item">
+                        <span class="project-modal__info-label">Projects</span>
+                        <span class="project-modal__info-value">5 Residential, 2 Commercial</span>
+                    </div>
+                </div>
+                
+                <div class="project-modal__section">
+                    <h3>Project Description</h3>
+                    <p>Managed quantity surveying for multiple private construction projects including 5 multi-storeyed residential buildings and 2 commercial buildings.</p>
+                </div>
+                
+                <div class="project-modal__section">
+                    <h3>Responsibilities</h3>
+                    <ul class="project-modal__list">
+                        <li>Developed accurate cost estimates for construction projects</li>
+                        <li>Conducted comprehensive quantity takeoffs from drawings and specifications to determine material and labor requirements</li>
+                        <li>Utilized industry-standard software such as AutoCAD, MS Excel, or specialized estimating tools to streamline quantity surveying tasks</li>
+                        <li>Prepared 30 Bar Bending Schedule report and 41 BOQ</li>
+                    </ul>
+                </div>
+                
+                <div class="project-modal__section">
+                    <h3>Achievements</h3>
+                    <ul class="project-modal__list project-modal__list--achievements">
+                        <li>Managed quantity surveying for 5 multi-storeyed residential buildings</li>
+                        <li>Managed quantity surveying for 2 commercial buildings</li>
+                        <li>Prepared 30 Bar Bending Schedule report</li>
+                        <li>Completed 41 BOQ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <p class="footer__text">&copy; 2026 Shahadat Akbor. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    <script src="data/portfolio-data.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Project Modal Functionality
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const projectId = card.getAttribute('data-project');
+                const modal = document.getElementById(`project-modal-${projectId}`);
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+        
+        document.querySelectorAll('.project-modal__close').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.closest('.project-modal').classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        document.querySelectorAll('.project-modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

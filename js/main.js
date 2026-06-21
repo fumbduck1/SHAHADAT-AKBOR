@@ -1,0 +1,743 @@
+/**
+ * Shahadat Akbor - Professional Portfolio
+ * JavaScript with GSAP Animations
+ */
+
+// ========================================
+// GSAP INITIALIZATION
+// ========================================
+if (typeof gsap !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+}
+
+// ========================================
+// DOM ELEMENTS
+// ========================================
+const navMenu = document.getElementById('nav-menu');
+const navToggle = document.getElementById('nav-toggle');
+const navClose = document.getElementById('nav-close');
+const header = document.getElementById('header');
+const contactForm = document.getElementById('contact-form');
+const navOverlay = document.getElementById('nav-overlay');
+
+// ========================================
+// MOBILE NAVIGATION
+// ========================================
+
+// Create overlay element if it doesn't exist
+function createOverlay() {
+    if (!document.getElementById('nav-overlay')) {
+        const overlay = document.createElement('div');
+        overlay.id = 'nav-overlay';
+        overlay.className = 'nav__overlay';
+        document.body.appendChild(overlay);
+        
+        overlay.addEventListener('click', closeMenu);
+    }
+}
+
+// Show menu
+if (navToggle) {
+    navToggle.addEventListener('click', () => {
+        createOverlay();
+        const overlay = document.getElementById('nav-overlay');
+        if (overlay) overlay.classList.add('active');
+        navMenu.classList.add('active');
+        if (typeof gsap !== 'undefined') {
+            gsap.fromTo(navMenu, 
+                { x: '100%' }, 
+                { x: '0%', duration: 0.4, ease: 'power3.out' }
+            );
+        }
+    });
+}
+
+// Close menu
+function closeMenu() {
+    const overlay = document.getElementById('nav-overlay');
+    if (typeof gsap !== 'undefined') {
+        gsap.to(navMenu, {
+            x: '100%',
+            duration: 0.3,
+            ease: 'power3.in',
+            onComplete: () => {
+                navMenu.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+            }
+        });
+    } else {
+        navMenu.classList.remove('active');
+        if (overlay) overlay.classList.remove('active');
+    }
+}
+
+if (navClose) {
+    navClose.addEventListener('click', closeMenu);
+}
+
+// Close menu when clicking on nav links
+const navLinks = document.querySelectorAll('.nav__link');
+navLinks.forEach(link => {
+    link.addEventListener('click', closeMenu);
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (navMenu && navMenu.classList.contains('active')) {
+        if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+            closeMenu();
+        }
+    }
+});
+
+// ========================================
+// HERO ANIMATIONS
+// ========================================
+
+if (typeof gsap !== 'undefined') {
+    // Hero entrance animation — NO opacity, only subtle slide
+    const heroTimeline = gsap.timeline();
+    
+    const heroBadge = document.querySelector('.hero__badge');
+    const heroTitle = document.querySelector('.hero__title');
+    const heroSubtitle = document.querySelector('.hero__subtitle');
+    const heroActions = document.querySelector('.hero__actions');
+    const heroImage = document.querySelector('.hero__image-wrapper');
+    
+    if (heroBadge) heroTimeline.from(heroBadge, { y: 15, duration: 0.5, ease: 'power2.out' });
+    if (heroTitle) heroTimeline.from(heroTitle, { y: 20, duration: 0.6, ease: 'power2.out' }, '-=0.3');
+    if (heroSubtitle) heroTimeline.from(heroSubtitle, { y: 15, duration: 0.5, ease: 'power2.out' }, '-=0.3');
+    if (heroActions) heroTimeline.from(heroActions, { y: 15, duration: 0.5, ease: 'power2.out' }, '-=0.3');
+    if (heroImage) heroTimeline.from(heroImage, { y: 20, duration: 0.6, ease: 'power2.out' }, '-=0.4');
+}
+
+// ========================================
+// SCROLL REVEAL ANIMATIONS (Seizure-Safe)
+// ========================================
+// No opacity animations — only subtle translate on scroll
+// All elements remain visible at all times
+
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    const revealElements = document.querySelectorAll(
+        '.bento__item, .skill-card, .achievement-card, ' +
+        '.contact__item, .timeline__item, .about__card, .resume__section, ' +
+        '.project-card, .hero__metric, .snapshot__card'
+    );
+
+    revealElements.forEach((element) => {
+        // Only animate elements below the fold
+        const rect = element.getBoundingClientRect();
+        if (rect.top > window.innerHeight) {
+            gsap.fromTo(element, 
+                { y: 30 },
+                {
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 90%',
+                        toggleActions: 'play none none none'
+                    },
+                    y: 0,
+                    duration: 0.5,
+                    ease: 'power2.out'
+                }
+            );
+        }
+    });
+
+    // ========================================
+    // COUNTER ANIMATIONS (Seizure-Safe)
+    // ========================================
+
+    const counterElements = document.querySelectorAll('[data-target]');
+
+    counterElements.forEach((element, index) => {
+        const target = parseInt(element.getAttribute('data-target'));
+        let hasAnimated = false;
+        
+        // Set initial display
+        element.textContent = '0';
+        
+        const animateCounter = () => {
+            if (hasAnimated) return;
+            hasAnimated = true;
+            
+            gsap.to(element, {
+                innerText: target,
+                duration: 2.5,
+                delay: index * 0.15,
+                ease: 'power2.out',
+                snap: { innerText: 1 },
+                onUpdate: function() {
+                    element.textContent = Math.floor(
+                        parseFloat(element.textContent)
+                    ).toLocaleString();
+                },
+                onComplete: function() {
+                    element.textContent = target.toLocaleString();
+                }
+            });
+        };
+
+        // For hero metrics (visible on load), animate after short delay
+        const rect = element.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+            // Element is in viewport on load — animate after hero loads
+            gsap.delayedCall(0.8 + index * 0.15, animateCounter);
+        } else {
+            // Element is below fold — use ScrollTrigger
+            ScrollTrigger.create({
+                trigger: element,
+                start: 'top 85%',
+                once: true,
+                onEnter: animateCounter
+            });
+        }
+    });
+
+    // ========================================
+    // BENTO GRID ANIMATIONS (Seizure-Safe)
+    // ========================================
+
+    const bentoGrid = document.querySelector('.bento__grid');
+    if (bentoGrid) {
+        gsap.from('.bento__item', {
+            scrollTrigger: {
+                trigger: '.bento__grid',
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            },
+            y: 30,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: 'power2.out'
+        });
+    }
+
+    // ========================================
+    // PROJECT CARDS ANIMATION (Seizure-Safe)
+    // ========================================
+
+    const projectsGrid = document.querySelector('.projects__grid');
+    if (projectsGrid) {
+        gsap.from('.project-card', {
+            scrollTrigger: {
+                trigger: '.projects__grid',
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+            },
+            y: 25,
+            duration: 0.5,
+            stagger: 0.15,
+            ease: 'power2.out'
+        });
+    }
+
+    // ========================================
+    // SKILL CARDS ANIMATION (Seizure-Safe)
+    // ========================================
+
+    const skillsGrid = document.querySelector('.skills__grid');
+    if (skillsGrid) {
+        gsap.from('.skill-card', {
+            scrollTrigger: {
+                trigger: '.skills__grid',
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            },
+            y: 20,
+            duration: 0.5,
+            stagger: 0.08,
+            ease: 'power2.out'
+        });
+    }
+
+    // ========================================
+    // ACHIEVEMENT CARDS ANIMATION (Seizure-Safe)
+    // ========================================
+
+    const achievementsGrid = document.querySelector('.achievements__grid');
+    if (achievementsGrid) {
+        gsap.from('.achievement-card', {
+            scrollTrigger: {
+                trigger: '.achievements__grid',
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            },
+            y: 20,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: 'power2.out'
+        });
+    }
+
+    // ========================================
+    // TIMELINE ANIMATION (Seizure-Safe)
+    // ========================================
+
+    const timeline = document.querySelector('.timeline');
+    if (timeline) {
+        gsap.from('.timeline__item', {
+            scrollTrigger: {
+                trigger: '.timeline',
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            },
+            x: -20,
+            duration: 0.5,
+            stagger: 0.15,
+            ease: 'power2.out'
+        });
+    }
+
+    // ========================================
+    // CONTACT ITEMS ANIMATION (Seizure-Safe)
+    // ========================================
+
+    const contactItems = document.querySelector('.contact__items');
+    if (contactItems) {
+        gsap.from('.contact__item', {
+            scrollTrigger: {
+                trigger: '.contact__items',
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            },
+            x: -20,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: 'power2.out'
+        });
+    }
+
+    // ========================================
+    // PAGE HEADER ANIMATION (Seizure-Safe)
+    // ========================================
+
+    const pageHeaderTitle = document.querySelector('.page-header__title');
+    const pageHeaderSubtitle = document.querySelector('.page-header__subtitle');
+    
+    if (pageHeaderTitle) {
+        gsap.from(pageHeaderTitle, {
+            y: 20,
+            duration: 0.6,
+            ease: 'power2.out'
+        });
+    }
+    
+    if (pageHeaderSubtitle) {
+        gsap.from(pageHeaderSubtitle, {
+            y: 15,
+            duration: 0.5,
+            ease: 'power2.out',
+            delay: 0.15
+        });
+    }
+
+    // ========================================
+    // PARALLAX EFFECTS (Seizure-Safe)
+    // ========================================
+
+    const heroImageWrapper = document.querySelector('.hero__image-wrapper');
+    if (heroImageWrapper) {
+        gsap.to('.hero__image-wrapper', {
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1
+            },
+            y: 50,
+            ease: 'none'
+        });
+    }
+}
+
+// ========================================
+// HEADER SCROLL EFFECT
+// ========================================
+
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (header && typeof gsap !== 'undefined') {
+        if (currentScroll > 100) {
+            gsap.to(header, {
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+                duration: 0.3
+            });
+        } else {
+            gsap.to(header, {
+                boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.12)',
+                duration: 0.3
+            });
+        }
+    }
+    
+    lastScroll = currentScroll;
+});
+
+// ========================================
+// ACTIVE NAVIGATION LINK
+// ========================================
+
+function setActiveNavLink() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === currentPage) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
+// Run on page load
+document.addEventListener('DOMContentLoaded', setActiveNavLink);
+
+// ========================================
+// CONTACT FORM HANDLING
+// ========================================
+
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(contactForm);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const subject = formData.get('subject');
+        const message = formData.get('message');
+        
+        // Simple validation
+        if (!name || !email || !subject || !message) {
+            showNotification('Please fill in all fields', 'error');
+            return;
+        }
+        
+        if (!isValidEmail(email)) {
+            showNotification('Please enter a valid email address', 'error');
+            return;
+        }
+        
+        // Animate form submission
+        if (typeof gsap !== 'undefined') {
+            gsap.to(contactForm, {
+                scale: 0.98,
+                duration: 0.1,
+                yoyo: true,
+                repeat: 1,
+                onComplete: () => {
+                    showNotification('Message sent successfully! (This is a demo - no actual email sent)', 'success');
+                    contactForm.reset();
+                }
+            });
+        } else {
+            showNotification('Message sent successfully! (This is a demo - no actual email sent)', 'success');
+            contactForm.reset();
+        }
+    });
+}
+
+// Email validation
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// ========================================
+// NOTIFICATION SYSTEM
+// ========================================
+
+function showNotification(message, type = 'info') {
+    // Remove existing notification
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification--${type}`;
+    notification.innerHTML = `
+        <span class="notification__message">${message}</span>
+        <button class="notification__close">&times;</button>
+    `;
+    
+    // Add styles
+    notification.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 16px 24px;
+        border-radius: 12px;
+        background-color: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+        color: white;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: 'Space Grotesk', sans-serif;
+        max-width: 90%;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animate notification entrance
+    if (typeof gsap !== 'undefined') {
+        gsap.fromTo(notification, 
+            { x: 100, opacity: 0 }, 
+            { x: 0, opacity: 1, duration: 0.4, ease: 'back.out(1.7)' }
+        );
+    }
+    
+    // Close button
+    const closeBtn = notification.querySelector('.notification__close');
+    closeBtn.style.cssText = `
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 0;
+        margin-left: 8px;
+    `;
+    
+    closeBtn.addEventListener('click', () => {
+        if (typeof gsap !== 'undefined') {
+            gsap.to(notification, {
+                x: 100,
+                opacity: 0,
+                duration: 0.3,
+                onComplete: () => notification.remove()
+            });
+        } else {
+            notification.remove();
+        }
+    });
+    
+    // Auto close after 5 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            if (typeof gsap !== 'undefined') {
+                gsap.to(notification, {
+                    x: 100,
+                    opacity: 0,
+                    duration: 0.3,
+                    onComplete: () => notification.remove()
+                });
+            } else {
+                notification.remove();
+            }
+        }
+    }, 5000);
+}
+
+// ========================================
+// SMOOTH SCROLL FOR ANCHOR LINKS
+// ========================================
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target && typeof gsap !== 'undefined' && typeof ScrollToPlugin !== 'undefined') {
+            gsap.to(window, {
+                scrollTo: { y: target, offsetY: 80 },
+                duration: 1,
+                ease: 'power3.inOut'
+            });
+        } else if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+
+// ========================================
+// LOADING STATE
+// ========================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('loaded');
+});
+
+// ========================================
+// KEYBOARD NAVIGATION
+// ========================================
+
+document.addEventListener('keydown', (e) => {
+    // Close mobile menu on Escape
+    if (e.key === 'Escape' && navMenu && navMenu.classList.contains('active')) {
+        closeMenu();
+    }
+});
+
+// ========================================
+// PRINT FUNCTIONALITY
+// ========================================
+
+function printResume() {
+    window.print();
+}
+
+// ========================================
+// BACK TO TOP BUTTON
+// ========================================
+
+function createBackToTopButton() {
+    const button = document.createElement('button');
+    button.innerHTML = '&#8593;';
+    button.className = 'back-to-top';
+    button.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background-color: #0f172a;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        z-index: 999;
+    `;
+    
+    document.body.appendChild(button);
+    
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            button.style.display = 'flex';
+            if (typeof gsap !== 'undefined') {
+                gsap.fromTo(button, 
+                    { scale: 0 }, 
+                    { scale: 1, duration: 0.3, ease: 'back.out(1.7)' }
+                );
+            }
+        } else {
+            if (typeof gsap !== 'undefined') {
+                gsap.to(button, {
+                    scale: 0,
+                    duration: 0.2,
+                    onComplete: () => button.style.display = 'none'
+                });
+            } else {
+                button.style.display = 'none';
+            }
+        }
+    });
+    
+    // Scroll to top when clicked
+    button.addEventListener('click', () => {
+        if (typeof gsap !== 'undefined' && typeof ScrollToPlugin !== 'undefined') {
+            gsap.to(window, {
+                scrollTo: { y: 0 },
+                duration: 1,
+                ease: 'power3.inOut'
+            });
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+    
+    // Hover effect
+    button.addEventListener('mouseenter', () => {
+        if (typeof gsap !== 'undefined') {
+            gsap.to(button, {
+                backgroundColor: '#1d4ed8',
+                scale: 1.1,
+                duration: 0.2
+            });
+        }
+    });
+    
+    button.addEventListener('mouseleave', () => {
+        if (typeof gsap !== 'undefined') {
+            gsap.to(button, {
+                backgroundColor: '#0f172a',
+                scale: 1,
+                duration: 0.2
+            });
+        }
+    });
+}
+
+// Initialize back to top button
+document.addEventListener('DOMContentLoaded', createBackToTopButton);
+
+// ========================================
+// LAZY LOADING FOR IMAGES
+// ========================================
+
+if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.classList.add('loaded');
+                    imageObserver.unobserve(img);
+                }
+            }
+        });
+    });
+    
+    document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+    });
+}
+
+// ========================================
+// MAGNETIC BUTTONS
+// ========================================
+
+document.querySelectorAll('.btn').forEach(button => {
+    button.addEventListener('mousemove', (e) => {
+        const rect = button.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        if (typeof gsap !== 'undefined') {
+            gsap.to(button, {
+                x: x * 0.2,
+                y: y * 0.2,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        }
+    });
+    
+    button.addEventListener('mouseleave', () => {
+        if (typeof gsap !== 'undefined') {
+            gsap.to(button, {
+                x: 0,
+                y: 0,
+                duration: 0.5,
+                ease: 'elastic.out(1, 0.3)'
+            });
+        }
+    });
+});
+
+// ========================================
+// CONSOLE MESSAGE
+// ========================================
+
+console.log(`
+╔══════════════════════════════════════════════════════════════╗
+║  Shahadat Akbor - Professional Portfolio                    ║
+║  Built with HTML, CSS & JavaScript + GSAP                   ║
+║                                                              ║
+║  Contact: shahadatakbor9@gmail.com                          ║
+║  Phone: +8801839629328                                      ║
+╚══════════════════════════════════════════════════════════════╝
+`);
