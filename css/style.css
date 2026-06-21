@@ -1143,8 +1143,8 @@ ul {
    ======================================== */
 .page-header {
     padding: calc(var(--spacing-6xl) - 40px) 0 var(--spacing-2xl);
-    background: linear-gradient(180deg, var(--color-secondary) 0%, var(--color-background) 100%);
-    color: var(--color-background);
+    background: linear-gradient(180deg, var(--color-background-alt) 0%, var(--color-background) 100%);
+    color: var(--color-secondary);
     text-align: center;
 }
 
