@@ -330,6 +330,27 @@ ul {
     border-top: 1px solid var(--color-border);
 }
 
+.hero__contact {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.hero__contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--color-text-light);
+    font-size: var(--font-size-base);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.hero__contact-item:hover {
+    color: var(--color-secondary);
+}
+
 .hero__metric {
     text-align: center;
 }
@@ -1130,7 +1151,7 @@ ul {
 .page-header__title {
     font-size: var(--font-size-hero);
     font-weight: 900;
-    color: var(--color-background);
+    color: var(--color-secondary);
     line-height: 1.05;
     letter-spacing: -0.04em;
     margin-bottom: var(--spacing-lg);
@@ -1138,7 +1159,7 @@ ul {
 
 .page-header__subtitle {
     font-size: clamp(1rem, 1.5vw, 1.25rem);
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--color-text-light);
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
