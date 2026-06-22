@@ -3,15 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self';">
     <meta name="description" content="About Shahadat Akbor - Professional Summary, Education, and Leadership Activities">
     <meta name="keywords" content="About Shahadat Akbor, Civil Engineer, Education, Leadership">
     <meta name="author" content="Shahadat Akbor">
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="About - Shahadat Akbor | Professional Portfolio">
+    <meta property="og:description" content="Professional summary, education, and leadership experience of Shahadat Akbor, a dedicated Civil Engineer.">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://fumbduck1.github.io/SHAHADAT-AKBOR/about.html">
+    
     <title>About - Shahadat Akbor | Professional Portfolio</title>
     
-    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous">
+    <script src="https://cdn.tailwindcss.com" crossorigin="anonymous"></script>
     <script>
     tailwind.config = {
       theme: {
@@ -34,8 +40,10 @@
     </script>
     <link rel="stylesheet" href="css/custom.css">
 
+    <link rel="canonical" href="https://fumbduck1.github.io/SHAHADAT-AKBOR/about.html">
 </head>
 <body class="font-sans text-text-main bg-white overflow-x-hidden min-h-screen">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[99999] focus:bg-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg focus:text-primary focus:outline-none">Skip to main content</a>
     <!-- Header -->
     <header class="header" id="header">
         <nav class="nav container">
@@ -50,14 +58,14 @@
                     <li class="nav__item"><a href="resume.html" class="nav__link">Resume</a></li>
                     <li class="nav__item"><a href="contact.html" class="nav__link">Contact</a></li>
                 </ul>
-                <div class="nav__close" id="nav-close"><span>&times;</span></div>
+                <button class="nav__close" id="nav-close" aria-label="Close navigation" aria-expanded="false">&times;</button>
             </div>
-            <div class="nav__toggle" id="nav-toggle"><span>&#9776;</span></div>
+            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
         </nav>
     </header>
 
     <!-- Main Content -->
-    <main class="flex-1 w-full max-w-full overflow-x-hidden">
+    <main id="main-content" class="flex-1 w-full max-w-full overflow-x-hidden">
         <!-- Page Header -->
         <section class="page-header pt-[calc(12rem-40px)] pb-12 bg-gradient-to-b from-bg-alt to-white text-secondary text-center">
             <div class="container w-full mx-auto px-[clamp(1rem,4vw,3rem)]">
@@ -192,10 +200,10 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-    <script src="data/portfolio-data.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" integrity="sha384-RVPQwTb0fPz9kI8s5GwAq1Qioto9fnEQt1aKGSQSm8xV6+DIdBSgcCShoHqfKnhv" crossorigin="anonymous"></script>
+
     <script src="js/main.js"></script>
 </body>
 </html>

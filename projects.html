@@ -3,17 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self';">
     <meta name="description" content="Projects Portfolio of Shahadat Akbor - Civil Engineering Projects">
     <meta name="keywords" content="Civil Engineering Projects, Shahadat Akbor, Portfolio">
     <meta name="author" content="Shahadat Akbor">
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Projects - Shahadat Akbor | Professional Portfolio">
+    <meta property="og:description" content="Featured civil engineering projects by Shahadat Akbor including pipeline, road, and building construction.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fumbduck1.github.io/SHAHADAT-AKBOR/projects.html">
+    
     <title>Projects - Shahadat Akbor | Professional Portfolio</title>
     
-    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com" crossorigin="anonymous"></script>
     <script>
     tailwind.config = {
       theme: {
@@ -36,8 +42,10 @@
     </script>
     <link rel="stylesheet" href="css/custom.css">
 
+    <link rel="canonical" href="https://fumbduck1.github.io/SHAHADAT-AKBOR/projects.html">
 </head>
 <body class="font-sans text-text-main bg-white overflow-x-hidden min-h-screen flex flex-col">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[99999] focus:bg-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg focus:text-primary focus:outline-none">Skip to main content</a>
     <!-- Header -->
     <header class="header" id="header">
         <nav class="nav container">
@@ -52,16 +60,16 @@
                     <li class="nav__item"><a href="resume.html" class="nav__link">Resume</a></li>
                     <li class="nav__item"><a href="contact.html" class="nav__link">Contact</a></li>
                 </ul>
-                <div class="nav__close" id="nav-close"><span>&times;</span></div>
+                <button class="nav__close" id="nav-close" aria-label="Close navigation" aria-expanded="false">&times;</button>
             </div>
-            <div class="nav__toggle" id="nav-toggle"><span>&#9776;</span></div>
+            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
         </nav>
     </header>
 
     <!-- Main Content -->
-    <main class="main flex-1 w-full max-w-full overflow-x-hidden">
+    <main id="main-content" class="main flex-1 w-full max-w-full overflow-x-hidden">
         <!-- Page Header -->
-        <section class="page-header pt-[152px] pb-12 bg-gradient-to-b from-bg-alt to-white text-secondary text-center">
+        <section class="page-header pt-[calc(12rem-40px)] pb-12 bg-gradient-to-b from-bg-alt to-white text-secondary text-center">
             <div class="container w-full mx-auto px-[clamp(1rem,4vw,3rem)]">
                 <h1 class="page-header__title text-[clamp(3rem,6vw,6rem)] font-black text-secondary leading-[1.05] tracking-[-0.04em] mb-6">Projects</h1>
                 <p class="page-header__subtitle text-[clamp(1rem,1.5vw,1.25rem)] text-text-light max-w-[600px] mx-auto leading-relaxed">Detailed Project Portfolio</p>
@@ -119,11 +127,11 @@
     </main>
 
     <!-- Project Modal 1 -->
-    <div class="project-modal" id="project-modal-1">
+    <div class="project-modal" id="project-modal-1" role="dialog" aria-modal="true" aria-labelledby="project-modal-1-title" aria-hidden="true" tabindex="-1">
         <div class="project-modal__content bg-white rounded-3xl max-w-[900px] w-full mx-auto my-4 overflow-hidden md:my-8">
             <div class="project-modal__header relative p-6 text-white bg-gradient-to-br from-primary to-primary-dark md:p-8">
-                <button class="project-modal__close absolute top-4 right-4 bg-white/20 border-none w-10 h-10 rounded-full text-white text-xl cursor-pointer flex items-center justify-center">&times;</button>
-                <h2 class="project-modal__title text-[1.5rem] font-bold mb-2 pr-12 md:text-[1.75rem]">Dhaka Environmentally Sustainable Water Supply Project</h2>
+                <button class="project-modal__close absolute top-4 right-4 bg-white/20 border-none w-10 h-10 rounded-full text-white text-xl cursor-pointer flex items-center justify-center" aria-label="Close project details">&times;</button>
+                <h2 id="project-modal-1-title" class="project-modal__title text-[1.5rem] font-bold mb-2 pr-12 md:text-[1.75rem]">Dhaka Environmentally Sustainable Water Supply Project</h2>
                 <p class="project-modal__role text-[0.9375rem] opacity-90">Role: Project Manager</p>
             </div>
             <div class="project-modal__body p-6 md:p-8">
@@ -176,11 +184,11 @@
     </div>
 
     <!-- Project Modal 2 -->
-    <div class="project-modal" id="project-modal-2">
+    <div class="project-modal" id="project-modal-2" role="dialog" aria-modal="true" aria-labelledby="project-modal-2-title" aria-hidden="true" tabindex="-1">
         <div class="project-modal__content bg-white rounded-3xl max-w-[900px] w-full mx-auto my-4 overflow-hidden md:my-8">
             <div class="project-modal__header relative p-6 text-white md:p-8" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
-                <button class="project-modal__close absolute top-4 right-4 bg-white/20 border-none w-10 h-10 rounded-full text-white text-xl cursor-pointer flex items-center justify-center">&times;</button>
-                <h2 class="project-modal__title text-[1.5rem] font-bold mb-2 pr-12 md:text-[1.75rem]">Construction of First Terminal and Ancillary Facilities of Payra Sea Port</h2>
+                <button class="project-modal__close absolute top-4 right-4 bg-white/20 border-none w-10 h-10 rounded-full text-white text-xl cursor-pointer flex items-center justify-center" aria-label="Close project details">&times;</button>
+                <h2 id="project-modal-2-title" class="project-modal__title text-[1.5rem] font-bold mb-2 pr-12 md:text-[1.75rem]">Construction of First Terminal and Ancillary Facilities of Payra Sea Port</h2>
                 <p class="project-modal__role text-[0.9375rem] opacity-90">Role: Assistant Quantity Survey Engineer</p>
             </div>
             <div class="project-modal__body p-6 md:p-8">
@@ -231,11 +239,11 @@
     </div>
 
     <!-- Project Modal 3 -->
-    <div class="project-modal" id="project-modal-3">
+    <div class="project-modal" id="project-modal-3" role="dialog" aria-modal="true" aria-labelledby="project-modal-3-title" aria-hidden="true" tabindex="-1">
         <div class="project-modal__content bg-white rounded-3xl max-w-[900px] w-full mx-auto my-4 overflow-hidden md:my-8">
             <div class="project-modal__header relative p-6 text-white md:p-8" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
-                <button class="project-modal__close absolute top-4 right-4 bg-white/20 border-none w-10 h-10 rounded-full text-white text-xl cursor-pointer flex items-center justify-center">&times;</button>
-                <h2 class="project-modal__title text-[1.5rem] font-bold mb-2 pr-12 md:text-[1.75rem]">Crystal Design & Construction</h2>
+                <button class="project-modal__close absolute top-4 right-4 bg-white/20 border-none w-10 h-10 rounded-full text-white text-xl cursor-pointer flex items-center justify-center" aria-label="Close project details">&times;</button>
+                <h2 id="project-modal-3-title" class="project-modal__title text-[1.5rem] font-bold mb-2 pr-12 md:text-[1.75rem]">Crystal Design & Construction</h2>
                 <p class="project-modal__role text-[0.9375rem] opacity-90">Role: Quantity Surveyor</p>
             </div>
             <div class="project-modal__body p-6 md:p-8">
@@ -292,10 +300,9 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-    <script src="data/portfolio-data.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" integrity="sha384-RVPQwTb0fPz9kI8s5GwAq1Qioto9fnEQt1aKGSQSm8xV6+DIdBSgcCShoHqfKnhv" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
     <script>
         // Project Modal Functionality
@@ -305,6 +312,7 @@
                 const modal = document.getElementById(`project-modal-${projectId}`);
                 if (modal) {
                     modal.classList.add('active');
+                    modal.setAttribute('aria-hidden', 'false');
                     document.body.style.overflow = 'hidden';
                 }
             });
@@ -312,7 +320,9 @@
         
         document.querySelectorAll('.project-modal__close').forEach(btn => {
             btn.addEventListener('click', () => {
-                btn.closest('.project-modal').classList.remove('active');
+                const modal = btn.closest('.project-modal');
+                modal.classList.remove('active');
+                modal.setAttribute('aria-hidden', 'true');
                 document.body.style.overflow = '';
             });
         });
@@ -321,6 +331,7 @@
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     modal.classList.remove('active');
+                    modal.setAttribute('aria-hidden', 'true');
                     document.body.style.overflow = '';
                 }
             });

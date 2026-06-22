@@ -3,14 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self';">
     <meta name="description" content="Contact Shahadat Akbor - Get in Touch">
     <meta name="keywords" content="Contact, Get in Touch, Shahadat Akbor">
     <meta name="author" content="Shahadat Akbor">
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Contact - Shahadat Akbor | Professional Portfolio">
+    <meta property="og:description" content="Get in touch with Shahadat Akbor for professional opportunities.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fumbduck1.github.io/SHAHADAT-AKBOR/contact.html">
+    
     <title>Contact - Shahadat Akbor | Professional Portfolio</title>
     
-    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com" crossorigin="anonymous"></script>
     <script>
     tailwind.config = {
       theme: {
@@ -35,8 +41,10 @@
     </script>
     <link rel="stylesheet" href="css/custom.css">
 
+    <link rel="canonical" href="https://fumbduck1.github.io/SHAHADAT-AKBOR/contact.html">
 </head>
 <body class="font-sans text-text-main bg-white overflow-x-hidden min-h-screen">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[99999] focus:bg-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg focus:text-primary focus:outline-none">Skip to main content</a>
     <!-- Header -->
     <header class="header" id="header">
         <nav class="nav container">
@@ -51,14 +59,14 @@
                     <li class="nav__item"><a href="resume.html" class="nav__link">Resume</a></li>
                     <li class="nav__item"><a href="contact.html" class="nav__link active">Contact</a></li>
                 </ul>
-                <div class="nav__close" id="nav-close"><span>&times;</span></div>
+                <button class="nav__close" id="nav-close" aria-label="Close navigation" aria-expanded="false">&times;</button>
             </div>
-            <div class="nav__toggle" id="nav-toggle"><span>&#9776;</span></div>
+            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
         </nav>
     </header>
 
     <!-- Main Content -->
-    <main class="flex-1 w-full max-w-full overflow-x-hidden">
+    <main id="main-content" class="flex-1 w-full max-w-full overflow-x-hidden">
         <!-- Page Header -->
         <section class="page-header pt-[calc(12rem-40px)] pb-12 bg-gradient-to-b from-bg-alt to-white text-secondary text-center">
             <div class="container w-full mx-auto px-[clamp(1rem,4vw,3rem)]">
@@ -115,7 +123,7 @@
                     </div>
                     
                     <!-- LinkedIn -->
-                    <a href="https://www.linkedin.com/in/shahadat-akbor-9625b2236/" target="_blank" class="contact-info__item flex items-center gap-4 p-5 bg-white/60 backdrop-blur-xl border border-white/18 rounded-[2rem] mb-3 text-inherit transition-all duration-300 hover:bg-primary/5 hover:border-primary md:gap-6 md:p-8 md:mb-4">
+                    <a href="https://www.linkedin.com/in/shahadat-akbor-9625b2236/" target="_blank" rel="noopener noreferrer" class="contact-info__item flex items-center gap-4 p-5 bg-white/60 backdrop-blur-xl border border-white/18 rounded-[2rem] mb-3 text-inherit transition-all duration-300 hover:bg-primary/5 hover:border-primary md:gap-6 md:p-8 md:mb-4">
                         <div class="contact-info__icon w-12 h-12 flex items-center justify-center rounded-lg text-white shrink-0 md:w-16 md:h-16" style="background: linear-gradient(135deg, #0077b5 0%, #005e93 100%);">
                             <svg class="w-[22px] h-[22px] md:w-[28px] md:h-[28px]" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
@@ -142,10 +150,9 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-    <script src="data/portfolio-data.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" integrity="sha384-RVPQwTb0fPz9kI8s5GwAq1Qioto9fnEQt1aKGSQSm8xV6+DIdBSgcCShoHqfKnhv" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self';">
     <meta name="description" content="Resume of Shahadat Akbor - Professional CV and Experience">
     <meta name="keywords" content="Resume, CV, Professional Profile, Shahadat Akbor">
     <meta name="author" content="Shahadat Akbor">
     
-    <title>Resume - Shahadat Akbor | Professional Portfolio</title>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Resume - Shahadat Akbor | Professional Portfolio">
+    <meta property="og:description" content="Download the professional resume of Shahadat Akbor, Civil Engineer.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fumbduck1.github.io/SHAHADAT-AKBOR/resume.html">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+    <title>Resume - Shahadat Akbor | Professional Portfolio</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +22,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com" crossorigin="anonymous"></script>
     <script>
     tailwind.config = {
       theme: {
@@ -50,9 +54,12 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
     
+    <link rel="canonical" href="https://fumbduck1.github.io/SHAHADAT-AKBOR/resume.html">
 
 </head>
 <body class="overflow-x-hidden min-h-screen font-sans text-text-main bg-white leading-relaxed">
+
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[99999] focus:bg-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg focus:text-primary focus:outline-none">Skip to main content</a>
 
     <!-- Header -->
     <header class="header" id="header">
@@ -68,17 +75,17 @@
                     <li class="nav__item"><a href="resume.html" class="nav__link active">Resume</a></li>
                     <li class="nav__item"><a href="contact.html" class="nav__link">Contact</a></li>
                 </ul>
-                <div class="nav__close" id="nav-close"><span>&times;</span></div>
+                <button class="nav__close" id="nav-close" aria-label="Close navigation" aria-expanded="false">&times;</button>
             </div>
-            <div class="nav__toggle" id="nav-toggle"><span>&#9776;</span></div>
+            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
         </nav>
     </header>
 
     <!-- Main Content -->
-    <main class="main flex-1 w-full max-w-full overflow-x-hidden">
+    <main id="main-content" class="main flex-1 w-full max-w-full overflow-x-hidden">
 
         <!-- Page Header -->
-        <section class="page-header py-24 md:py-32 bg-bg-alt">
+        <section class="page-header pt-[calc(12rem-40px)] pb-12 bg-bg-alt">
             <div class="container text-center">
                 <h1 class="page-header__title text-[clamp(1.8rem,6vw,3rem)] font-extrabold text-secondary leading-[1.05] tracking-tight mb-4">Resume</h1>
                 <p class="page-header__subtitle text-base md:text-lg text-text-light">Professional CV &amp; Experience</p>
@@ -91,7 +98,7 @@
 
                 <!-- Download Button -->
                 <div class="resume__download text-center mb-16">
-                    <a href="https://drive.google.com/drive/folders/1didGyfCjeUM1fOlSfr7vVi-LsxKHXmjZ?usp=drive_link" target="_blank"
+                    <a href="https://drive.google.com/drive/folders/1didGyfCjeUM1fOlSfr7vVi-LsxKHXmjZ?usp=drive_link" target="_blank" rel="noopener noreferrer"
                        class="btn inline-flex items-center justify-center gap-2 py-4 px-8 font-sans text-base font-semibold border-0 rounded-full cursor-pointer tracking-tight transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] bg-secondary text-white hover:bg-primary hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(37,99,235,0.3)]">
                         Download PDF &#8594;
                     </a>
@@ -206,10 +213,9 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-    <script src="data/portfolio-data.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" integrity="sha384-RVPQwTb0fPz9kI8s5GwAq1Qioto9fnEQt1aKGSQSm8xV6+DIdBSgcCShoHqfKnhv" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

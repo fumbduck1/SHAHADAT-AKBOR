@@ -378,7 +378,7 @@ a {
 }
 
 /* List reset */
-ul {
+.nav__list, .nav__menu {
     list-style: none;
 }
 

@@ -17,8 +17,11 @@ const navMenu = document.getElementById('nav-menu');
 const navToggle = document.getElementById('nav-toggle');
 const navClose = document.getElementById('nav-close');
 const header = document.getElementById('header');
-const contactForm = document.getElementById('contact-form');
 const navOverlay = document.getElementById('nav-overlay');
+
+// Set initial ARIA states for nav toggle/close
+if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+if (navClose) navClose.setAttribute('aria-expanded', 'false');
 
 // ========================================
 // MOBILE NAVIGATION
@@ -43,6 +46,8 @@ if (navToggle) {
         const overlay = document.getElementById('nav-overlay');
         if (overlay) overlay.classList.add('active');
         navMenu.classList.add('active');
+        navToggle.setAttribute('aria-expanded', 'true');
+        navClose.setAttribute('aria-expanded', 'true');
         document.body.style.overflow = 'hidden';
     });
 }
@@ -52,6 +57,8 @@ function closeMenu() {
     const overlay = document.getElementById('nav-overlay');
     navMenu.classList.remove('active');
     if (overlay) overlay.classList.remove('active');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navClose.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
 }
 
@@ -349,24 +356,30 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
 // ========================================
 
 let lastScroll = 0;
+let headerScrollTicking = false;
 window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (header && typeof gsap !== 'undefined') {
-        if (currentScroll > 100) {
-            gsap.to(header, {
-                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
-                duration: 0.3
-            });
-        } else {
-            gsap.to(header, {
-                boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.12)',
-                duration: 0.3
-            });
+    if (headerScrollTicking) return;
+    headerScrollTicking = true;
+    requestAnimationFrame(() => {
+        const currentScroll = window.pageYOffset;
+        
+        if (header && typeof gsap !== 'undefined') {
+            if (currentScroll > 100) {
+                gsap.to(header, {
+                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+                    duration: 0.3
+                });
+            } else {
+                gsap.to(header, {
+                    boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.12)',
+                    duration: 0.3
+                });
+            }
         }
-    }
-    
-    lastScroll = currentScroll;
+        
+        lastScroll = currentScroll;
+        headerScrollTicking = false;
+    });
 });
 
 // ========================================
@@ -390,57 +403,6 @@ function setActiveNavLink() {
 document.addEventListener('DOMContentLoaded', setActiveNavLink);
 
 // ========================================
-// CONTACT FORM HANDLING
-// ========================================
-
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(contactForm);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const subject = formData.get('subject');
-        const message = formData.get('message');
-        
-        // Simple validation
-        if (!name || !email || !subject || !message) {
-            showNotification('Please fill in all fields', 'error');
-            return;
-        }
-        
-        if (!isValidEmail(email)) {
-            showNotification('Please enter a valid email address', 'error');
-            return;
-        }
-        
-        // Animate form submission
-        if (typeof gsap !== 'undefined') {
-            gsap.to(contactForm, {
-                scale: 0.98,
-                duration: 0.1,
-                yoyo: true,
-                repeat: 1,
-                onComplete: () => {
-                    showNotification('Message sent successfully! (This is a demo - no actual email sent)', 'success');
-                    contactForm.reset();
-                }
-            });
-        } else {
-            showNotification('Message sent successfully! (This is a demo - no actual email sent)', 'success');
-            contactForm.reset();
-        }
-    });
-}
-
-// Email validation
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-
-// ========================================
 // NOTIFICATION SYSTEM
 // ========================================
 
@@ -454,10 +416,16 @@ function showNotification(message, type = 'info') {
     // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification--${type}`;
-    notification.innerHTML = `
-        <span class="notification__message">${message}</span>
-        <button class="notification__close">&times;</button>
-    `;
+    
+    const messageSpan = document.createElement('span');
+    messageSpan.className = 'notification__message';
+    messageSpan.textContent = message;
+    const closeBtnEl = document.createElement('button');
+    closeBtnEl.className = 'notification__close';
+    closeBtnEl.textContent = '\u00d7';
+    closeBtnEl.setAttribute('aria-label', 'Close notification');
+    notification.appendChild(messageSpan);
+    notification.appendChild(closeBtnEl);
     
     // Add styles
     notification.style.cssText = `
@@ -487,9 +455,8 @@ function showNotification(message, type = 'info') {
         );
     }
     
-    // Close button
-    const closeBtn = notification.querySelector('.notification__close');
-    closeBtn.style.cssText = `
+    // Close button styles
+    closeBtnEl.style.cssText = `
         background: none;
         border: none;
         color: white;
@@ -499,7 +466,7 @@ function showNotification(message, type = 'info') {
         margin-left: 8px;
     `;
     
-    closeBtn.addEventListener('click', () => {
+    closeBtnEl.addEventListener('click', () => {
         if (typeof gsap !== 'undefined') {
             gsap.to(notification, {
                 x: 100,
@@ -569,6 +536,66 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ========================================
+// PROJECT MODAL ACCESSIBILITY
+// ========================================
+
+document.querySelectorAll('.project-modal').forEach(modal => {
+    const closeBtn = modal.querySelector('.modal-close');
+    
+    // Close on Escape key
+    modal.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Close button accessibility
+    if (closeBtn) {
+        closeBtn.setAttribute('aria-label', 'Close project details');
+        closeBtn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                modal.classList.remove('active');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+    
+    // Close when clicking outside modal content
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+    });
+});
+
+// Focus trap for modals
+document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return;
+    const activeModal = document.querySelector('.project-modal.active');
+    if (!activeModal) return;
+    
+    const focusable = activeModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (focusable.length === 0) return;
+    
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    
+    if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+    }
+});
+
+// ========================================
 // PRINT FUNCTIONALITY
 // ========================================
 
@@ -584,6 +611,8 @@ function createBackToTopButton() {
     const button = document.createElement('button');
     button.innerHTML = '&#8593;';
     button.className = 'back-to-top';
+    button.setAttribute('aria-label', 'Back to top');
+    button.setAttribute('role', 'button');
     button.style.cssText = `
         position: fixed;
         bottom: 20px;
@@ -606,26 +635,32 @@ function createBackToTopButton() {
     document.body.appendChild(button);
     
     // Show/hide button based on scroll position
+    let backToTopTicking = false;
     window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            button.style.display = 'flex';
-            if (typeof gsap !== 'undefined') {
-                gsap.fromTo(button, 
-                    { scale: 0 }, 
-                    { scale: 1, duration: 0.3, ease: 'back.out(1.7)' }
-                );
-            }
-        } else {
-            if (typeof gsap !== 'undefined') {
-                gsap.to(button, {
-                    scale: 0,
-                    duration: 0.2,
-                    onComplete: () => button.style.display = 'none'
-                });
+        if (backToTopTicking) return;
+        backToTopTicking = true;
+        requestAnimationFrame(() => {
+            if (window.pageYOffset > 300) {
+                button.style.display = 'flex';
+                if (typeof gsap !== 'undefined') {
+                    gsap.fromTo(button, 
+                        { scale: 0 }, 
+                        { scale: 1, duration: 0.3, ease: 'back.out(1.7)' }
+                    );
+                }
             } else {
-                button.style.display = 'none';
+                if (typeof gsap !== 'undefined') {
+                    gsap.to(button, {
+                        scale: 0,
+                        duration: 0.2,
+                        onComplete: () => button.style.display = 'none'
+                    });
+                } else {
+                    button.style.display = 'none';
+                }
             }
-        }
+            backToTopTicking = false;
+        });
     });
     
     // Scroll to top when clicked
