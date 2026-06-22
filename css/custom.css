@@ -198,7 +198,7 @@ header.header.scrolled {
     header.header nav.nav .nav__menu.active {
         position: fixed !important;
         top: 0 !important;
-        left: -100% !important;
+        left: 0 !important;
         right: auto !important;
         width: 80vw !important;
         max-width: 320px !important;
