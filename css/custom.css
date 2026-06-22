@@ -119,7 +119,7 @@ header.header nav.nav .nav__menu .nav__close {
         border: 1px solid rgba(255, 255, 255, 0.18) !important;
         border-radius: 9999px !important;
         box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.12) !important;
-        z-index: 1030 !important;
+        z-index: 10002 !important;
     }
 
     header.header nav.nav {
