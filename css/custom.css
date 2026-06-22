@@ -124,7 +124,7 @@ header.header nav.nav .nav__menu .nav__close {
 
     header.header nav.nav {
         display: flex !important;
-        justify-content: space-between !important;
+        justify-content: center !important;
         align-items: center !important;
         padding: 0.4rem 0.75rem !important;
         width: auto !important;
