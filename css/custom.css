@@ -182,7 +182,13 @@ header.header nav.nav .nav__menu .nav__close {
         border: none !important;
     }
 
-    header.header nav.nav .nav__menu .nav__close {
+    /* Hide toggle when menu is open */
+    header.header nav.nav .nav__menu.active ~ .nav__toggle {
+        display: none !important;
+    }
+
+    /* Close button: only visible when menu is open */
+    header.header nav.nav .nav__menu.active .nav__close {
         display: block !important;
         position: absolute !important;
         top: 1.5rem !important;
