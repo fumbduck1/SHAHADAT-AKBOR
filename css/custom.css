@@ -122,6 +122,22 @@ header.header.scrolled {
 
 /* Mobile Navigation */
 @media (max-width: 768px) {
+    /* Hamburger toggle - ALWAYS visible on mobile */
+    header.header nav.nav .nav__toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        min-width: 44px;
+        min-height: 44px;
+        font-size: 1.25rem;
+        cursor: pointer;
+        color: #334155;
+        padding: 0.5rem;
+        background: none;
+        border: none;
+        border-radius: 0.5rem;
+    }
+
     header.header {
         position: fixed !important;
         top: 1rem !important;
@@ -148,8 +164,8 @@ header.header.scrolled {
         max-width: 100% !important;
     }
 
-    /* Nav menu: inline in pill by default on mobile */
-    header.header nav.nav .nav__menu {
+    /* Nav menu: inline in pill by default on mobile (when NOT active) */
+    header.header nav.nav .nav__menu:not(.active) {
         display: flex !important;
         align-items: center !important;
         gap: 0 !important;
@@ -219,9 +235,28 @@ header.header.scrolled {
         transition: left 0.3s ease !important;
     }
 
-    /* Slide in when active — .active class controls it directly */
+    /* Slide-in menu - hidden by default */
     header.header nav.nav .nav__menu {
+        position: fixed !important;
+        top: 0 !important;
         left: -100% !important;
+        right: auto !important;
+        width: 80vw !important;
+        max-width: 320px !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        background: rgba(255, 255, 255, 0.98) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 5rem 1.5rem 1.5rem !important;
+        z-index: 10001 !important;
+        overflow-y: auto !important;
+        display: block !important;
+        flex-direction: column !important;
+        gap: 0 !important;
+        align-items: stretch !important;
         transition: left 0.3s ease !important;
     }
 
