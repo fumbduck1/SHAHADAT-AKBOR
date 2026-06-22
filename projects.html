@@ -10,258 +10,128 @@
     <title>Projects - Shahadat Akbor | Professional Portfolio</title>
     
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        .project-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 10001;
-            overflow-y: auto;
-            padding: 1rem;
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#2563eb', dark: '#1d4ed8', light: '#3b82f6' },
+            secondary: '#0f172a',
+            'text-main': '#334155',
+            'text-light': '#64748b',
+            'bg-alt': '#f8fafc',
+            border: '#e2e8f0',
+            success: '#10b981',
+          },
+          fontFamily: {
+            sans: ["'Space Grotesk'", "'Segoe UI'", 'system-ui', 'sans-serif'],
+          },
         }
-        
-        .project-modal.active {
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-        }
-        
-        .project-modal__content {
-            background: var(--color-background);
-            border-radius: var(--radius-2xl);
-            max-width: 900px;
-            width: 100%;
-            margin: 1rem auto;
-            overflow: hidden;
-        }
-        
-        .project-modal__header {
-            padding: 1.5rem;
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-            color: white;
-            position: relative;
-        }
-        
-        .project-modal__close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .project-modal__title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            padding-right: 3rem;
-        }
-        
-        .project-modal__role {
-            font-size: 0.9375rem;
-            opacity: 0.9;
-        }
-        
-        .project-modal__body {
-            padding: 1.5rem;
-        }
-        
-        .project-modal__info {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--color-border);
-        }
-        
-        .project-modal__info-item {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .project-modal__info-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--color-text-light);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .project-modal__info-value {
-            font-size: 1rem;
-            color: var(--color-secondary);
-            font-weight: 500;
-        }
-        
-        .project-modal__section {
-            margin-bottom: 1.5rem;
-        }
-        
-        .project-modal__section:last-child {
-            margin-bottom: 0;
-        }
-        
-        .project-modal__section h3 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--color-secondary);
-            margin-bottom: 1rem;
-        }
-        
-        .project-modal__list {
-            list-style: disc;
-            padding-left: 1.5rem;
-        }
-        
-        .project-modal__list li {
-            font-size: 0.875rem;
-            color: var(--color-text);
-            margin-bottom: 0.5rem;
-            line-height: 1.6;
-        }
-        
-        .project-modal__list--achievements li {
-            color: var(--color-success);
-        }
-        
-        @media screen and (min-width: 769px) {
-            .project-modal {
-                padding: 2rem;
-            }
-            
-            .project-modal__content {
-                margin: 2rem auto;
-            }
-            
-            .project-modal__header {
-                padding: 2rem;
-            }
-            
-            .project-modal__title {
-                font-size: 1.75rem;
-            }
-            
-            .project-modal__body {
-                padding: 2rem;
-            }
-            
-            .project-modal__info {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            }
-        }
-    </style>
+      }
+    }
+    </script>
+    <link rel="stylesheet" href="css/custom.css">
 </head>
-<body>
+<body class="font-sans text-text-main bg-white overflow-x-hidden min-h-screen flex flex-col">
     <!-- Header -->
-    <header class="header" id="header">
-        <nav class="nav container">
+    <header class="header fixed top-8 left-1/2 -translate-x-1/2 w-auto max-w-[92%] bg-white/60 backdrop-blur-xl border border-white/[0.18] rounded-full shadow-[0_8px_32px_0_rgba(31,38,135,0.12)] z-[1030] max-md:top-4 max-md:left-4 max-md:translate-x-0 max-md:max-w-[calc(100%-2rem)]" id="header">
+        <nav class="nav container flex justify-center items-center py-4 px-12 w-full mx-auto max-md:py-4 max-md:px-6">
 
-            <div class="nav__menu" id="nav-menu">
-                <ul class="nav__list">
+            <div class="nav__menu flex gap-2 max-md:fixed max-md:top-0 max-md:right-[-100%] max-md:w-[85%] max-md:max-w-[320px] max-md:h-dvh max-md:bg-white/[0.98] max-md:backdrop-blur-xl max-md:border-0 max-md:rounded-none max-md:pt-20 max-md:pb-6 max-md:px-6 max-md:z-[10001] max-md:transition-[right] max-md:duration-300 max-md:overflow-y-auto max-md:[&.active]:right-0" id="nav-menu">
+                <ul class="nav__list flex gap-1 max-md:flex-col max-md:gap-2">
                     <li class="nav__item">
-                        <a href="index.html" class="nav__link">Home</a>
+                        <a href="index.html" class="nav__link text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight transition-all duration-200 whitespace-nowrap hover:bg-primary/[0.08] hover:text-primary hover:-translate-y-0.5 max-md:block max-md:p-4 max-md:rounded-lg max-md:text-lg">Home</a>
                     </li>
                     <li class="nav__item">
-                        <a href="about.html" class="nav__link">About</a>
+                        <a href="about.html" class="nav__link text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight transition-all duration-200 whitespace-nowrap hover:bg-primary/[0.08] hover:text-primary hover:-translate-y-0.5 max-md:block max-md:p-4 max-md:rounded-lg max-md:text-lg">About</a>
                     </li>
                     <li class="nav__item">
-                        <a href="projects.html" class="nav__link active">Projects</a>
+                        <a href="projects.html" class="nav__link active bg-secondary text-white text-base font-medium py-4 px-6 rounded-full tracking-tight transition-all duration-200 whitespace-nowrap max-md:block max-md:p-4 max-md:rounded-lg max-md:text-lg">Projects</a>
                     </li>
                     <li class="nav__item">
-                        <a href="experience.html" class="nav__link">Experience</a>
+                        <a href="experience.html" class="nav__link text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight transition-all duration-200 whitespace-nowrap hover:bg-primary/[0.08] hover:text-primary hover:-translate-y-0.5 max-md:block max-md:p-4 max-md:rounded-lg max-md:text-lg">Experience</a>
                     </li>
                     <li class="nav__item">
-                        <a href="skills.html" class="nav__link">Skills</a>
+                        <a href="skills.html" class="nav__link text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight transition-all duration-200 whitespace-nowrap hover:bg-primary/[0.08] hover:text-primary hover:-translate-y-0.5 max-md:block max-md:p-4 max-md:rounded-lg max-md:text-lg">Skills</a>
                     </li>
                     <li class="nav__item">
-                        <a href="certifications.html" class="nav__link">Certifications</a>
+                        <a href="certifications.html" class="nav__link text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight transition-all duration-200 whitespace-nowrap hover:bg-primary/[0.08] hover:text-primary hover:-translate-y-0.5 max-md:block max-md:p-4 max-md:rounded-lg max-md:text-lg">Certifications</a>
                     </li>
                     <li class="nav__item">
-                        <a href="resume.html" class="nav__link">Resume</a>
+                        <a href="resume.html" class="nav__link text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight transition-all duration-200 whitespace-nowrap hover:bg-primary/[0.08] hover:text-primary hover:-translate-y-0.5 max-md:block max-md:p-4 max-md:rounded-lg max-md:text-lg">Resume</a>
                     </li>
                     <li class="nav__item">
-                        <a href="contact.html" class="nav__link">Contact</a>
+                        <a href="contact.html" class="nav__link text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight transition-all duration-200 whitespace-nowrap hover:bg-primary/[0.08] hover:text-primary hover:-translate-y-0.5 max-md:block max-md:p-4 max-md:rounded-lg max-md:text-lg">Contact</a>
                     </li>
                 </ul>
                 
-                <div class="nav__close" id="nav-close">
+                <div class="nav__close hidden max-md:block absolute top-6 right-6 z-[10003] text-2xl cursor-pointer text-text-main p-2 bg-transparent border-none" id="nav-close">
                     <span>&times;</span>
                 </div>
             </div>
             
-            <div class="nav__toggle" id="nav-toggle">
+            <div class="nav__toggle hidden max-md:block z-[10002] cursor-pointer text-text-main p-2 bg-transparent border-none text-xl" id="nav-toggle">
                 <span>&#9776;</span>
             </div>
         </nav>
     </header>
 
     <!-- Main Content -->
-    <main class="main">
+    <main class="main flex-1 w-full max-w-full overflow-x-hidden">
         <!-- Page Header -->
-        <section class="page-header">
-            <div class="container">
-                <h1 class="page-header__title">Projects</h1>
-                <p class="page-header__subtitle">Detailed Project Portfolio</p>
+        <section class="page-header pt-[152px] pb-12 bg-gradient-to-b from-bg-alt to-white text-secondary text-center">
+            <div class="container w-full mx-auto px-[clamp(1rem,4vw,3rem)]">
+                <h1 class="page-header__title text-[clamp(3rem,6vw,6rem)] font-black text-secondary leading-[1.05] tracking-[-0.04em] mb-6">Projects</h1>
+                <p class="page-header__subtitle text-[clamp(1rem,1.5vw,1.25rem)] text-text-light max-w-[600px] mx-auto leading-relaxed">Detailed Project Portfolio</p>
             </div>
         </section>
 
         <!-- Projects Grid -->
-        <section class="projects" id="projects">
-            <div class="container">
-                <div class="projects__grid">
+        <section class="projects py-32 bg-bg-alt" id="projects">
+            <div class="container w-full mx-auto px-[clamp(1rem,4vw,3rem)]">
+                <div class="projects__grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Project 1 -->
-                    <article class="project-card" data-project="1">
-                        <div class="project-card__image"></div>
-                        <div class="project-card__content">
-                            <span class="project-card__role">Project Manager</span>
-                            <h3 class="project-card__title">Dhaka Environmentally Sustainable Water Supply Project</h3>
-                            <p class="project-card__description">Raw Water Pipeline project involving DI Pipe laying and associated infrastructure.</p>
-                            <div class="project-card__meta">
-                                <span class="project-card__meta-item"><span class="project-card__meta-label">Client:</span> Dhaka Wasa</span>
-                                <span class="project-card__meta-item"><span class="project-card__meta-label">Consultant:</span> SUEZ International</span>
+                    <article class="project-card group bg-white rounded-[2rem] overflow-hidden border border-border transition-all duration-[400ms] ease-in-out opacity-100 cursor-pointer hover:-translate-y-2 hover:shadow-[0_24px_64px_-8px_rgb(0,0,0,0.12)] flex flex-col" data-project="1">
+                        <div class="project-card__image project-gradient-blue w-full h-[300px] object-cover transition-transform duration-[600ms] ease-in-out group-hover:scale-105"></div>
+                        <div class="project-card__content p-12">
+                            <span class="project-card__role block text-sm font-semibold text-primary mb-2">Project Manager</span>
+                            <h3 class="project-card__title text-2xl font-bold text-secondary leading-[1.2] tracking-tight mb-4">Dhaka Environmentally Sustainable Water Supply Project</h3>
+                            <p class="project-card__description text-base text-text-light leading-[1.6] mb-6">Raw Water Pipeline project involving DI Pipe laying and associated infrastructure.</p>
+                            <div class="project-card__meta flex gap-6 flex-wrap">
+                                <span class="project-card__meta-item text-sm text-text-light"><span class="project-card__meta-label font-semibold text-text-main">Client:</span> Dhaka Wasa</span>
+                                <span class="project-card__meta-item text-sm text-text-light"><span class="project-card__meta-label font-semibold text-text-main">Consultant:</span> SUEZ International</span>
                             </div>
                         </div>
                     </article>
                     
                     <!-- Project 2 -->
-                    <article class="project-card" data-project="2">
-                        <div class="project-card__image" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);"></div>
-                        <div class="project-card__content">
-                            <span class="project-card__role">Assistant Quantity Survey Engineer</span>
-                            <h3 class="project-card__title">Construction of First Terminal and Ancillary Facilities of Payra Sea Port</h3>
-                            <p class="project-card__description">Construction of first terminal and ancillary facilities including connecting road, bridges, culverts, and toll plazas.</p>
-                            <div class="project-card__meta">
-                                <span class="project-card__meta-item"><span class="project-card__meta-label">Client:</span> Payra Port Authority</span>
-                                <span class="project-card__meta-item"><span class="project-card__meta-label">Status:</span> Current</span>
+                    <article class="project-card group bg-white rounded-[2rem] overflow-hidden border border-border transition-all duration-[400ms] ease-in-out opacity-100 cursor-pointer hover:-translate-y-2 hover:shadow-[0_24px_64px_-8px_rgb(0,0,0,0.12)] flex flex-col" data-project="2">
+                        <div class="project-card__image w-full h-[300px] object-cover transition-transform duration-[600ms] ease-in-out group-hover:scale-105" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);"></div>
+                        <div class="project-card__content p-12">
+                            <span class="project-card__role block text-sm font-semibold text-primary mb-2">Assistant Quantity Survey Engineer</span>
+                            <h3 class="project-card__title text-2xl font-bold text-secondary leading-[1.2] tracking-tight mb-4">Construction of First Terminal and Ancillary Facilities of Payra Sea Port</h3>
+                            <p class="project-card__description text-base text-text-light leading-[1.6] mb-6">Construction of first terminal and ancillary facilities including connecting road, bridges, culverts, and toll plazas.</p>
+                            <div class="project-card__meta flex gap-6 flex-wrap">
+                                <span class="project-card__meta-item text-sm text-text-light"><span class="project-card__meta-label font-semibold text-text-main">Client:</span> Payra Port Authority</span>
+                                <span class="project-card__meta-item text-sm text-text-light"><span class="project-card__meta-label font-semibold text-text-main">Status:</span> Current</span>
                             </div>
                         </div>
                     </article>
                     
                     <!-- Project 3 -->
-                    <article class="project-card" data-project="3">
-                        <div class="project-card__image" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);"></div>
-                        <div class="project-card__content">
-                            <span class="project-card__role">Quantity Surveyor</span>
-                            <h3 class="project-card__title">Crystal Design & Construction</h3>
-                            <p class="project-card__description">Managed quantity surveying for multiple private construction projects including 5 multi-storeyed residential buildings and 2 commercial buildings.</p>
-                            <div class="project-card__meta">
-                                <span class="project-card__meta-item"><span class="project-card__meta-label">Clients:</span> Multiple Private</span>
-                                <span class="project-card__meta-item"><span class="project-card__meta-label">Projects:</span> 7 Buildings</span>
+                    <article class="project-card group bg-white rounded-[2rem] overflow-hidden border border-border transition-all duration-[400ms] ease-in-out opacity-100 cursor-pointer hover:-translate-y-2 hover:shadow-[0_24px_64px_-8px_rgb(0,0,0,0.12)] flex flex-col" data-project="3">
+                        <div class="project-card__image w-full h-[300px] object-cover transition-transform duration-[600ms] ease-in-out group-hover:scale-105" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);"></div>
+                        <div class="project-card__content p-12">
+                            <span class="project-card__role block text-sm font-semibold text-primary mb-2">Quantity Surveyor</span>
+                            <h3 class="project-card__title text-2xl font-bold text-secondary leading-[1.2] tracking-tight mb-4">Crystal Design & Construction</h3>
+                            <p class="project-card__description text-base text-text-light leading-[1.6] mb-6">Managed quantity surveying for multiple private construction projects including 5 multi-storeyed residential buildings and 2 commercial buildings.</p>
+                            <div class="project-card__meta flex gap-6 flex-wrap">
+                                <span class="project-card__meta-item text-sm text-text-light"><span class="project-card__meta-label font-semibold text-text-main">Clients:</span> Multiple Private</span>
+                                <span class="project-card__meta-item text-sm text-text-light"><span class="project-card__meta-label font-semibold text-text-main">Projects:</span> 7 Buildings</span>
                             </div>
                         </div>
                     </article>
@@ -272,55 +142,55 @@
 
     <!-- Project Modal 1 -->
     <div class="project-modal" id="project-modal-1">
-        <div class="project-modal__content">
-            <div class="project-modal__header">
-                <button class="project-modal__close">&times;</button>
-                <h2 class="project-modal__title">Dhaka Environmentally Sustainable Water Supply Project</h2>
-                <p class="project-modal__role">Role: Project Manager</p>
+        <div class="project-modal__content bg-white rounded-3xl max-w-[900px] w-full mx-auto my-4 overflow-hidden md:my-8">
+            <div class="project-modal__header relative p-6 text-white bg-gradient-to-br from-primary to-primary-dark md:p-8">
+                <button class="project-modal__close absolute top-4 right-4 bg-white/20 border-none w-10 h-10 rounded-full text-white text-xl cursor-pointer flex items-center justify-center">&times;</button>
+                <h2 class="project-modal__title text-[1.5rem] font-bold mb-2 pr-12 md:text-[1.75rem]">Dhaka Environmentally Sustainable Water Supply Project</h2>
+                <p class="project-modal__role text-[0.9375rem] opacity-90">Role: Project Manager</p>
             </div>
-            <div class="project-modal__body">
-                <div class="project-modal__info">
-                    <div class="project-modal__info-item">
-                        <span class="project-modal__info-label">Employer</span>
-                        <span class="project-modal__info-value">AKI Infrastructures Ltd.</span>
+            <div class="project-modal__body p-6 md:p-8">
+                <div class="project-modal__info grid grid-cols-1 gap-4 mb-6 pb-6 border-b border-border md:grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
+                    <div class="project-modal__info-item flex flex-col">
+                        <span class="project-modal__info-label text-xs font-semibold text-text-light uppercase tracking-wider">Employer</span>
+                        <span class="project-modal__info-value text-base text-secondary font-medium">AKI Infrastructures Ltd.</span>
                     </div>
-                    <div class="project-modal__info-item">
-                        <span class="project-modal__info-label">Client</span>
-                        <span class="project-modal__info-value">Dhaka Wasa</span>
+                    <div class="project-modal__info-item flex flex-col">
+                        <span class="project-modal__info-label text-xs font-semibold text-text-light uppercase tracking-wider">Client</span>
+                        <span class="project-modal__info-value text-base text-secondary font-medium">Dhaka Wasa</span>
                     </div>
-                    <div class="project-modal__info-item">
-                        <span class="project-modal__info-label">Consultant</span>
-                        <span class="project-modal__info-value">SUEZ International</span>
+                    <div class="project-modal__info-item flex flex-col">
+                        <span class="project-modal__info-label text-xs font-semibold text-text-light uppercase tracking-wider">Consultant</span>
+                        <span class="project-modal__info-value text-base text-secondary font-medium">SUEZ International</span>
                     </div>
                 </div>
                 
-                <div class="project-modal__section">
-                    <h3>Project Description</h3>
+                <div class="project-modal__section mb-6 [&:last-child]:mb-0">
+                    <h3 class="text-lg font-semibold text-secondary mb-4">Project Description</h3>
                     <p>Raw Water Pipeline project involving DI Pipe laying and associated infrastructure.</p>
                 </div>
                 
-                <div class="project-modal__section">
-                    <h3>Responsibilities</h3>
-                    <ul class="project-modal__list">
-                        <li>Developed detailed project schedules using Primavera P6, improving schedule accuracy</li>
-                        <li>Successful completion of 150 pairs or 762m of DI Pipelaying</li>
-                        <li>Prepared 236 D.P.R (Daily Progress Report) Using Excel, MS Project and Primavera P6</li>
-                        <li>Completed 50m of critical pipelaying under 230KV electric line with proper safety</li>
-                        <li>Made and Completed 161 Daily Inspection Plan successfully under 69 RFI</li>
-                        <li>Successful completion of 9 wall lifts, 6 blinding concretes & bases of 8 Washouts casting</li>
-                        <li>Convert Di Pipe with the help of welding beat to 8 pairs and 2 pairs of restraint and semi-restraint pipe</li>
-                        <li>Successfully completed 150m pipe laying of 3 sites parallelly</li>
-                        <li>Successfully Coordinated and executed of 50m Pipe-Laying Operations and 5 Washout Construction program simultaneously at 6 sites</li>
+                <div class="project-modal__section mb-6 [&:last-child]:mb-0">
+                    <h3 class="text-lg font-semibold text-secondary mb-4">Responsibilities</h3>
+                    <ul class="project-modal__list list-disc pl-6">
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Developed detailed project schedules using Primavera P6, improving schedule accuracy</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Successful completion of 150 pairs or 762m of DI Pipelaying</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Prepared 236 D.P.R (Daily Progress Report) Using Excel, MS Project and Primavera P6</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Completed 50m of critical pipelaying under 230KV electric line with proper safety</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Made and Completed 161 Daily Inspection Plan successfully under 69 RFI</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Successful completion of 9 wall lifts, 6 blinding concretes &amp; bases of 8 Washouts casting</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Convert Di Pipe with the help of welding beat to 8 pairs and 2 pairs of restraint and semi-restraint pipe</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Successfully completed 150m pipe laying of 3 sites parallelly</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Successfully Coordinated and executed of 50m Pipe-Laying Operations and 5 Washout Construction program simultaneously at 6 sites</li>
                     </ul>
                 </div>
                 
-                <div class="project-modal__section">
-                    <h3>Achievements</h3>
-                    <ul class="project-modal__list project-modal__list--achievements">
-                        <li>Awarded First place in Safety Campaign in Officials Category</li>
-                        <li>Successful completion of 150 pairs or 762m of DI Pipelaying</li>
-                        <li>Completed 50m of critical pipelaying under 230KV electric line with proper safety and without any single injury</li>
-                        <li>Successful completion of 9 wall lifts, 6 blinding concretes & bases of 8 Washouts casting according to British Standard</li>
+                <div class="project-modal__section mb-6 [&:last-child]:mb-0">
+                    <h3 class="text-lg font-semibold text-secondary mb-4">Achievements</h3>
+                    <ul class="project-modal__list project-modal__list--achievements list-disc pl-6 [&_li]:text-success">
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Awarded First place in Safety Campaign in Officials Category</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Successful completion of 150 pairs or 762m of DI Pipelaying</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Completed 50m of critical pipelaying under 230KV electric line with proper safety and without any single injury</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Successful completion of 9 wall lifts, 6 blinding concretes &amp; bases of 8 Washouts casting according to British Standard</li>
                     </ul>
                 </div>
             </div>
@@ -329,53 +199,53 @@
 
     <!-- Project Modal 2 -->
     <div class="project-modal" id="project-modal-2">
-        <div class="project-modal__content">
-            <div class="project-modal__header" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
-                <button class="project-modal__close">&times;</button>
-                <h2 class="project-modal__title">Construction of First Terminal and Ancillary Facilities of Payra Sea Port</h2>
-                <p class="project-modal__role">Role: Assistant Quantity Survey Engineer</p>
+        <div class="project-modal__content bg-white rounded-3xl max-w-[900px] w-full mx-auto my-4 overflow-hidden md:my-8">
+            <div class="project-modal__header relative p-6 text-white md:p-8" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                <button class="project-modal__close absolute top-4 right-4 bg-white/20 border-none w-10 h-10 rounded-full text-white text-xl cursor-pointer flex items-center justify-center">&times;</button>
+                <h2 class="project-modal__title text-[1.5rem] font-bold mb-2 pr-12 md:text-[1.75rem]">Construction of First Terminal and Ancillary Facilities of Payra Sea Port</h2>
+                <p class="project-modal__role text-[0.9375rem] opacity-90">Role: Assistant Quantity Survey Engineer</p>
             </div>
-            <div class="project-modal__body">
-                <div class="project-modal__info">
-                    <div class="project-modal__info-item">
-                        <span class="project-modal__info-label">Employer</span>
-                        <span class="project-modal__info-value">Spectra Engineers Limited</span>
+            <div class="project-modal__body p-6 md:p-8">
+                <div class="project-modal__info grid grid-cols-1 gap-4 mb-6 pb-6 border-b border-border md:grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
+                    <div class="project-modal__info-item flex flex-col">
+                        <span class="project-modal__info-label text-xs font-semibold text-text-light uppercase tracking-wider">Employer</span>
+                        <span class="project-modal__info-value text-base text-secondary font-medium">Spectra Engineers Limited</span>
                     </div>
-                    <div class="project-modal__info-item">
-                        <span class="project-modal__info-label">Client</span>
-                        <span class="project-modal__info-value">Payra Port Authority and Roads and Highway Division</span>
+                    <div class="project-modal__info-item flex flex-col">
+                        <span class="project-modal__info-label text-xs font-semibold text-text-light uppercase tracking-wider">Client</span>
+                        <span class="project-modal__info-value text-base text-secondary font-medium">Payra Port Authority and Roads and Highway Division</span>
                     </div>
-                    <div class="project-modal__info-item">
-                        <span class="project-modal__info-label">Status</span>
-                        <span class="project-modal__info-value">Current Position</span>
+                    <div class="project-modal__info-item flex flex-col">
+                        <span class="project-modal__info-label text-xs font-semibold text-text-light uppercase tracking-wider">Status</span>
+                        <span class="project-modal__info-value text-base text-secondary font-medium">Current Position</span>
                     </div>
                 </div>
                 
-                <div class="project-modal__section">
-                    <h3>Project Description</h3>
+                <div class="project-modal__section mb-6 [&:last-child]:mb-0">
+                    <h3 class="text-lg font-semibold text-secondary mb-4">Project Description</h3>
                     <p>Construction of first terminal and ancillary facilities including connecting road, bridges, culverts, and toll plazas.</p>
                 </div>
                 
-                <div class="project-modal__section">
-                    <h3>Responsibilities</h3>
-                    <ul class="project-modal__list">
-                        <li>Developed detailed project schedules using MS Project, improving schedule accuracy</li>
-                        <li>Successfully Revised & completed Method Statement, Structural Shop drawing & full BBS</li>
-                        <li>Completed 1 Variation Estimate of Variation Order</li>
-                        <li>Made 300 Supplier, Sub-Contractor, Supplier Bill according to work order</li>
-                        <li>Delivered 240 material consumption report</li>
-                        <li>Completed 3 IPC (Interim Payment Certificate) and 1 variation report</li>
-                        <li>Made 480 Daily Work Program and 3000 R.F.I of 6.5 km 4+2 Lane Connecting Road</li>
-                        <li>Made BOQ of 400 Feed Canal & Collecting Ditch of Connecting Road</li>
+                <div class="project-modal__section mb-6 [&:last-child]:mb-0">
+                    <h3 class="text-lg font-semibold text-secondary mb-4">Responsibilities</h3>
+                    <ul class="project-modal__list list-disc pl-6">
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Developed detailed project schedules using MS Project, improving schedule accuracy</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Successfully Revised &amp; completed Method Statement, Structural Shop drawing &amp; full BBS</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Completed 1 Variation Estimate of Variation Order</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Made 300 Supplier, Sub-Contractor, Supplier Bill according to work order</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Delivered 240 material consumption report</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Completed 3 IPC (Interim Payment Certificate) and 1 variation report</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Made 480 Daily Work Program and 3000 R.F.I of 6.5 km 4+2 Lane Connecting Road</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Made BOQ of 400 Feed Canal &amp; Collecting Ditch of Connecting Road</li>
                     </ul>
                 </div>
                 
-                <div class="project-modal__section">
-                    <h3>Achievements</h3>
-                    <ul class="project-modal__list project-modal__list--achievements">
-                        <li>Revised & completed Method Statement, Structural Shop drawing & full BBS of 7 Small bridge, 5 Box Culvert 5 Toll Plaza, 1 Toll Plaza Building and 400 Feed Canal & Collecting Ditch</li>
-                        <li>Completed 3 IPC (Interim Payment Certificate) and 1 variation report</li>
-                        <li>Made 300 Supplier, Sub-Contractor, Supplier Bill according to work order</li>
+                <div class="project-modal__section mb-6 [&:last-child]:mb-0">
+                    <h3 class="text-lg font-semibold text-secondary mb-4">Achievements</h3>
+                    <ul class="project-modal__list project-modal__list--achievements list-disc pl-6 [&_li]:text-success">
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Revised &amp; completed Method Statement, Structural Shop drawing &amp; full BBS of 7 Small bridge, 5 Box Culvert 5 Toll Plaza, 1 Toll Plaza Building and 400 Feed Canal &amp; Collecting Ditch</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Completed 3 IPC (Interim Payment Certificate) and 1 variation report</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Made 300 Supplier, Sub-Contractor, Supplier Bill according to work order</li>
                     </ul>
                 </div>
             </div>
@@ -384,50 +254,50 @@
 
     <!-- Project Modal 3 -->
     <div class="project-modal" id="project-modal-3">
-        <div class="project-modal__content">
-            <div class="project-modal__header" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
-                <button class="project-modal__close">&times;</button>
-                <h2 class="project-modal__title">Crystal Design & Construction</h2>
-                <p class="project-modal__role">Role: Quantity Surveyor</p>
+        <div class="project-modal__content bg-white rounded-3xl max-w-[900px] w-full mx-auto my-4 overflow-hidden md:my-8">
+            <div class="project-modal__header relative p-6 text-white md:p-8" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
+                <button class="project-modal__close absolute top-4 right-4 bg-white/20 border-none w-10 h-10 rounded-full text-white text-xl cursor-pointer flex items-center justify-center">&times;</button>
+                <h2 class="project-modal__title text-[1.5rem] font-bold mb-2 pr-12 md:text-[1.75rem]">Crystal Design & Construction</h2>
+                <p class="project-modal__role text-[0.9375rem] opacity-90">Role: Quantity Surveyor</p>
             </div>
-            <div class="project-modal__body">
-                <div class="project-modal__info">
-                    <div class="project-modal__info-item">
-                        <span class="project-modal__info-label">Employer</span>
-                        <span class="project-modal__info-value">Crystal Design & Construction</span>
+            <div class="project-modal__body p-6 md:p-8">
+                <div class="project-modal__info grid grid-cols-1 gap-4 mb-6 pb-6 border-b border-border md:grid-cols-[repeat(auto-fit,minmax(200px,1fr))]">
+                    <div class="project-modal__info-item flex flex-col">
+                        <span class="project-modal__info-label text-xs font-semibold text-text-light uppercase tracking-wider">Employer</span>
+                        <span class="project-modal__info-value text-base text-secondary font-medium">Crystal Design & Construction</span>
                     </div>
-                    <div class="project-modal__info-item">
-                        <span class="project-modal__info-label">Client</span>
-                        <span class="project-modal__info-value">Multiple Private Clients</span>
+                    <div class="project-modal__info-item flex flex-col">
+                        <span class="project-modal__info-label text-xs font-semibold text-text-light uppercase tracking-wider">Client</span>
+                        <span class="project-modal__info-value text-base text-secondary font-medium">Multiple Private Clients</span>
                     </div>
-                    <div class="project-modal__info-item">
-                        <span class="project-modal__info-label">Projects</span>
-                        <span class="project-modal__info-value">5 Residential, 2 Commercial</span>
+                    <div class="project-modal__info-item flex flex-col">
+                        <span class="project-modal__info-label text-xs font-semibold text-text-light uppercase tracking-wider">Projects</span>
+                        <span class="project-modal__info-value text-base text-secondary font-medium">5 Residential, 2 Commercial</span>
                     </div>
                 </div>
                 
-                <div class="project-modal__section">
-                    <h3>Project Description</h3>
+                <div class="project-modal__section mb-6 [&:last-child]:mb-0">
+                    <h3 class="text-lg font-semibold text-secondary mb-4">Project Description</h3>
                     <p>Managed quantity surveying for multiple private construction projects including 5 multi-storeyed residential buildings and 2 commercial buildings.</p>
                 </div>
                 
-                <div class="project-modal__section">
-                    <h3>Responsibilities</h3>
-                    <ul class="project-modal__list">
-                        <li>Developed accurate cost estimates for construction projects</li>
-                        <li>Conducted comprehensive quantity takeoffs from drawings and specifications to determine material and labor requirements</li>
-                        <li>Utilized industry-standard software such as AutoCAD, MS Excel, or specialized estimating tools to streamline quantity surveying tasks</li>
-                        <li>Prepared 30 Bar Bending Schedule report and 41 BOQ</li>
+                <div class="project-modal__section mb-6 [&:last-child]:mb-0">
+                    <h3 class="text-lg font-semibold text-secondary mb-4">Responsibilities</h3>
+                    <ul class="project-modal__list list-disc pl-6">
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Developed accurate cost estimates for construction projects</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Conducted comprehensive quantity takeoffs from drawings and specifications to determine material and labor requirements</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Utilized industry-standard software such as AutoCAD, MS Excel, or specialized estimating tools to streamline quantity surveying tasks</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Prepared 30 Bar Bending Schedule report and 41 BOQ</li>
                     </ul>
                 </div>
                 
-                <div class="project-modal__section">
-                    <h3>Achievements</h3>
-                    <ul class="project-modal__list project-modal__list--achievements">
-                        <li>Managed quantity surveying for 5 multi-storeyed residential buildings</li>
-                        <li>Managed quantity surveying for 2 commercial buildings</li>
-                        <li>Prepared 30 Bar Bending Schedule report</li>
-                        <li>Completed 41 BOQ</li>
+                <div class="project-modal__section mb-6 [&:last-child]:mb-0">
+                    <h3 class="text-lg font-semibold text-secondary mb-4">Achievements</h3>
+                    <ul class="project-modal__list project-modal__list--achievements list-disc pl-6 [&_li]:text-success">
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Managed quantity surveying for 5 multi-storeyed residential buildings</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Managed quantity surveying for 2 commercial buildings</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Prepared 30 Bar Bending Schedule report</li>
+                        <li class="text-sm text-text-main mb-2 leading-relaxed">Completed 41 BOQ</li>
                     </ul>
                 </div>
             </div>
@@ -435,10 +305,10 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__content">
-                <p class="footer__text">&copy; 2026 Shahadat Akbor. All rights reserved.</p>
+    <footer class="footer py-24 bg-secondary border-t border-white/[0.08] text-center">
+        <div class="container w-full mx-auto px-[clamp(1rem,4vw,3rem)]">
+            <div class="footer__content flex flex-col items-center gap-2">
+                <p class="footer__text text-sm text-white/50">&copy; 2026 Shahadat Akbor. All rights reserved.</p>
             </div>
         </div>
     </footer>

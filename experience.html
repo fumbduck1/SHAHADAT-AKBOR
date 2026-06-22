@@ -10,81 +10,103 @@
     <title>Experience - Shahadat Akbor | Professional Portfolio</title>
     
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#2563eb', dark: '#1d4ed8', light: '#3b82f6' },
+            secondary: '#0f172a',
+            'text-main': '#334155',
+            'text-light': '#64748b',
+            'bg-alt': '#f8fafc',
+            border: '#e2e8f0',
+            success: '#10b981',
+          },
+          fontFamily: {
+            sans: ["'Space Grotesk'", "'Segoe UI'", 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+    </script>
+    <link rel="stylesheet" href="css/custom.css">
 </head>
-<body>
+<body class="font-sans text-text-main bg-white overflow-x-hidden min-h-screen flex flex-col">
     <!-- Header -->
-    <header class="header" id="header">
-        <nav class="nav container">
+    <header class="fixed top-5 left-1/2 -translate-x-1/2 w-[92%] max-w-[92%] bg-white/60 backdrop-blur-xl border border-white/18 rounded-full shadow-[0_8px_32px_0_rgba(31,38,135,0.12)] z-[1030] header" id="header">
+        <nav class="flex justify-center items-center py-4 px-8 container">
 
-            <div class="nav__menu" id="nav-menu">
-                <ul class="nav__list">
+            <div class="hidden md:flex gap-2 nav__menu" id="nav-menu">
+                <ul class="flex gap-1 nav__list">
                     <li class="nav__item">
-                        <a href="index.html" class="nav__link">Home</a>
+                        <a href="index.html" class="nav__link font-medium text-text-main py-4 px-6 rounded-full tracking-tight transition-all duration-200 whitespace-nowrap hover:bg-primary/8 hover:text-primary hover:-translate-y-0.5">Home</a>
                     </li>
                     <li class="nav__item">
-                        <a href="about.html" class="nav__link">About</a>
+                        <a href="about.html" class="nav__link font-medium text-text-main py-4 px-6 rounded-full tracking-tight transition-all duration-200 whitespace-nowrap hover:bg-primary/8 hover:text-primary hover:-translate-y-0.5">About</a>
                     </li>
                     <li class="nav__item">
-                        <a href="projects.html" class="nav__link">Projects</a>
+                        <a href="projects.html" class="nav__link font-medium text-text-main py-4 px-6 rounded-full tracking-tight transition-all duration-200 whitespace-nowrap hover:bg-primary/8 hover:text-primary hover:-translate-y-0.5">Projects</a>
                     </li>
                     <li class="nav__item">
-                        <a href="experience.html" class="nav__link active">Experience</a>
+                        <a href="experience.html" class="nav__link active bg-secondary text-white font-medium py-4 px-6 rounded-full tracking-tight transition-all duration-200 whitespace-nowrap">Experience</a>
                     </li>
                     <li class="nav__item">
-                        <a href="skills.html" class="nav__link">Skills</a>
+                        <a href="skills.html" class="nav__link font-medium text-text-main py-4 px-6 rounded-full tracking-tight transition-all duration-200 whitespace-nowrap hover:bg-primary/8 hover:text-primary hover:-translate-y-0.5">Skills</a>
                     </li>
                     <li class="nav__item">
-                        <a href="certifications.html" class="nav__link">Certifications</a>
+                        <a href="certifications.html" class="nav__link font-medium text-text-main py-4 px-6 rounded-full tracking-tight transition-all duration-200 whitespace-nowrap hover:bg-primary/8 hover:text-primary hover:-translate-y-0.5">Certifications</a>
                     </li>
                     <li class="nav__item">
-                        <a href="resume.html" class="nav__link">Resume</a>
+                        <a href="resume.html" class="nav__link font-medium text-text-main py-4 px-6 rounded-full tracking-tight transition-all duration-200 whitespace-nowrap hover:bg-primary/8 hover:text-primary hover:-translate-y-0.5">Resume</a>
                     </li>
                     <li class="nav__item">
-                        <a href="contact.html" class="nav__link">Contact</a>
+                        <a href="contact.html" class="nav__link font-medium text-text-main py-4 px-6 rounded-full tracking-tight transition-all duration-200 whitespace-nowrap hover:bg-primary/8 hover:text-primary hover:-translate-y-0.5">Contact</a>
                     </li>
                 </ul>
                 
-                <div class="nav__close" id="nav-close">
+                <div class="hidden max-md:block text-xl cursor-pointer text-text-main p-2 nav__close" id="nav-close">
                     <span>&times;</span>
                 </div>
             </div>
             
-            <div class="nav__toggle" id="nav-toggle">
+            <div class="hidden max-md:block text-xl cursor-pointer text-text-main p-2 nav__toggle" id="nav-toggle">
                 <span>&#9776;</span>
             </div>
         </nav>
     </header>
 
     <!-- Main Content -->
-    <main class="main">
+    <main class="main flex-1 w-full max-w-full overflow-x-hidden">
         <!-- Page Header -->
-        <section class="page-header">
-            <div class="container">
-                <h1 class="page-header__title">Experience</h1>
-                <p class="page-header__subtitle">Professional Career Timeline</p>
+        <section class="page-header pt-[calc(12rem-40px)] pb-8 text-center bg-gradient-to-b from-bg-alt to-white text-secondary">
+            <div class="container max-w-screen-xl mx-auto px-[clamp(1rem,4vw,3rem)]">
+                <h1 class="page-header__title text-[clamp(3rem,6vw,6rem)] font-black text-secondary leading-[1.05] tracking-[-0.04em] mb-6">Experience</h1>
+                <p class="page-header__subtitle text-[clamp(1rem,1.5vw,1.25rem)] text-text-light max-w-[600px] mx-auto leading-relaxed">Professional Career Timeline</p>
             </div>
         </section>
 
         <!-- Experience Timeline -->
-        <section class="experience" id="experience">
-            <div class="container">
-                <div class="timeline">
+        <section class="experience py-16" id="experience">
+            <div class="container max-w-screen-xl mx-auto px-[clamp(1rem,4vw,3rem)]">
+                <div class="timeline relative pl-[4rem] md:pl-[4rem] max-md:pl-[2rem]">
                     <!-- Experience 1 (Current) -->
-                    <div class="timeline__item timeline__item--current">
+                    <div class="timeline__item timeline__item--current relative pb-12 last:pb-0">
                         <div class="timeline__dot timeline__dot--current"></div>
-                        <div class="timeline__content">
-                            <div class="timeline__header">
-                                <h3 class="timeline__title">Assistant Quantity Survey Engineer</h3>
-                                <span class="timeline__badge">Current</span>
+                        <div class="timeline__content bg-white rounded-2xl border-2 border-success p-6 shadow-sm transition-shadow duration-300 hover:shadow-md">
+                            <div class="timeline__header flex flex-wrap items-center gap-3 mb-2">
+                                <h3 class="timeline__title text-xl font-bold text-secondary tracking-tight mb-0">Assistant Quantity Survey Engineer</h3>
+                                <span class="timeline__badge inline-flex items-center px-3 py-0.5 bg-success text-white text-xs font-semibold rounded-full uppercase tracking-wider">Current</span>
                             </div>
-                            <p class="timeline__company">Spectra Engineers Limited</p>
-                            <p class="timeline__project">Construction of First Terminal and Ancillary Facilities of Payra Sea Port (2nd Revised)</p>
-                            <p class="timeline__client">Client: Payra Port Authority and Roads and Highway Division</p>
+                            <p class="timeline__company text-base font-semibold text-primary mb-2">Spectra Engineers Limited</p>
+                            <p class="timeline__project text-sm text-text-light mb-6">Construction of First Terminal and Ancillary Facilities of Payra Sea Port (2nd Revised)</p>
+                            <p class="timeline__client text-sm text-text-light italic mb-0">Client: Payra Port Authority and Roads and Highway Division</p>
                             
-                            <div class="timeline__details">
-                                <h4>Key Responsibilities:</h4>
-                                <ul class="timeline__list">
+                            <div class="timeline__details mt-4">
+                                <h4 class="text-base font-semibold text-slate-800 mb-2">Key Responsibilities:</h4>
+                                <ul class="timeline__list list-disc pl-6 text-sm text-text-main space-y-2">
                                     <li>Developed detailed project schedules using MS Project, improving schedule accuracy</li>
                                     <li>Successfully Revised & completed Method Statement, Structural Shop drawing & full BBS</li>
                                     <li>Completed 1 Variation Estimate of Variation Order</li>
@@ -96,9 +118,9 @@
                                 </ul>
                             </div>
                             
-                            <div class="timeline__details">
-                                <h4>Achievements:</h4>
-                                <ul class="timeline__list">
+                            <div class="timeline__details mt-4">
+                                <h4 class="text-base font-semibold text-slate-800 mb-2">Achievements:</h4>
+                                <ul class="timeline__list list-disc pl-6 text-sm text-text-main space-y-2">
                                     <li>Revised & completed Method Statement, Structural Shop drawing & full BBS of 7 Small bridge, 5 Box Culvert 5 Toll Plaza, 1 Toll Plaza Building and 400 Feed Canal & Collecting Ditch</li>
                                     <li>Completed 3 IPC (Interim Payment Certificate) and 1 variation report</li>
                                     <li>Made 300 Supplier, Sub-Contractor, Supplier Bill according to work order</li>
@@ -108,17 +130,17 @@
                     </div>
 
                     <!-- Experience 2 -->
-                    <div class="timeline__item">
+                    <div class="timeline__item relative pb-12 last:pb-0">
                         <div class="timeline__dot"></div>
-                        <div class="timeline__content">
-                            <h3 class="timeline__title">Project Manager</h3>
-                            <p class="timeline__company">AKI Infrastructures Ltd.</p>
-                            <p class="timeline__project">Dhaka Environmentally Sustainable Water Supply Project - Raw Water Pipeline</p>
-                            <p class="timeline__client">Client: Dhaka Wasa | Consultant: SUEZ International</p>
+                        <div class="timeline__content bg-white rounded-2xl border border-border p-6 shadow-sm transition-shadow duration-300 hover:shadow-md">
+                            <h3 class="timeline__title text-xl font-bold text-secondary tracking-tight mb-2">Project Manager</h3>
+                            <p class="timeline__company text-base font-semibold text-primary mb-2">AKI Infrastructures Ltd.</p>
+                            <p class="timeline__project text-sm text-text-light mb-6">Dhaka Environmentally Sustainable Water Supply Project - Raw Water Pipeline</p>
+                            <p class="timeline__client text-sm text-text-light italic mb-0">Client: Dhaka Wasa | Consultant: SUEZ International</p>
                             
-                            <div class="timeline__details">
-                                <h4>Key Responsibilities:</h4>
-                                <ul class="timeline__list">
+                            <div class="timeline__details mt-4">
+                                <h4 class="text-base font-semibold text-slate-800 mb-2">Key Responsibilities:</h4>
+                                <ul class="timeline__list list-disc pl-6 text-sm text-text-main space-y-2">
                                     <li>Developed detailed project schedules using Primavera P6, improving schedule accuracy</li>
                                     <li>Successful completion of 150 pairs or 762m of DI Pipelaying</li>
                                     <li>Prepared 236 D.P.R (Daily Progress Report) Using Excel, MS Project and Primavera P6</li>
@@ -134,17 +156,17 @@
                     </div>
 
                     <!-- Experience 3 -->
-                    <div class="timeline__item">
+                    <div class="timeline__item relative pb-12 last:pb-0">
                         <div class="timeline__dot"></div>
-                        <div class="timeline__content">
-                            <h3 class="timeline__title">Quantity Surveyor</h3>
-                            <p class="timeline__company">Crystal Design & Construction</p>
-                            <p class="timeline__project">Multiple Private Construction Projects</p>
-                            <p class="timeline__client">Client: Multiple Private Clients (5 multi-storeyed residential buildings, 2 commercial buildings)</p>
+                        <div class="timeline__content bg-white rounded-2xl border border-border p-6 shadow-sm transition-shadow duration-300 hover:shadow-md">
+                            <h3 class="timeline__title text-xl font-bold text-secondary tracking-tight mb-2">Quantity Surveyor</h3>
+                            <p class="timeline__company text-base font-semibold text-primary mb-2">Crystal Design & Construction</p>
+                            <p class="timeline__project text-sm text-text-light mb-6">Multiple Private Construction Projects</p>
+                            <p class="timeline__client text-sm text-text-light italic mb-0">Client: Multiple Private Clients (5 multi-storeyed residential buildings, 2 commercial buildings)</p>
                             
-                            <div class="timeline__details">
-                                <h4>Key Responsibilities:</h4>
-                                <ul class="timeline__list">
+                            <div class="timeline__details mt-4">
+                                <h4 class="text-base font-semibold text-slate-800 mb-2">Key Responsibilities:</h4>
+                                <ul class="timeline__list list-disc pl-6 text-sm text-text-main space-y-2">
                                     <li>Developed accurate cost estimates for construction projects</li>
                                     <li>Conducted comprehensive quantity takeoffs from drawings and specifications to determine material and labor requirements</li>
                                     <li>Utilized industry-standard software such as AutoCAD, MS Excel, or specialized estimating tools to streamline quantity surveying tasks</li>
@@ -155,17 +177,17 @@
                     </div>
 
                     <!-- Experience 4 -->
-                    <div class="timeline__item">
+                    <div class="timeline__item relative pb-12 last:pb-0">
                         <div class="timeline__dot"></div>
-                        <div class="timeline__content">
-                            <h3 class="timeline__title">Project Co-Ordinator</h3>
-                            <p class="timeline__company">Make Hub IT Solutions</p>
-                            <p class="timeline__project">IT Research and Analysis</p>
-                            <p class="timeline__client">Not Specified</p>
+                        <div class="timeline__content bg-white rounded-2xl border border-border p-6 shadow-sm transition-shadow duration-300 hover:shadow-md">
+                            <h3 class="timeline__title text-xl font-bold text-secondary tracking-tight mb-2">Project Co-Ordinator</h3>
+                            <p class="timeline__company text-base font-semibold text-primary mb-2">Make Hub IT Solutions</p>
+                            <p class="timeline__project text-sm text-text-light mb-6">IT Research and Analysis</p>
+                            <p class="timeline__client text-sm text-text-light italic mb-0">Not Specified</p>
                             
-                            <div class="timeline__details">
-                                <h4>Key Responsibilities:</h4>
-                                <ul class="timeline__list">
+                            <div class="timeline__details mt-4">
+                                <h4 class="text-base font-semibold text-slate-800 mb-2">Key Responsibilities:</h4>
+                                <ul class="timeline__list list-disc pl-6 text-sm text-text-main space-y-2">
                                     <li>Conducted research and analysis for an IT company by accumulating data about user experience</li>
                                     <li>Distributed, monitored tasks of employees through managerial tools called Click Ups</li>
                                 </ul>
@@ -174,17 +196,17 @@
                     </div>
 
                     <!-- Experience 5 -->
-                    <div class="timeline__item">
+                    <div class="timeline__item relative pb-0">
                         <div class="timeline__dot"></div>
-                        <div class="timeline__content">
-                            <h3 class="timeline__title">Assistant Site Engineer</h3>
-                            <p class="timeline__company">3Ds Developers</p>
-                            <p class="timeline__project">Construction Projects</p>
-                            <p class="timeline__client">Not Specified</p>
+                        <div class="timeline__content bg-white rounded-2xl border border-border p-6 shadow-sm transition-shadow duration-300 hover:shadow-md">
+                            <h3 class="timeline__title text-xl font-bold text-secondary tracking-tight mb-2">Assistant Site Engineer</h3>
+                            <p class="timeline__company text-base font-semibold text-primary mb-2">3Ds Developers</p>
+                            <p class="timeline__project text-sm text-text-light mb-6">Construction Projects</p>
+                            <p class="timeline__client text-sm text-text-light italic mb-0">Not Specified</p>
                             
-                            <div class="timeline__details">
-                                <h4>Key Responsibilities:</h4>
-                                <ul class="timeline__list">
+                            <div class="timeline__details mt-4">
+                                <h4 class="text-base font-semibold text-slate-800 mb-2">Key Responsibilities:</h4>
+                                <ul class="timeline__list list-disc pl-6 text-sm text-text-main space-y-2">
                                     <li>Performed Site Engineer duties on site</li>
                                     <li>During intern estimated the labor cost according to structural design</li>
                                     <li>Gathering knowledge about how to resolve both creatively and logically design problems</li>
@@ -199,10 +221,10 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__content">
-                <p class="footer__text">&copy; 2026 Shahadat Akbor. All rights reserved.</p>
+    <footer class="footer py-16 bg-secondary border-t border-white/8 text-center">
+        <div class="container max-w-screen-xl mx-auto px-[clamp(1rem,4vw,3rem)]">
+            <div class="footer__content flex flex-col items-center gap-2">
+                <p class="footer__text text-sm text-white/50">&copy; 2026 Shahadat Akbor. All rights reserved.</p>
             </div>
         </div>
     </footer>

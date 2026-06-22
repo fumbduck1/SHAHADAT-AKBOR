@@ -24,196 +24,281 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
     
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#2563eb', dark: '#1d4ed8', light: '#3b82f6' },
+            secondary: '#0f172a',
+            'text-main': '#334155',
+            'text-light': '#64748b',
+            'bg-alt': '#f8fafc',
+            border: '#e2e8f0',
+            success: '#10b981',
+            warning: '#f59e0b',
+            error: '#ef4444',
+          },
+          fontFamily: {
+            sans: ["'Space Grotesk'", "'Segoe UI'", 'system-ui', 'sans-serif'],
+          },
+          borderRadius: {
+            '2xl': '1.5rem',
+            '3xl': '2rem',
+          },
+          boxShadow: {
+            'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.12)',
+            'glow': '0 0 80px 20px rgba(37, 99, 235, 0.15)',
+          }
+        }
+      }
+    }
+    </script>
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+    
+    <!-- Styles for behaviors Tailwind CDN cannot express -->
+    <style>
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            padding-left: clamp(1rem, 4vw, 3rem);
+            padding-right: clamp(1rem, 4vw, 3rem);
+        }
+        html { scroll-behavior: auto; }
+        .nav__link.active { background-color: #0f172a; color: #ffffff; }
+        .nav__link.active:hover { background-color: #0f172a; color: #ffffff; }
+        .nav__overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5); z-index: 10000;
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .nav__overlay.active { opacity: 1; visibility: visible; }
+        @media (max-width: 767px) {
+            header.header { top: 1rem; left: 1rem; transform: none; max-width: calc(100% - 1rem); }
+            .nav__menu {
+                position: fixed; top: 0; right: -100%; width: 85%; max-width: 320px;
+                height: 100vh; height: 100dvh; background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+                border: none; border-radius: 0; padding: 5rem 1.5rem 1.5rem;
+                z-index: 10001; transition: right 0.3s ease; overflow-y: auto;
+            }
+            .nav__menu.active { right: 0; }
+            .nav__toggle, .nav__close { display: block; }
+            .nav__toggle { z-index: 10002; }
+            .nav__close {
+                position: absolute; top: 1.5rem; right: 1.5rem; z-index: 10003;
+                font-size: 1.5rem; padding: 0.5rem; background: none; border: none;
+                cursor: pointer; color: #334155;
+            }
+            .nav__list { flex-direction: column; gap: 0.5rem; }
+            .nav__link { display: block; padding: 1rem; border-radius: 0.5rem; font-size: 1.125rem; }
+        }
+    </style>
 </head>
-<body>
-    <!-- Header -->
-    <header class="header" id="header">
-        <nav class="nav container">
+<body class="overflow-x-hidden min-h-screen font-sans text-text-main bg-white leading-relaxed">
 
-            <div class="nav__menu" id="nav-menu">
-                <ul class="nav__list">
+    <!-- Header -->
+    <header class="header fixed top-8 left-1/2 -translate-x-1/2 w-auto max-w-[92%] bg-white/60 backdrop-blur-[20px] border border-white/[0.18] rounded-full shadow-glass z-50" id="header">
+        <nav class="nav flex justify-center items-center py-4 px-12">
+            <div class="nav__menu flex gap-2" id="nav-menu">
+                <ul class="nav__list flex gap-1">
                     <li class="nav__item">
-                        <a href="index.html" class="nav__link active">Home</a>
+                        <a href="index.html" class="nav__link active text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight whitespace-nowrap transition-all duration-200 hover:bg-blue-500/[0.08] hover:text-primary hover:-translate-y-px">Home</a>
                     </li>
                     <li class="nav__item">
-                        <a href="about.html" class="nav__link">About</a>
+                        <a href="about.html" class="nav__link text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight whitespace-nowrap transition-all duration-200 hover:bg-blue-500/[0.08] hover:text-primary hover:-translate-y-px">About</a>
                     </li>
                     <li class="nav__item">
-                        <a href="projects.html" class="nav__link">Projects</a>
+                        <a href="projects.html" class="nav__link text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight whitespace-nowrap transition-all duration-200 hover:bg-blue-500/[0.08] hover:text-primary hover:-translate-y-px">Projects</a>
                     </li>
                     <li class="nav__item">
-                        <a href="experience.html" class="nav__link">Experience</a>
+                        <a href="experience.html" class="nav__link text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight whitespace-nowrap transition-all duration-200 hover:bg-blue-500/[0.08] hover:text-primary hover:-translate-y-px">Experience</a>
                     </li>
                     <li class="nav__item">
-                        <a href="skills.html" class="nav__link">Skills</a>
+                        <a href="skills.html" class="nav__link text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight whitespace-nowrap transition-all duration-200 hover:bg-blue-500/[0.08] hover:text-primary hover:-translate-y-px">Skills</a>
                     </li>
                     <li class="nav__item">
-                        <a href="certifications.html" class="nav__link">Certifications</a>
+                        <a href="certifications.html" class="nav__link text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight whitespace-nowrap transition-all duration-200 hover:bg-blue-500/[0.08] hover:text-primary hover:-translate-y-px">Certifications</a>
                     </li>
                     <li class="nav__item">
-                        <a href="resume.html" class="nav__link">Resume</a>
+                        <a href="resume.html" class="nav__link text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight whitespace-nowrap transition-all duration-200 hover:bg-blue-500/[0.08] hover:text-primary hover:-translate-y-px">Resume</a>
                     </li>
                     <li class="nav__item">
-                        <a href="contact.html" class="nav__link">Contact</a>
+                        <a href="contact.html" class="nav__link text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight whitespace-nowrap transition-all duration-200 hover:bg-blue-500/[0.08] hover:text-primary hover:-translate-y-px">Contact</a>
                     </li>
                 </ul>
-                
-                <div class="nav__close" id="nav-close">
+                <div class="nav__close hidden" id="nav-close">
                     <span>&times;</span>
                 </div>
             </div>
-            
-            <div class="nav__toggle" id="nav-toggle">
+            <div class="nav__toggle hidden text-xl cursor-pointer text-text-main p-2 bg-transparent border-none" id="nav-toggle">
                 <span>&#9776;</span>
             </div>
         </nav>
     </header>
 
     <!-- Main Content -->
-    <main class="main">
+    <main class="main flex-1 w-full max-w-full overflow-x-hidden">
+
         <!-- Hero Section -->
-        <section class="hero" id="hero">
-            <div class="container hero__container">
+        <section class="hero hero-gradient relative min-h-auto md:min-h-[80vh] flex items-center justify-center overflow-hidden pt-[calc(8rem+60px)] md:pt-[calc(12rem+80px)] pb-12 md:pb-16" id="hero">
+            <div class="container hero__container text-center max-w-[1600px]">
                 <div class="hero__content">
-                    <h1 class="hero__title">SHAHADAT AKBOR</h1>
-                    <p class="hero__subtitle">Civil Engineer || PGDPM</p>
+                    <h1 class="hero__title text-[clamp(1.8rem,8vw,2.5rem)] md:text-[clamp(3rem,6vw,6rem)] font-extrabold text-secondary leading-[1.05] tracking-tight mb-8 md:mb-12 max-w-[900px] mx-auto">SHAHADAT AKBOR</h1>
+                    <p class="hero__subtitle text-base md:text-[clamp(1rem,1.5vw,1.25rem)] text-text-light max-w-[600px] mx-auto mb-12 leading-7 tracking-tight">Civil Engineer || PGDPM</p>
                     
-                    <div class="hero__contact">
-                        <a href="tel:+8801839629328" class="hero__contact-item">
+                    <div class="hero__contact flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 mb-12">
+                        <a href="tel:+8801839629328" class="hero__contact-item inline-flex items-center gap-2 text-text-light text-base transition-colors duration-300 hover:text-secondary">
                             <i class="fas fa-phone"></i>
                             <span>+8801839629328</span>
                         </a>
-                        <a href="mailto:shahadatakbor9@gmail.com" class="hero__contact-item">
+                        <a href="mailto:shahadatakbor9@gmail.com" class="hero__contact-item inline-flex items-center gap-2 text-text-light text-base transition-colors duration-300 hover:text-secondary">
                             <i class="fas fa-envelope"></i>
                             <span>shahadatakbor9@gmail.com</span>
                         </a>
                     </div>
                     
-                    <div class="hero__buttons">
-                        <a href="contact.html" class="btn btn--primary">Contact Me</a>
-                        <a href="resume.html" class="btn btn--outline">View Resume</a>
+                    <div class="hero__buttons hero__actions flex flex-col md:flex-row justify-center items-center gap-4 md:gap-4">
+                        <a href="contact.html" class="btn inline-flex items-center justify-center gap-2 py-4 px-8 font-sans text-base font-semibold border-0 rounded-full cursor-pointer tracking-tight transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] bg-secondary text-white hover:bg-primary hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(37,99,235,0.3)] w-full max-w-[280px] md:w-auto md:max-w-none">Contact Me</a>
+                        <a href="resume.html" class="btn inline-flex items-center justify-center gap-2 py-4 px-8 font-sans text-base font-semibold border border-border rounded-full cursor-pointer tracking-tight transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] bg-transparent text-secondary hover:border-secondary hover:-translate-y-0.5 w-full max-w-[280px] md:w-auto md:max-w-none">View Resume</a>
                     </div>
 
                     <!-- Key Metrics -->
-                    <div class="hero__metrics">
-                        <div class="hero__metric">
-                            <span class="hero__metric-number" data-target="6.5" data-suffix=" km">0</span>
-                            <span class="hero__metric-label">Flexible Pavement</span>
+                    <div class="hero__metrics flex justify-center flex-wrap gap-y-6 gap-x-8 md:gap-y-8 md:gap-x-12 mt-16 pt-12 border-t border-border">
+                        <div class="hero__metric text-center">
+                            <span class="hero__metric-number block text-[1.5rem] sm:text-[2rem] md:text-[2.5rem] font-extrabold text-secondary tracking-tight leading-none mb-2" data-target="6.5" data-suffix=" km">0</span>
+                            <span class="hero__metric-label text-sm text-text-light font-medium">Flexible Pavement</span>
                         </div>
-                        <div class="hero__metric">
-                            <span class="hero__metric-number" data-target="200" data-suffix=" m">0</span>
-                            <span class="hero__metric-label">Rigid Pavement</span>
+                        <div class="hero__metric text-center">
+                            <span class="hero__metric-number block text-[1.5rem] sm:text-[2rem] md:text-[2.5rem] font-extrabold text-secondary tracking-tight leading-none mb-2" data-target="200" data-suffix=" m">0</span>
+                            <span class="hero__metric-label text-sm text-text-light font-medium">Rigid Pavement</span>
                         </div>
-                        <div class="hero__metric">
-                            <span class="hero__metric-number" data-target="1.2" data-suffix=" km">0</span>
-                            <span class="hero__metric-label">Raw Water Pipeline</span>
+                        <div class="hero__metric text-center">
+                            <span class="hero__metric-number block text-[1.5rem] sm:text-[2rem] md:text-[2.5rem] font-extrabold text-secondary tracking-tight leading-none mb-2" data-target="1.2" data-suffix=" km">0</span>
+                            <span class="hero__metric-label text-sm text-text-light font-medium">Raw Water Pipeline</span>
                         </div>
-                        <div class="hero__metric">
-                            <span class="hero__metric-number" data-target="7" data-suffix="">0</span>
-                            <span class="hero__metric-label">Bridges</span>
+                        <div class="hero__metric text-center">
+                            <span class="hero__metric-number block text-[1.5rem] sm:text-[2rem] md:text-[2.5rem] font-extrabold text-secondary tracking-tight leading-none mb-2" data-target="7" data-suffix="">0</span>
+                            <span class="hero__metric-label text-sm text-text-light font-medium">Bridges</span>
                         </div>
-                        <div class="hero__metric">
-                            <span class="hero__metric-number" data-target="5" data-suffix="">0</span>
-                            <span class="hero__metric-label">Road Crossing Box Culverts</span>
+                        <div class="hero__metric text-center">
+                            <span class="hero__metric-number block text-[1.5rem] sm:text-[2rem] md:text-[2.5rem] font-extrabold text-secondary tracking-tight leading-none mb-2" data-target="5" data-suffix="">0</span>
+                            <span class="hero__metric-label text-sm text-text-light font-medium">Road Crossing Box Culverts</span>
                         </div>
-                        <div class="hero__metric">
-                            <span class="hero__metric-number" data-target="368" data-suffix="">0</span>
-                            <span class="hero__metric-label">Feed Canal & Ditch</span>
+                        <div class="hero__metric text-center">
+                            <span class="hero__metric-number block text-[1.5rem] sm:text-[2rem] md:text-[2.5rem] font-extrabold text-secondary tracking-tight leading-none mb-2" data-target="368" data-suffix="">0</span>
+                            <span class="hero__metric-label text-sm text-text-light font-medium">Feed Canal &amp; Ditch</span>
                         </div>
-                        <div class="hero__metric">
-                            <span class="hero__metric-number" data-target="16" data-suffix="">0</span>
-                            <span class="hero__metric-label">Buildings & Booths</span>
+                        <div class="hero__metric text-center">
+                            <span class="hero__metric-number block text-[1.5rem] sm:text-[2rem] md:text-[2.5rem] font-extrabold text-secondary tracking-tight leading-none mb-2" data-target="16" data-suffix="">0</span>
+                            <span class="hero__metric-label text-sm text-text-light font-medium">Buildings &amp; Booths</span>
                         </div>
                     </div>
                 </div>
                 
                 <div class="hero__image">
-                    <div class="hero__image-wrapper">
-                        <img src="assets/images/profile.jpeg" alt="Shahadat Akbor - Civil Engineer" class="hero__photo">
+                    <div class="hero__image-wrapper relative w-[160px] sm:w-[200px] md:w-[280px] h-[160px] sm:h-[200px] md:h-[280px] mt-16 mx-auto rounded-full overflow-hidden border-4 border-border shadow-xl">
+                        <img src="assets/images/profile.jpeg" alt="Shahadat Akbor - Civil Engineer" class="hero__photo w-full h-full object-cover object-top">
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Career Snapshot Section -->
-        <section class="snapshot" id="snapshot">
+        <section class="snapshot py-32 bg-white" id="snapshot">
             <div class="container">
-                <h2 class="section__title">Career Snapshot</h2>
+                <h2 class="section__title text-[clamp(1.5rem,3vw,2.5rem)] font-extrabold text-secondary text-center mb-12 tracking-tight">Career Snapshot</h2>
                 
-                <div class="snapshot__grid">
-                    <div class="snapshot__card">
-                        <div class="snapshot__icon"><i class="fas fa-briefcase"></i></div>
-                        <h3 class="snapshot__number">3+</h3>
-                        <p class="snapshot__label">Years Experience</p>
+                <div class="snapshot__grid grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="snapshot__card text-center py-16 px-12 bg-bg-alt rounded-2xl border border-border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                        <div class="snapshot__icon text-[36px] text-primary w-[72px] h-[72px] flex items-center justify-center bg-blue-500/10 rounded-xl mx-auto mb-8">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3 class="snapshot__number text-[2.5rem] font-extrabold text-secondary tracking-tight mb-2">3+</h3>
+                        <p class="snapshot__label text-sm text-text-light font-medium">Years Experience</p>
                     </div>
                     
-                    <div class="snapshot__card">
-                        <div class="snapshot__icon"><i class="fas fa-building"></i></div>
-                        <h3 class="snapshot__title">Core Domains</h3>
-                        <p class="snapshot__text">Raw Water Pipeline, Residential Building Management, Research and Analysis</p>
+                    <div class="snapshot__card text-center py-16 px-12 bg-bg-alt rounded-2xl border border-border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                        <div class="snapshot__icon text-[36px] text-primary w-[72px] h-[72px] flex items-center justify-center bg-blue-500/10 rounded-xl mx-auto mb-8">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3 class="snapshot__title text-xl font-bold text-secondary mb-2">Core Domains</h3>
+                        <p class="snapshot__text text-sm text-text-light leading-relaxed">Raw Water Pipeline, Residential Building Management, Research and Analysis</p>
                     </div>
                     
-                    <div class="snapshot__card">
-                        <div class="snapshot__icon"><i class="fas fa-bullseye"></i></div>
-                        <h3 class="snapshot__title">Current Focus</h3>
-                        <p class="snapshot__text">Civil Engineering duties including project management, quantity surveying, and site supervision</p>
+                    <div class="snapshot__card text-center py-16 px-12 bg-bg-alt rounded-2xl border border-border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                        <div class="snapshot__icon text-[36px] text-primary w-[72px] h-[72px] flex items-center justify-center bg-blue-500/10 rounded-xl mx-auto mb-8">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3 class="snapshot__title text-xl font-bold text-secondary mb-2">Current Focus</h3>
+                        <p class="snapshot__text text-sm text-text-light leading-relaxed">Civil Engineering duties including project management, quantity surveying, and site supervision</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Featured Projects Section -->
-        <section class="projects" id="featured-projects">
+        <section class="projects py-32 bg-bg-alt" id="featured-projects">
             <div class="container">
-                <h2 class="section__title">Featured Projects</h2>
+                <h2 class="section__title text-[clamp(1.5rem,3vw,2.5rem)] font-extrabold text-secondary text-center mb-12 tracking-tight">Featured Projects</h2>
                 
-                <div class="projects__grid">
+                <div class="projects__grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Project 1 -->
-                    <article class="project-card">
-                        <div class="project-card__header">
-                            <h3 class="project-card__title">Dhaka Environmentally Sustainable Water Supply Project</h3>
-                            <p class="project-card__role">Project Manager</p>
+                    <article class="project-card bg-white rounded-2xl overflow-hidden border border-border transition-all duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)] opacity-100 cursor-pointer hover:-translate-y-2 hover:shadow-xl flex flex-col">
+                        <div class="project-card__header pt-12 px-12">
+                            <h3 class="project-card__title text-2xl font-bold text-secondary leading-snug tracking-tight mb-4">Dhaka Environmentally Sustainable Water Supply Project</h3>
+                            <p class="project-card__role text-sm font-semibold text-primary mb-2">Project Manager</p>
                         </div>
-                        <div class="project-card__body">
-                            <p class="project-card__client">Client: Dhaka Wasa</p>
-                            <p class="project-card__consultant">Consultant: SUEZ International</p>
-                            <p class="project-card__description">Raw Water Pipeline project involving DI Pipe laying and associated infrastructure.</p>
+                        <div class="project-card__body py-8 px-12 flex-1">
+                            <p class="project-card__client text-sm text-text-light mb-1">Client: Dhaka Wasa</p>
+                            <p class="project-card__consultant text-sm text-text-light mb-1">Consultant: SUEZ International</p>
+                            <p class="project-card__description text-base text-text-light leading-relaxed mt-2">Raw Water Pipeline project involving DI Pipe laying and associated infrastructure.</p>
                         </div>
-                        <div class="project-card__footer">
-                            <a href="projects.html" class="project-card__link">View Details &#8594;</a>
+                        <div class="project-card__footer pb-12 px-12">
+                            <a href="projects.html" class="project-card__link text-sm font-semibold text-primary transition-colors duration-300 hover:text-primary-dark">View Details &#8594;</a>
                         </div>
                     </article>
                     
                     <!-- Project 2 -->
-                    <article class="project-card">
-                        <div class="project-card__header">
-                            <h3 class="project-card__title">Construction of First Terminal and Ancillary Facilities of Payra Sea Port</h3>
-                            <p class="project-card__role">Assistant Quantity Survey Engineer</p>
+                    <article class="project-card bg-white rounded-2xl overflow-hidden border border-border transition-all duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)] opacity-100 cursor-pointer hover:-translate-y-2 hover:shadow-xl flex flex-col">
+                        <div class="project-card__header pt-12 px-12">
+                            <h3 class="project-card__title text-2xl font-bold text-secondary leading-snug tracking-tight mb-4">Construction of First Terminal and Ancillary Facilities of Payra Sea Port</h3>
+                            <p class="project-card__role text-sm font-semibold text-primary mb-2">Assistant Quantity Survey Engineer</p>
                         </div>
-                        <div class="project-card__body">
-                            <p class="project-card__client">Client: Payra Port Authority and Roads and Highway Division</p>
-                            <p class="project-card__description">Construction of first terminal and ancillary facilities including connecting road, bridges, culverts, and toll plazas.</p>
+                        <div class="project-card__body py-8 px-12 flex-1">
+                            <p class="project-card__client text-sm text-text-light mb-1">Client: Payra Port Authority and Roads and Highway Division</p>
+                            <p class="project-card__description text-base text-text-light leading-relaxed mt-2">Construction of first terminal and ancillary facilities including connecting road, bridges, culverts, and toll plazas.</p>
                         </div>
-                        <div class="project-card__footer">
-                            <a href="projects.html" class="project-card__link">View Details &#8594;</a>
+                        <div class="project-card__footer pb-12 px-12">
+                            <a href="projects.html" class="project-card__link text-sm font-semibold text-primary transition-colors duration-300 hover:text-primary-dark">View Details &#8594;</a>
                         </div>
                     </article>
                     
                     <!-- Project 3 -->
-                    <article class="project-card">
-                        <div class="project-card__header">
-                            <h3 class="project-card__title">Crystal Design & Construction</h3>
-                            <p class="project-card__role">Quantity Surveyor</p>
+                    <article class="project-card bg-white rounded-2xl overflow-hidden border border-border transition-all duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)] opacity-100 cursor-pointer hover:-translate-y-2 hover:shadow-xl flex flex-col">
+                        <div class="project-card__header pt-12 px-12">
+                            <h3 class="project-card__title text-2xl font-bold text-secondary leading-snug tracking-tight mb-4">Crystal Design &amp; Construction</h3>
+                            <p class="project-card__role text-sm font-semibold text-primary mb-2">Quantity Surveyor</p>
                         </div>
-                        <div class="project-card__body">
-                            <p class="project-card__client">Client: Multiple Private Clients</p>
-                            <p class="project-card__description">Managed quantity surveying for multiple private construction projects including 5 multi-storeyed residential buildings and 2 commercial buildings.</p>
+                        <div class="project-card__body py-8 px-12 flex-1">
+                            <p class="project-card__client text-sm text-text-light mb-1">Client: Multiple Private Clients</p>
+                            <p class="project-card__description text-base text-text-light leading-relaxed mt-2">Managed quantity surveying for multiple private construction projects including 5 multi-storeyed residential buildings and 2 commercial buildings.</p>
                         </div>
-                        <div class="project-card__footer">
-                            <a href="projects.html" class="project-card__link">View Details &#8594;</a>
+                        <div class="project-card__footer pb-12 px-12">
+                            <a href="projects.html" class="project-card__link text-sm font-semibold text-primary transition-colors duration-300 hover:text-primary-dark">View Details &#8594;</a>
                         </div>
                     </article>
                 </div>
@@ -221,20 +306,20 @@
         </section>
 
         <!-- Call to Action Section -->
-        <section class="cta" id="cta">
+        <section class="cta py-32 bg-white text-center" id="cta">
             <div class="container">
-                <h2 class="cta__title">Let's Work Together</h2>
-                <p class="cta__text">Interested in discussing potential opportunities or collaborations?</p>
-                <a href="contact.html" class="btn btn--primary btn--large">Get In Touch</a>
+                <h2 class="cta__title text-[2rem] font-extrabold text-secondary mb-4 tracking-tight">Let's Work Together</h2>
+                <p class="cta__text text-lg text-text-light mb-12">Interested in discussing potential opportunities or collaborations?</p>
+                <a href="contact.html" class="btn inline-flex items-center justify-center gap-2 py-6 px-12 font-sans text-lg font-semibold border-0 rounded-full cursor-pointer tracking-tight transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] bg-secondary text-white hover:bg-primary hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(37,99,235,0.3)]">Get In Touch</a>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer py-24 bg-secondary border-t border-white/[0.08] text-center">
         <div class="container">
-            <div class="footer__content">
-                <p class="footer__text">&copy; 2026 Shahadat Akbor. All rights reserved.</p>
+            <div class="footer__content flex flex-col items-center gap-2">
+                <p class="footer__text text-sm text-white/50">&copy; 2026 Shahadat Akbor. All rights reserved.</p>
             </div>
         </div>
     </footer>

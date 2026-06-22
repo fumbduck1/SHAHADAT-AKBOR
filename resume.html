@@ -9,102 +9,181 @@
     
     <title>Resume - Shahadat Akbor | Professional Portfolio</title>
     
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#2563eb', dark: '#1d4ed8', light: '#3b82f6' },
+            secondary: '#0f172a',
+            'text-main': '#334155',
+            'text-light': '#64748b',
+            'bg-alt': '#f8fafc',
+            border: '#e2e8f0',
+            success: '#10b981',
+          },
+          fontFamily: {
+            sans: ["'Space Grotesk'", "'Segoe UI'", 'system-ui', 'sans-serif'],
+          },
+          borderRadius: {
+            '2xl': '1.5rem',
+            '3xl': '2rem',
+          },
+          boxShadow: {
+            'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.12)',
+          },
+        }
+      }
+    }
+    </script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+    
+    <!-- Styles for behaviors Tailwind CDN cannot express -->
+    <style>
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            padding-left: clamp(1rem, 4vw, 3rem);
+            padding-right: clamp(1rem, 4vw, 3rem);
+        }
+        html { scroll-behavior: auto; }
+        .nav__link.active { background-color: #0f172a; color: #ffffff; }
+        .nav__link.active:hover { background-color: #0f172a; color: #ffffff; }
+        .nav__overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5); z-index: 10000;
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .nav__overlay.active { opacity: 1; visibility: visible; }
+        @media (max-width: 767px) {
+            header.header { top: 1rem; left: 1rem; transform: none; max-width: calc(100% - 1rem); }
+            .nav__menu {
+                position: fixed; top: 0; right: -100%; width: 85%; max-width: 320px;
+                height: 100vh; height: 100dvh; background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+                border: none; border-radius: 0; padding: 5rem 1.5rem 1.5rem;
+                z-index: 10001; transition: right 0.3s ease; overflow-y: auto;
+            }
+            .nav__menu.active { right: 0; }
+            .nav__toggle, .nav__close { display: block; }
+            .nav__toggle { z-index: 10002; }
+            .nav__close {
+                position: absolute; top: 1.5rem; right: 1.5rem; z-index: 10003;
+                font-size: 1.5rem; padding: 0.5rem; background: none; border: none;
+                cursor: pointer; color: #334155;
+            }
+            .nav__list { flex-direction: column; gap: 0.5rem; }
+            .nav__link { display: block; padding: 1rem; border-radius: 0.5rem; font-size: 1.125rem; }
+        }
+    </style>
 </head>
-<body>
-    <!-- Header -->
-    <header class="header" id="header">
-        <nav class="nav container">
+<body class="overflow-x-hidden min-h-screen font-sans text-text-main bg-white leading-relaxed">
 
-            <div class="nav__menu" id="nav-menu">
-                <ul class="nav__list">
+    <!-- Header -->
+    <header class="header fixed top-8 left-1/2 -translate-x-1/2 w-auto max-w-[92%] bg-white/60 backdrop-blur-[20px] border border-white/[0.18] rounded-full shadow-glass z-50" id="header">
+        <nav class="nav flex justify-center items-center py-4 px-12">
+            <div class="nav__menu flex gap-2" id="nav-menu">
+                <ul class="nav__list flex gap-1">
                     <li class="nav__item">
-                        <a href="index.html" class="nav__link">Home</a>
+                        <a href="index.html" class="nav__link text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight whitespace-nowrap transition-all duration-200 hover:bg-blue-500/[0.08] hover:text-primary hover:-translate-y-px">Home</a>
                     </li>
                     <li class="nav__item">
-                        <a href="about.html" class="nav__link">About</a>
+                        <a href="about.html" class="nav__link text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight whitespace-nowrap transition-all duration-200 hover:bg-blue-500/[0.08] hover:text-primary hover:-translate-y-px">About</a>
                     </li>
                     <li class="nav__item">
-                        <a href="projects.html" class="nav__link">Projects</a>
+                        <a href="projects.html" class="nav__link text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight whitespace-nowrap transition-all duration-200 hover:bg-blue-500/[0.08] hover:text-primary hover:-translate-y-px">Projects</a>
                     </li>
                     <li class="nav__item">
-                        <a href="experience.html" class="nav__link">Experience</a>
+                        <a href="experience.html" class="nav__link text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight whitespace-nowrap transition-all duration-200 hover:bg-blue-500/[0.08] hover:text-primary hover:-translate-y-px">Experience</a>
                     </li>
                     <li class="nav__item">
-                        <a href="skills.html" class="nav__link">Skills</a>
+                        <a href="skills.html" class="nav__link text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight whitespace-nowrap transition-all duration-200 hover:bg-blue-500/[0.08] hover:text-primary hover:-translate-y-px">Skills</a>
                     </li>
                     <li class="nav__item">
-                        <a href="certifications.html" class="nav__link">Certifications</a>
+                        <a href="certifications.html" class="nav__link text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight whitespace-nowrap transition-all duration-200 hover:bg-blue-500/[0.08] hover:text-primary hover:-translate-y-px">Certifications</a>
                     </li>
                     <li class="nav__item">
-                        <a href="resume.html" class="nav__link active">Resume</a>
+                        <a href="resume.html" class="nav__link active text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight whitespace-nowrap transition-all duration-200 hover:bg-blue-500/[0.08] hover:text-primary hover:-translate-y-px">Resume</a>
                     </li>
                     <li class="nav__item">
-                        <a href="contact.html" class="nav__link">Contact</a>
+                        <a href="contact.html" class="nav__link text-base font-medium text-text-main py-4 px-6 rounded-full tracking-tight whitespace-nowrap transition-all duration-200 hover:bg-blue-500/[0.08] hover:text-primary hover:-translate-y-px">Contact</a>
                     </li>
                 </ul>
-                
-                <div class="nav__close" id="nav-close">
+                <div class="nav__close hidden" id="nav-close">
                     <span>&times;</span>
                 </div>
             </div>
-            
-            <div class="nav__toggle" id="nav-toggle">
+            <div class="nav__toggle hidden text-xl cursor-pointer text-text-main p-2 bg-transparent border-none" id="nav-toggle">
                 <span>&#9776;</span>
             </div>
         </nav>
     </header>
 
     <!-- Main Content -->
-    <main class="main">
+    <main class="main flex-1 w-full max-w-full overflow-x-hidden">
+
         <!-- Page Header -->
-        <section class="page-header">
-            <div class="container">
-                <h1 class="page-header__title">Resume</h1>
-                <p class="page-header__subtitle">Professional CV & Experience</p>
+        <section class="page-header py-24 md:py-32 bg-bg-alt">
+            <div class="container text-center">
+                <h1 class="page-header__title text-[clamp(1.8rem,6vw,3rem)] font-extrabold text-secondary leading-[1.05] tracking-tight mb-4">Resume</h1>
+                <p class="page-header__subtitle text-base md:text-lg text-text-light">Professional CV &amp; Experience</p>
             </div>
         </section>
 
         <!-- Resume Section -->
-        <section class="resume" id="resume">
-            <div class="container">
+        <section class="resume py-24 md:py-32 bg-white" id="resume">
+            <div class="container max-w-[900px]">
+
                 <!-- Download Button -->
-                <div class="resume__download">
-                    <a href="https://drive.google.com/drive/folders/1didGyfCjeUM1fOlSfr7vVi-LsxKHXmjZ?usp=drive_link" target="_blank" class="btn btn--primary">
+                <div class="resume__download text-center mb-16">
+                    <a href="https://drive.google.com/drive/folders/1didGyfCjeUM1fOlSfr7vVi-LsxKHXmjZ?usp=drive_link" target="_blank"
+                       class="btn inline-flex items-center justify-center gap-2 py-4 px-8 font-sans text-base font-semibold border-0 rounded-full cursor-pointer tracking-tight transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] bg-secondary text-white hover:bg-primary hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(37,99,235,0.3)]">
                         Download PDF &#8594;
                     </a>
                 </div>
 
                 <!-- Summary -->
-                <div class="resume__section">
-                    <h2 class="resume__section-title">Summary</h2>
+                <div class="resume__section mb-16">
+                    <h2 class="resume__section-title text-[clamp(1.25rem,2.5vw,1.75rem)] font-bold text-secondary tracking-tight mb-6 pb-3 border-b-2 border-primary">Summary</h2>
                     <div class="resume__content">
-                        <p>Highly motivated and dedicated Civil Engineer with 3 years of experience in Civil Engineering duties of raw water pipeline, residential building management, research and analysis.</p>
+                        <p class="text-base md:text-lg text-text-main leading-relaxed">Highly motivated and dedicated Civil Engineer with 3 years of experience in Civil Engineering duties of raw water pipeline, residential building management, research and analysis.</p>
                     </div>
                 </div>
 
                 <!-- Experience -->
-                <div class="resume__section">
-                    <h2 class="resume__section-title">Experience</h2>
-                    <div class="resume__content">
+                <div class="resume__section mb-16">
+                    <h2 class="resume__section-title text-[clamp(1.25rem,2.5vw,1.75rem)] font-bold text-secondary tracking-tight mb-6 pb-3 border-b-2 border-primary">Experience</h2>
+                    <div class="resume__content space-y-10">
                         <div class="resume__item">
-                            <h3 class="resume__item-title">Assistant Quantity Survey Engineer</h3>
-                            <p class="resume__item-company">Spectra Engineers Limited</p>
-                            <p class="resume__item-project">Construction of First Terminal and Ancillary Facilities of Payra Sea Port</p>
-                            <ul class="resume__list">
+                            <h3 class="resume__item-title text-lg md:text-xl font-bold text-secondary mb-1">Assistant Quantity Survey Engineer</h3>
+                            <p class="resume__item-company text-sm font-semibold text-primary mb-2">Spectra Engineers Limited</p>
+                            <p class="resume__item-project text-sm text-text-light italic mb-4">Construction of First Terminal and Ancillary Facilities of Payra Sea Port</p>
+                            <ul class="resume__list list-disc pl-6 space-y-2 text-text-main">
                                 <li>Developed detailed project schedules using MS Project</li>
-                                <li>Completed Method Statement, Structural Shop drawing & full BBS</li>
+                                <li>Completed Method Statement, Structural Shop drawing &amp; full BBS</li>
                                 <li>Made 300 Supplier, Sub-Contractor Bills</li>
                                 <li>Delivered 240 material consumption reports</li>
                             </ul>
                         </div>
                         
                         <div class="resume__item">
-                            <h3 class="resume__item-title">Project Manager</h3>
-                            <p class="resume__item-company">AKI Infrastructures Ltd.</p>
-                            <p class="resume__item-project">Dhaka Environmentally Sustainable Water Supply Project</p>
-                            <ul class="resume__list">
+                            <h3 class="resume__item-title text-lg md:text-xl font-bold text-secondary mb-1">Project Manager</h3>
+                            <p class="resume__item-company text-sm font-semibold text-primary mb-2">AKI Infrastructures Ltd.</p>
+                            <p class="resume__item-project text-sm text-text-light italic mb-4">Dhaka Environmentally Sustainable Water Supply Project</p>
+                            <ul class="resume__list list-disc pl-6 space-y-2 text-text-main">
                                 <li>Developed detailed project schedules using Primavera P6</li>
                                 <li>Completed 762m of DI Pipelaying</li>
                                 <li>Prepared 236 Daily Progress Reports</li>
@@ -113,10 +192,10 @@
                         </div>
                         
                         <div class="resume__item">
-                            <h3 class="resume__item-title">Quantity Surveyor</h3>
-                            <p class="resume__item-company">Crystal Design & Construction</p>
-                            <p class="resume__item-project">Multiple Private Construction Projects</p>
-                            <ul class="resume__list">
+                            <h3 class="resume__item-title text-lg md:text-xl font-bold text-secondary mb-1">Quantity Surveyor</h3>
+                            <p class="resume__item-company text-sm font-semibold text-primary mb-2">Crystal Design &amp; Construction</p>
+                            <p class="resume__item-project text-sm text-text-light italic mb-4">Multiple Private Construction Projects</p>
+                            <ul class="resume__list list-disc pl-6 space-y-2 text-text-main">
                                 <li>Managed quantity surveying for 5 residential and 2 commercial buildings</li>
                                 <li>Prepared 30 BBS and 41 BOQ</li>
                                 <li>Utilized AutoCAD, MS Excel for quantity takeoffs</li>
@@ -126,47 +205,47 @@
                 </div>
 
                 <!-- Education -->
-                <div class="resume__section">
-                    <h2 class="resume__section-title">Education</h2>
-                    <div class="resume__content">
+                <div class="resume__section mb-16">
+                    <h2 class="resume__section-title text-[clamp(1.25rem,2.5vw,1.75rem)] font-bold text-secondary tracking-tight mb-6 pb-3 border-b-2 border-primary">Education</h2>
+                    <div class="resume__content space-y-10">
                         <div class="resume__item">
-                            <h3 class="resume__item-title">B.Sc. in Civil Engineering</h3>
-                            <p class="resume__item-company">Rajshahi University of Engineering and Technology (RUET)</p>
-                            <p class="resume__item-year">2021</p>
-                            <p class="resume__item-details">Thesis: Comparative Study on Effect of Different Position of Shear Wall in R.C.C Frame Building</p>
+                            <h3 class="resume__item-title text-lg md:text-xl font-bold text-secondary mb-1">B.Sc. in Civil Engineering</h3>
+                            <p class="resume__item-company text-sm font-semibold text-primary mb-2">Rajshahi University of Engineering and Technology (RUET)</p>
+                            <p class="resume__item-year text-sm text-text-light mb-2">2021</p>
+                            <p class="resume__item-details text-sm text-text-main leading-relaxed">Thesis: Comparative Study on Effect of Different Position of Shear Wall in R.C.C Frame Building</p>
                         </div>
                         
                         <div class="resume__item">
-                            <h3 class="resume__item-title">Post Graduation Diploma in Project Management</h3>
-                            <p class="resume__item-company">Edupro, UK</p>
-                            <p class="resume__item-year">2024</p>
+                            <h3 class="resume__item-title text-lg md:text-xl font-bold text-secondary mb-1">Post Graduation Diploma in Project Management</h3>
+                            <p class="resume__item-company text-sm font-semibold text-primary mb-2">Edupro, UK</p>
+                            <p class="resume__item-year text-sm text-text-light">2024</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Skills -->
-                <div class="resume__section">
-                    <h2 class="resume__section-title">Skills</h2>
+                <div class="resume__section mb-16">
+                    <h2 class="resume__section-title text-[clamp(1.25rem,2.5vw,1.75rem)] font-bold text-secondary tracking-tight mb-6 pb-3 border-b-2 border-primary">Skills</h2>
                     <div class="resume__content">
-                        <div class="resume__skills">
-                            <div class="resume__skill-category">
-                                <h3>Project Planning:</h3>
-                                <p>Primavera P6, MS Project</p>
+                        <div class="resume__skills grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div class="resume__skill-category p-6 bg-bg-alt rounded-2xl border border-border">
+                                <h3 class="text-base font-bold text-secondary mb-2">Project Planning</h3>
+                                <p class="text-sm text-text-light leading-relaxed">Primavera P6, MS Project</p>
                             </div>
                             
-                            <div class="resume__skill-category">
-                                <h3>Quantity Surveying:</h3>
-                                <p>BOQ, BBS</p>
+                            <div class="resume__skill-category p-6 bg-bg-alt rounded-2xl border border-border">
+                                <h3 class="text-base font-bold text-secondary mb-2">Quantity Surveying</h3>
+                                <p class="text-sm text-text-light leading-relaxed">BOQ, BBS</p>
                             </div>
                             
-                            <div class="resume__skill-category">
-                                <h3>Engineering Software:</h3>
-                                <p>AutoCAD, ETABS, PlanSwift, Stack</p>
+                            <div class="resume__skill-category p-6 bg-bg-alt rounded-2xl border border-border">
+                                <h3 class="text-base font-bold text-secondary mb-2">Engineering Software</h3>
+                                <p class="text-sm text-text-light leading-relaxed">AutoCAD, ETABS, PlanSwift, Stack</p>
                             </div>
                             
-                            <div class="resume__skill-category">
-                                <h3>Microsoft Office:</h3>
-                                <p>Excel, Word, PowerPoint</p>
+                            <div class="resume__skill-category p-6 bg-bg-alt rounded-2xl border border-border">
+                                <h3 class="text-base font-bold text-secondary mb-2">Microsoft Office</h3>
+                                <p class="text-sm text-text-light leading-relaxed">Excel, Word, PowerPoint</p>
                             </div>
                         </div>
                     </div>
@@ -176,10 +255,10 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer py-24 bg-secondary border-t border-white/[0.08] text-center">
         <div class="container">
-            <div class="footer__content">
-                <p class="footer__text">&copy; 2026 Shahadat Akbor. All rights reserved.</p>
+            <div class="footer__content flex flex-col items-center gap-2">
+                <p class="footer__text text-sm text-white/50">&copy; 2026 Shahadat Akbor. All rights reserved.</p>
             </div>
         </div>
     </footer>

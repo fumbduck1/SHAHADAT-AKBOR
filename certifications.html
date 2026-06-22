@@ -10,10 +10,31 @@
     <title>Certifications - Shahadat Akbor | Professional Portfolio</title>
     
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#2563eb', dark: '#1d4ed8', light: '#3b82f6' },
+            secondary: '#0f172a',
+            'text-main': '#334155',
+            'text-light': '#64748b',
+            'bg-alt': '#f8fafc',
+            border: '#e2e8f0',
+            success: '#10b981',
+          },
+          fontFamily: {
+            sans: ["'Space Grotesk'", "'Segoe UI'", 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+    </script>
+    <link rel="stylesheet" href="css/custom.css">
 </head>
-<body>
+<body class="font-sans text-text-main bg-white overflow-x-hidden min-h-screen">
     <!-- Header -->
     <header class="header" id="header">
         <nav class="nav container">
@@ -34,8 +55,6 @@
                     </li>
                     <li class="nav__item">
                         <a href="skills.html" class="nav__link">Skills</a>
-                    </li>
-                    <li class="nav__item">
                     </li>
                     <li class="nav__item">
                         <a href="certifications.html" class="nav__link active">Certifications</a>
@@ -60,43 +79,55 @@
     </header>
 
     <!-- Main Content -->
-    <main class="main">
+    <main class="flex-1 w-full max-w-full overflow-x-hidden">
         <!-- Page Header -->
-        <section class="page-header">
-            <div class="container">
-                <h1 class="page-header__title">Certifications</h1>
-                <p class="page-header__subtitle">Professional Certifications & Training</p>
+        <section class="page-header pt-[calc(12rem-40px)] pb-12 bg-gradient-to-b from-bg-alt to-white text-secondary text-center">
+            <div class="container w-full mx-auto px-[clamp(1rem,4vw,3rem)]">
+                <h1 class="page-header__title text-[clamp(3rem,6vw,6rem)] font-black text-secondary leading-[1.05] tracking-tight mb-6">Certifications</h1>
+                <p class="page-header__subtitle text-[clamp(1rem,1.5vw,1.25rem)] text-text-light max-w-[600px] mx-auto leading-relaxed">Professional Certifications &amp; Training</p>
             </div>
         </section>
 
         <!-- Certifications Section -->
-        <section class="certifications" id="certifications">
-            <div class="container">
-                <div class="certifications__content">
-                    <div class="certifications__card">
-                        <div class="certifications__icon"><i class="fas fa-certificate"></i></div>
-                        <h2 class="certifications__title">Professional Certifications</h2>
-                        <p class="certifications__status">Certificate List Available Upon Request</p>
+        <section class="certifications py-12" id="certifications">
+            <div class="container w-full mx-auto px-[clamp(1rem,4vw,3rem)]">
+                <div class="certifications__content flex justify-center">
+                    <div class="certifications__card p-8 md:p-16 bg-bg-alt rounded-2xl border border-border max-w-[600px] w-full text-center">
+                        <div class="certifications__icon text-primary text-4xl md:text-6xl mb-6 md:mb-8"><i class="fas fa-certificate"></i></div>
+                        <h2 class="certifications__title text-xl md:text-3xl font-black text-secondary tracking-tight mb-3">Professional Certifications</h2>
+                        <p class="certifications__status text-base md:text-lg text-text-light mb-6">Certificate List Available Upon Request</p>
                         
-                        <div class="certifications__details">
-                            <p class="certifications__text">Professional training and certifications are available upon request.</p>
+                        <div class="certifications__details text-left mb-8">
+                            <p class="certifications__text text-base text-text-main leading-relaxed mb-4">Professional training and certifications are available upon request.</p>
                             
                             <div class="certifications__training">
-                                <h3>Professional Training:</h3>
-                                <ul class="certifications__list">
-                                    <li>MS Excel</li>
-                                    <li>MS Project</li>
-                                    <li>Primavera P6</li>
-                                    <li>Procurement</li>
+                                <h3 class="text-sm font-bold text-secondary mb-3 uppercase tracking-wide">Professional Training:</h3>
+                                <ul class="certifications__list space-y-2">
+                                    <li class="text-base text-text-main flex items-center gap-3">
+                                        <span class="text-success flex-shrink-0"><i class="fas fa-check text-sm"></i></span>
+                                        <span>MS Excel</span>
+                                    </li>
+                                    <li class="text-base text-text-main flex items-center gap-3">
+                                        <span class="text-success flex-shrink-0"><i class="fas fa-check text-sm"></i></span>
+                                        <span>MS Project</span>
+                                    </li>
+                                    <li class="text-base text-text-main flex items-center gap-3">
+                                        <span class="text-success flex-shrink-0"><i class="fas fa-check text-sm"></i></span>
+                                        <span>Primavera P6</span>
+                                    </li>
+                                    <li class="text-base text-text-main flex items-center gap-3">
+                                        <span class="text-success flex-shrink-0"><i class="fas fa-check text-sm"></i></span>
+                                        <span>Procurement</span>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                         
                         <div class="certifications__action">
-                            <a href="https://drive.google.com/drive/folders/1didGyfCjeUM1fOlSfr7vVi-LsxKHXmjZ?usp=drive_link" target="_blank" class="btn btn--primary">
+                            <a href="https://drive.google.com/drive/folders/1didGyfCjeUM1fOlSfr7vVi-LsxKHXmjZ?usp=drive_link" target="_blank" class="btn btn--primary inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary-dark text-white font-semibold rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/25 text-base mb-3">
                                 View Certificates &#8594;
                             </a>
-                            <p class="certifications__note">Certificates available via Google Drive</p>
+                            <p class="certifications__note text-sm text-text-light">Certificates available via Google Drive</p>
                         </div>
                     </div>
                 </div>
@@ -105,10 +136,10 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__content">
-                <p class="footer__text">&copy; 2026 Shahadat Akbor. All rights reserved.</p>
+    <footer class="footer py-16 bg-secondary border-t border-white/8 text-center">
+        <div class="container w-full mx-auto px-[clamp(1rem,4vw,3rem)]">
+            <div class="footer__content flex flex-col items-center gap-2">
+                <p class="footer__text text-sm text-white/50">&copy; 2026 Shahadat Akbor. All rights reserved.</p>
             </div>
         </div>
     </footer>
