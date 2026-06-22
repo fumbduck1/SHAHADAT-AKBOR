@@ -108,9 +108,9 @@ header.header nav.nav .nav__menu .nav__close {
     header.header {
         position: fixed !important;
         top: 1rem !important;
-        left: 1rem !important;
+        left: 50% !important;
         right: auto !important;
-        transform: none !important;
+        transform: translateX(-50%) !important;
         max-width: calc(100% - 2rem) !important;
         width: auto !important;
         background: rgba(255, 255, 255, 0.6) !important;
@@ -181,7 +181,7 @@ header.header nav.nav .nav__menu .nav__close {
     header.header nav.nav .nav__menu.active {
         position: fixed !important;
         top: 0 !important;
-        left: -85vw !important;
+        left: -100% !important;
         right: auto !important;
         width: 80vw !important;
         max-width: 320px !important;
@@ -194,45 +194,20 @@ header.header nav.nav .nav__menu .nav__close {
         border-radius: 0 !important;
         padding: 5rem 1.5rem 1.5rem !important;
         z-index: 10001 !important;
-        transition: left 0.3s ease !important;
         overflow-y: auto !important;
         display: block !important;
         flex-direction: column !important;
         gap: 0 !important;
         align-items: stretch !important;
+        transition: left 0.3s ease !important;
     }
 
     /* Slide in when active */
-    header.header nav.nav .nav__menu.active {
+    body.menu-open header.header nav.nav .nav__menu.active {
         left: 0 !important;
     }
 
     /* Show all items in slide panel */
-    header.header nav.nav .nav__menu.active .nav__list {
-        flex-direction: column !important;
-        gap: 0.5rem !important;
-        display: flex !important;
-    }
-
-    /* Reset link styles for slide panel */
-    header.header nav.nav .nav__menu.active .nav__list .nav__link {
-        display: block !important;
-        padding: 1rem !important;
-        border-radius: 0.5rem !important;
-        font-size: 1.125rem !important;
-        white-space: normal !important;
-    }
-
-    header.header nav.nav .nav__toggle {
-        display: block !important;
-        z-index: 10002 !important;
-        font-size: 1.25rem !important;
-        cursor: pointer !important;
-        color: #334155 !important;
-        padding: 0.5rem !important;
-        background: none !important;
-        border: none !important;
-    }
 
     /* Hide toggle when menu is open */
     header.header nav.nav .nav__menu.active ~ .nav__toggle {
