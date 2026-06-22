@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fumbduck1.github.io/SHAHADAT-AKBOR/sitemap.xml
