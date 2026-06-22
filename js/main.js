@@ -43,32 +43,16 @@ if (navToggle) {
         const overlay = document.getElementById('nav-overlay');
         if (overlay) overlay.classList.add('active');
         navMenu.classList.add('active');
-        if (typeof gsap !== 'undefined') {
-            gsap.fromTo(navMenu, 
-                { x: '100%' }, 
-                { x: '0%', duration: 0.4, ease: 'power3.out' }
-            );
-        }
+        document.body.style.overflow = 'hidden';
     });
 }
 
 // Close menu
 function closeMenu() {
     const overlay = document.getElementById('nav-overlay');
-    if (typeof gsap !== 'undefined') {
-        gsap.to(navMenu, {
-            x: '100%',
-            duration: 0.3,
-            ease: 'power3.in',
-            onComplete: () => {
-                navMenu.classList.remove('active');
-                if (overlay) overlay.classList.remove('active');
-            }
-        });
-    } else {
-        navMenu.classList.remove('active');
-        if (overlay) overlay.classList.remove('active');
-    }
+    navMenu.classList.remove('active');
+    if (overlay) overlay.classList.remove('active');
+    document.body.style.overflow = '';
 }
 
 if (navClose) {
@@ -151,29 +135,38 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     const counterElements = document.querySelectorAll('[data-target]');
 
     counterElements.forEach((element, index) => {
-        const target = parseInt(element.getAttribute('data-target'));
+        const targetStr = element.getAttribute('data-target');
+        const target = parseFloat(targetStr);
+        const suffix = element.getAttribute('data-suffix') || '';
+        const isDecimal = targetStr.includes('.');
         let hasAnimated = false;
         
         // Set initial display
-        element.textContent = '0';
+        element.textContent = '0' + suffix;
         
         const animateCounter = () => {
             if (hasAnimated) return;
             hasAnimated = true;
             
-            gsap.to(element, {
-                innerText: target,
+            const obj = { val: 0 };
+            gsap.to(obj, {
+                val: target,
                 duration: 2.5,
                 delay: index * 0.15,
                 ease: 'power2.out',
-                snap: { innerText: 1 },
                 onUpdate: function() {
-                    element.textContent = Math.floor(
-                        parseFloat(element.textContent)
-                    ).toLocaleString();
+                    if (isDecimal) {
+                        element.textContent = obj.val.toFixed(1) + suffix;
+                    } else {
+                        element.textContent = Math.round(obj.val).toLocaleString() + suffix;
+                    }
                 },
                 onComplete: function() {
-                    element.textContent = target.toLocaleString();
+                    if (isDecimal) {
+                        element.textContent = target.toFixed(1) + suffix;
+                    } else {
+                        element.textContent = target.toLocaleString() + suffix;
+                    }
                 }
             });
         };

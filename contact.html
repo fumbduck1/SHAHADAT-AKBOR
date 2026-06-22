@@ -20,13 +20,13 @@
         .contact-info__item {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
-            padding: 2rem;
+            gap: 1rem;
+            padding: 1.25rem;
             background: var(--glass-bg);
             backdrop-filter: var(--glass-blur);
             border: 1px solid var(--glass-border);
             border-radius: var(--radius-2xl);
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             text-decoration: none;
             color: inherit;
         }
@@ -37,42 +37,50 @@
         }
         
         .contact-info__icon {
-            width: 64px;
-            height: 64px;
+            width: 48px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-            border-radius: var(--radius-xl);
+            border-radius: var(--radius-lg);
             color: white;
             flex-shrink: 0;
         }
         
+        .contact-info__icon svg {
+            width: 22px;
+            height: 22px;
+        }
+        
         .contact-info__content {
             flex: 1;
+            min-width: 0;
         }
         
         .contact-info__label {
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             font-weight: 600;
             color: var(--color-text-light);
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.125rem;
         }
         
         .contact-info__value {
-            font-size: 1.25rem;
+            font-size: 1rem;
             font-weight: 600;
             color: var(--color-secondary);
+            overflow-wrap: break-word;
+            word-break: break-word;
         }
         
         .contact-info__note {
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             color: var(--color-text-light);
-            margin-top: 0.25rem;
+            margin-top: 0.125rem;
         }
         
         .linkedin-section {
-            margin-top: 3rem;
+            margin-top: 2rem;
             text-align: center;
         }
         
@@ -80,16 +88,56 @@
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 1rem 2rem;
+            padding: 0.875rem 1.5rem;
             background: #0077b5;
             color: white;
             border-radius: var(--radius-full);
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.9375rem;
         }
         
         .linkedin-btn:hover {
             background: #005e93;
+        }
+        
+        @media screen and (min-width: 769px) {
+            .contact-info__item {
+                gap: 1.5rem;
+                padding: 2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .contact-info__icon {
+                width: 64px;
+                height: 64px;
+            }
+            
+            .contact-info__icon svg {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .contact-info__label {
+                font-size: 0.875rem;
+            }
+            
+            .contact-info__value {
+                font-size: 1.25rem;
+            }
+            
+            .contact-info__note {
+                font-size: 0.875rem;
+            }
+            
+            .linkedin-section {
+                margin-top: 3rem;
+            }
+            
+            .linkedin-btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -114,8 +162,6 @@
                     </li>
                     <li class="nav__item">
                         <a href="skills.html" class="nav__link">Skills</a>
-                    </li>
-                    <li class="nav__item">
                     </li>
                     <li class="nav__item">
                         <a href="certifications.html" class="nav__link">Certifications</a>
