@@ -33,48 +33,26 @@
     }
     </script>
     <link rel="stylesheet" href="css/custom.css">
+    <style>.nav__link.active{background-color:#0f172a;color:#fff;}.nav__link.active:hover{background-color:#0f172a;color:#fff;}</style>
 </head>
 <body class="font-sans text-text-main bg-white min-h-screen overflow-x-hidden flex flex-col">
     <!-- Header -->
-    <header class="header fixed top-5 left-1/2 -translate-x-1/2 max-w-[92%] bg-white/60 backdrop-blur-[20px] border border-white/18 rounded-full shadow-[0_8px_32px_0_rgba(31,38,135,0.12)] z-[1030] max-md:left-4 max-md:translate-x-0 max-md:max-w-[calc(100%-2rem)]" id="header">
-        <nav class="nav container flex justify-center items-center py-4 px-8">
-
-            <div class="nav__menu flex gap-2 max-md:fixed max-md:top-0 max-md:right-[-100%] max-md:w-[85%] max-md:max-w-[320px] max-md:h-screen max-md:h-[100dvh] max-md:bg-white/98 max-md:backdrop-blur-[20px] max-md:rounded-none max-md:p-20 max-md:px-8 max-md:z-[10001] max-md:transition-all max-md:duration-300 max-md:overflow-y-auto" id="nav-menu">
-                <ul class="nav__list flex gap-1 max-md:flex-col max-md:gap-2">
-                    <li class="nav__item">
-                        <a href="index.html" class="nav__link font-medium text-text-main px-4 py-4 rounded-full whitespace-nowrap transition-all duration-200 hover:bg-primary/8 hover:text-primary max-md:block max-md:px-4 max-md:rounded-lg max-md:text-lg">Home</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="about.html" class="nav__link font-medium text-text-main px-4 py-4 rounded-full whitespace-nowrap transition-all duration-200 hover:bg-primary/8 hover:text-primary max-md:block max-md:px-4 max-md:rounded-lg max-md:text-lg">About</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="projects.html" class="nav__link font-medium text-text-main px-4 py-4 rounded-full whitespace-nowrap transition-all duration-200 hover:bg-primary/8 hover:text-primary max-md:block max-md:px-4 max-md:rounded-lg max-md:text-lg">Projects</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="experience.html" class="nav__link font-medium text-text-main px-4 py-4 rounded-full whitespace-nowrap transition-all duration-200 hover:bg-primary/8 hover:text-primary max-md:block max-md:px-4 max-md:rounded-lg max-md:text-lg">Experience</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="skills.html" class="nav__link font-medium text-text-main px-4 py-4 rounded-full whitespace-nowrap transition-all duration-200 hover:bg-primary/8 hover:text-primary [&.active]:bg-secondary [&.active]:text-white max-md:block max-md:px-4 max-md:rounded-lg max-md:text-lg active">Skills</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="certifications.html" class="nav__link font-medium text-text-main px-4 py-4 rounded-full whitespace-nowrap transition-all duration-200 hover:bg-primary/8 hover:text-primary max-md:block max-md:px-4 max-md:rounded-lg max-md:text-lg">Certifications</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="resume.html" class="nav__link font-medium text-text-main px-4 py-4 rounded-full whitespace-nowrap transition-all duration-200 hover:bg-primary/8 hover:text-primary max-md:block max-md:px-4 max-md:rounded-lg max-md:text-lg">Resume</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="contact.html" class="nav__link font-medium text-text-main px-4 py-4 rounded-full whitespace-nowrap transition-all duration-200 hover:bg-primary/8 hover:text-primary max-md:block max-md:px-4 max-md:rounded-lg max-md:text-lg">Contact</a>
-                    </li>
+    <header class="header" id="header">
+        <nav class="nav container">
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="about.html" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="projects.html" class="nav__link">Projects</a></li>
+                    <li class="nav__item"><a href="experience.html" class="nav__link">Experience</a></li>
+                    <li class="nav__item"><a href="skills.html" class="nav__link active">Skills</a></li>
+                    <li class="nav__item"><a href="certifications.html" class="nav__link">Certifications</a></li>
+                    <li class="nav__item"><a href="resume.html" class="nav__link">Resume</a></li>
+                    <li class="nav__item"><a href="contact.html" class="nav__link">Contact</a></li>
                 </ul>
-                
-                <div class="nav__close hidden max-md:block text-xl cursor-pointer text-text-main p-2 max-md:absolute max-md:top-6 max-md:right-6 max-md:z-[10003] max-md:text-2xl" id="nav-close">
-                    <span>&times;</span>
-                </div>
+                <div class="nav__close" id="nav-close"><span>&times;</span></div>
             </div>
-            
-            <div class="nav__toggle hidden max-md:block text-xl cursor-pointer text-text-main p-2 z-[10002]" id="nav-toggle">
-                <span>&#9776;</span>
-            </div>
+            <div class="nav__toggle" id="nav-toggle"><span>&#9776;</span></div>
         </nav>
     </header>
 
