@@ -76,6 +76,23 @@ header.header nav.nav .nav__menu .nav__close {
     border: none;
 }
 
+
+/* P5: Scrolled state for header (replaces GSAP layout thrashing) */
+header.header.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* P6: Reduce motion - disable magnetic button effect */
+@media (prefers-reduced-motion: reduce) {
+    .btn {
+        transition: none !important;
+        transform: none !important;
+    }
+    .hero-gradient::before {
+        animation: none !important;
+    }
+}
+
 /* Container */
 .container {
     width: 100%;
@@ -202,9 +219,10 @@ header.header nav.nav .nav__menu .nav__close {
         transition: left 0.3s ease !important;
     }
 
-    /* Slide in when active */
-    body.menu-open header.header nav.nav .nav__menu.active {
-        left: 0 !important;
+    /* Slide in when active — .active class controls it directly */
+    header.header nav.nav .nav__menu {
+        left: -100% !important;
+        transition: left 0.3s ease !important;
     }
 
     /* Show all items in slide panel */
@@ -413,4 +431,117 @@ a {
 .overflow-wrap {
     overflow-wrap: break-word;
     word-break: break-word;
+}
+
+/* =============================================
+   MOBILE-SPECIFIC TWEAKS (M1-M4)
+   ============================================= */
+
+/* M1: Increase touch target size on mobile (44x44px minimum) */
+@media (max-width: 768px) {
+    /* Nav links - ensure minimum touch target */
+    header.header nav.nav .nav__menu:not(.active) .nav__list .nav__link {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Toggle button touch target */
+    header.header nav.nav .nav__toggle {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Close button touch target */
+    header.header nav.nav .nav__menu.active .nav__close {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Ensure all buttons in slide panel are touch-friendly */
+    header.header nav.nav .nav__menu.active .nav__list .nav__link {
+        padding: 1rem 1.5rem !important;
+        font-size: 1rem !important;
+        border-radius: 0.5rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+}
+
+/* M2: Disable hover/magnetic effects on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .btn {
+        transform: none !important;
+        transition: background-color 0.2s ease, color 0.2s ease !important;
+    }
+    
+    .btn:hover {
+        transform: none !important;
+    }
+    
+    /* Disable magnetic button effect entirely on touch */
+    .btn-magnetic {
+        transform: none !important;
+    }
+    
+    /* Disable hero gradient animation on touch */
+    .hero-gradient::before {
+        animation: none !important;
+    }
+}
+
+/* M3: Fix 100vh issues on mobile browsers (address bar) */
+@supports (height: 100dvh) {
+    header.header nav.nav .nav__menu.active {
+        height: 100dvh !important;
+    }
+}
+
+/* M4: Ensure hero metrics are readable on small screens */
+@media (max-width: 380px) {
+    .hero__metrics {
+        gap-x: 1rem !important;
+        gap-y: 1.5rem !important;
+    }
+    
+    .hero__metric-number {
+        font-size: 1.25rem !important;
+    }
+    
+    .hero__metric-label {
+        font-size: 0.7rem !important;
+    }
+}
+
+/* =============================================
+   ACCESSIBILITY - FOCUS VISIBILITY (A3)
+   ============================================= */
+
+/* Visible focus ring for keyboard navigation */
+:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+
+/* Remove focus for mouse clicks (keep for keyboard) */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Ensure skip link is always visible when focused */
+.skip-link:focus {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+    background: white;
+    color: #2563eb;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 }

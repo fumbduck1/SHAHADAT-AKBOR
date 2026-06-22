@@ -19,6 +19,8 @@
     <meta name="twitter:url" content="https://shahadatakbor.com/">
     <meta name="twitter:title" content="Shahadat Akbor - Civil Engineer">
     <meta name="twitter:description" content="Professional portfolio of Shahadat Akbor - Civil Engineer with 3 years of experience">
+    <meta property="og:image" content="https://shahadatakbor.com/assets/images/og-image.jpg">
+    <meta name="twitter:image" content="https://shahadatakbor.com/assets/images/og-image.jpg">
     
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -28,7 +30,7 @@
         "name": "Shahadat Akbor",
         "jobTitle": "Civil Engineer",
         "description": "Civil Engineer with 3 years of experience in pipeline projects, building management, and quantity surveying.",
-        "url": "https://fumbduck1.github.io/SHAHADAT-AKBOR/",
+        "url": "https://shahadatakbor.com/",
         "email": "shahadatakbor9@gmail.com",
         "telephone": "+8801839629328",
         "address": {
@@ -59,13 +61,28 @@
         ]
     }
     </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Shahadat Akbor Portfolio",
+        "url": "https://shahadatakbor.com/",
+        "description": "Professional portfolio of Shahadat Akbor - Civil Engineer with 3 years of experience",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://shahadatakbor.com/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
     
     <title>Shahadat Akbor - Civil Engineer | Professional Portfolio</title>
     
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" rel="noopener noreferrer" target="_blank" href="https://fonts.googleapis.com">
+    <link rel="preconnect" rel="noopener noreferrer" target="_blank" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="noopener noreferrer" target="_blank" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -101,7 +118,7 @@
     </script>
     
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous">
+    <link rel="stylesheet" rel="noopener noreferrer" target="_blank" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous">
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
@@ -114,7 +131,7 @@
 
     <!-- Header -->
     <header class="header" id="header">
-        <nav class="nav container">
+        <nav class="nav container" aria-label="Primary navigation">
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li class="nav__item"><a href="index.html" class="nav__link active">Home</a></li>
@@ -145,11 +162,11 @@
                     
                     <div class="hero__contact flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 mb-12">
                         <a href="tel:+8801839629328" class="hero__contact-item inline-flex items-center gap-2 text-text-light text-base transition-colors duration-300 hover:text-secondary">
-                            <i class="fas fa-phone"></i>
+                            <span aria-hidden="true" class="fas fa-phone"></span>
                             <span>+8801839629328</span>
                         </a>
                         <a href="mailto:shahadatakbor9@gmail.com" class="hero__contact-item inline-flex items-center gap-2 text-text-light text-base transition-colors duration-300 hover:text-secondary">
-                            <i class="fas fa-envelope"></i>
+                            <span aria-hidden="true" class="fas fa-envelope"></span>
                             <span>shahadatakbor9@gmail.com</span>
                         </a>
                     </div>
@@ -194,7 +211,7 @@
                 
                 <div class="hero__image">
                     <div class="hero__image-wrapper relative w-[160px] sm:w-[200px] md:w-[280px] h-[160px] sm:h-[200px] md:h-[280px] mt-16 mx-auto rounded-full overflow-hidden border-4 border-border shadow-xl">
-                        <img src="assets/images/profile.jpeg" alt="Shahadat Akbor - Civil Engineer" class="hero__photo w-full h-full object-cover object-top">
+                        <img src="assets/images/profile.jpeg" alt="Shahadat Akbor - Civil Engineer" class="hero__photo w-full h-full object-cover object-top" fetchpriority="high" loading="eager">
                     </div>
                 </div>
             </div>
@@ -208,7 +225,7 @@
                 <div class="snapshot__grid grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="snapshot__card text-center py-16 px-12 bg-bg-alt rounded-2xl border border-border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                         <div class="snapshot__icon text-[36px] text-primary w-[72px] h-[72px] flex items-center justify-center bg-blue-500/10 rounded-xl mx-auto mb-8">
-                            <i class="fas fa-briefcase"></i>
+                            <span aria-hidden="true" class="fas fa-briefcase"></span>
                         </div>
                         <h3 class="snapshot__number text-[2.5rem] font-extrabold text-secondary tracking-tight mb-2">3+</h3>
                         <p class="snapshot__label text-sm text-text-light font-medium">Years Experience</p>
@@ -216,7 +233,7 @@
                     
                     <div class="snapshot__card text-center py-16 px-12 bg-bg-alt rounded-2xl border border-border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                         <div class="snapshot__icon text-[36px] text-primary w-[72px] h-[72px] flex items-center justify-center bg-blue-500/10 rounded-xl mx-auto mb-8">
-                            <i class="fas fa-building"></i>
+                            <span aria-hidden="true" class="fas fa-building"></span>
                         </div>
                         <h3 class="snapshot__title text-xl font-bold text-secondary mb-2">Core Domains</h3>
                         <p class="snapshot__text text-sm text-text-light leading-relaxed">Raw Water Pipeline, Residential Building Management, Research and Analysis</p>
@@ -224,7 +241,7 @@
                     
                     <div class="snapshot__card text-center py-16 px-12 bg-bg-alt rounded-2xl border border-border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                         <div class="snapshot__icon text-[36px] text-primary w-[72px] h-[72px] flex items-center justify-center bg-blue-500/10 rounded-xl mx-auto mb-8">
-                            <i class="fas fa-bullseye"></i>
+                            <span aria-hidden="true" class="fas fa-bullseye"></span>
                         </div>
                         <h3 class="snapshot__title text-xl font-bold text-secondary mb-2">Current Focus</h3>
                         <p class="snapshot__text text-sm text-text-light leading-relaxed">Civil Engineering duties including project management, quantity surveying, and site supervision</p>

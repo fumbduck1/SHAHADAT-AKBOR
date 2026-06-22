@@ -1,11 +1,25 @@
 /**
  * Shahadat Akbor - Professional Portfolio
  * JavaScript with GSAP Animations
+ * 
+ * Features:
+ * - Mobile navigation with slide panel
+ * - GSAP scroll animations (respects prefers-reduced-motion)
+ * - Counter animations with IntersectionObserver
+ * - Toast notifications
+ * - Back-to-top button
+ * - Magnetic button hover effects (throttled with rAF)
+ * 
+ * @see https://shahadatakbor.com
  */
+
+
 
 // ========================================
 // GSAP INITIALIZATION
 // ========================================
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 if (typeof gsap !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 }
@@ -108,7 +122,7 @@ if (typeof gsap !== 'undefined') {
 // No opacity animations — only subtle translate on scroll
 // All elements remain visible at all times
 
-if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !prefersReducedMotion) {
     const revealElements = document.querySelectorAll(
         '.bento__item, .skill-card, .achievement-card, ' +
         '.contact__item, .timeline__item, .about__card, .resume__section, ' +
@@ -142,6 +156,14 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     const counterElements = document.querySelectorAll('[data-target]');
 
     counterElements.forEach((element, index) => {
+        // Skip animation if user prefers reduced motion
+        if (prefersReducedMotion) {
+            const target = parseFloat(element.getAttribute('data-target'));
+            const suffix = element.getAttribute('data-suffix') || '';
+            const isDecimal = element.getAttribute('data-target').includes('.');
+            element.textContent = isDecimal ? target.toFixed(1) + suffix : target.toLocaleString() + suffix;
+            return;
+        }
         const targetStr = element.getAttribute('data-target');
         const target = parseFloat(targetStr);
         const suffix = element.getAttribute('data-suffix') || '';
@@ -355,6 +377,7 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
 // HEADER SCROLL EFFECT
 // ========================================
 
+// P5: CSS class toggle instead of GSAP layout-thrashing boxShadow changes
 let lastScroll = 0;
 let headerScrollTicking = false;
 window.addEventListener('scroll', () => {
@@ -363,24 +386,18 @@ window.addEventListener('scroll', () => {
     requestAnimationFrame(() => {
         const currentScroll = window.pageYOffset;
         
-        if (header && typeof gsap !== 'undefined') {
+        if (header) {
             if (currentScroll > 100) {
-                gsap.to(header, {
-                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
-                    duration: 0.3
-                });
+                header.classList.add('scrolled');
             } else {
-                gsap.to(header, {
-                    boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.12)',
-                    duration: 0.3
-                });
+                header.classList.remove('scrolled');
             }
         }
         
         lastScroll = currentScroll;
         headerScrollTicking = false;
     });
-});
+}, { passive: true }); // P6: passive listener for better scroll performance
 
 // ========================================
 // ACTIVE NAVIGATION LINK
@@ -725,23 +742,30 @@ if ('IntersectionObserver' in window) {
 }
 
 // ========================================
-// MAGNETIC BUTTONS
+// MAGNETIC BUTTONS (throttled with rAF)
 // ========================================
 
 document.querySelectorAll('.btn').forEach(button => {
+    let magneticActive = false;
+    
     button.addEventListener('mousemove', (e) => {
-        const rect = button.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        
-        if (typeof gsap !== 'undefined') {
-            gsap.to(button, {
-                x: x * 0.2,
-                y: y * 0.2,
-                duration: 0.3,
-                ease: 'power2.out'
-            });
-        }
+        if (magneticActive) return;
+        magneticActive = true;
+        requestAnimationFrame(() => {
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            if (typeof gsap !== 'undefined') {
+                gsap.to(button, {
+                    x: x * 0.2,
+                    y: y * 0.2,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            }
+            magneticActive = false;
+        });
     });
     
     button.addEventListener('mouseleave', () => {
