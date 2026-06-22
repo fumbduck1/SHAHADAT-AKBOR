@@ -120,24 +120,11 @@ header.header.scrolled {
     visibility: visible;
 }
 
-/* Mobile Navigation */
+/* ========================================
+   MOBILE NAVIGATION - Clean Vertical Slide
+   ======================================== */
 @media (max-width: 768px) {
-    /* Hamburger toggle - ALWAYS visible on mobile */
-    header.header nav.nav .nav__toggle {
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        min-width: 44px;
-        min-height: 44px;
-        font-size: 1.25rem;
-        cursor: pointer;
-        color: #334155;
-        padding: 0.5rem;
-        background: none;
-        border: none;
-        border-radius: 0.5rem;
-    }
-
+    /* Header: compact floating pill */
     header.header {
         position: fixed !important;
         top: 1rem !important;
@@ -157,90 +144,34 @@ header.header.scrolled {
 
     header.header nav.nav {
         display: flex !important;
-        justify-content: center !important;
+        justify-content: space-between !important;
         align-items: center !important;
         padding: 0.4rem 0.75rem !important;
         width: auto !important;
         max-width: 100% !important;
     }
 
-    /* Nav menu: inline in pill by default on mobile (when NOT active) */
-    header.header nav.nav .nav__menu:not(.active) {
+    /* Hamburger toggle - visible on mobile */
+    header.header nav.nav .nav__toggle {
         display: flex !important;
-        align-items: center !important;
-        gap: 0 !important;
-        position: static !important;
-        width: auto !important;
-        max-width: none !important;
-        height: auto !important;
-        background: transparent !important;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-        border: none !important;
-        border-radius: 0 !important;
-        padding: 0 !important;
-        z-index: auto !important;
-        overflow: visible !important;
+        align-items: center;
+        justify-content: center;
+        min-width: 44px;
+        min-height: 44px;
+        font-size: 1.25rem;
+        cursor: pointer;
+        color: #334155;
+        padding: 0.5rem;
+        background: none;
+        border: none;
+        border-radius: 0.5rem;
     }
 
-    /* Show only first 4 nav items in the pill */
-    header.header nav.nav .nav__menu:not(.active) .nav__list .nav__item:nth-child(n+5) {
-        display: none !important;
-    }
-
-    /* Nav list: horizontal in pill */
-    header.header nav.nav .nav__menu:not(.active) .nav__list {
-        display: flex !important;
-        flex-direction: row !important;
-        gap: 0 !important;
-        align-items: center !important;
-    }
-
-    /* Shrink nav links for mobile pill */
-    header.header nav.nav .nav__menu:not(.active) .nav__list .nav__link {
-        font-size: 0.82rem !important;
-        font-weight: 500 !important;
-        padding: 0.55rem 0.7rem !important;
-        border-radius: 9999px !important;
-        white-space: nowrap !important;
-    }
-
-    /* Close button hidden in pill mode */
-    header.header nav.nav .nav__menu:not(.active) .nav__close {
-        display: none !important;
-    }
-
-    /* When menu is active (slide panel open) */
-    header.header nav.nav .nav__menu.active {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: auto !important;
-        width: 80vw !important;
-        max-width: 320px !important;
-        height: 100vh !important;
-        height: 100dvh !important;
-        background: rgba(255, 255, 255, 0.98) !important;
-        backdrop-filter: blur(20px) !important;
-        -webkit-backdrop-filter: blur(20px) !important;
-        border: none !important;
-        border-radius: 0 !important;
-        padding: 5rem 1.5rem 1.5rem !important;
-        z-index: 10001 !important;
-        overflow-y: auto !important;
-        display: block !important;
-        flex-direction: column !important;
-        gap: 0 !important;
-        align-items: stretch !important;
-        transition: left 0.3s ease !important;
-    }
-
-    /* Slide-in menu - hidden by default */
+    /* Nav menu: Hidden off-screen by default */
     header.header nav.nav .nav__menu {
         position: fixed !important;
         top: 0 !important;
         left: -100% !important;
-        right: auto !important;
         width: 80vw !important;
         max-width: 320px !important;
         height: 100vh !important;
@@ -253,23 +184,68 @@ header.header.scrolled {
         padding: 5rem 1.5rem 1.5rem !important;
         z-index: 10001 !important;
         overflow-y: auto !important;
-        display: block !important;
+        display: flex !important;
         flex-direction: column !important;
         gap: 0 !important;
         align-items: stretch !important;
         transition: left 0.3s ease !important;
     }
 
-    /* Show all items in slide panel */
-
-    /* Hide toggle when menu is open */
-    header.header nav.nav .nav__menu.active ~ .nav__toggle {
-        display: none !important;
+    /* Nav menu: Slide in when active */
+    header.header nav.nav .nav__menu.active {
+        left: 0 !important;
     }
 
-    /* Close button: only visible when menu is open */
-    header.header nav.nav .nav__menu.active .nav__close {
+    /* Nav list: vertical stack */
+    header.header nav.nav .nav__menu .nav__list {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0 !important;
+        align-items: stretch !important;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    /* Nav items: full width in vertical list */
+    header.header nav.nav .nav__menu .nav__list .nav__item {
+        width: 100% !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    /* Nav links: block level for vertical stacking */
+    header.header nav.nav .nav__menu .nav__list .nav__link {
         display: block !important;
+        width: 100% !important;
+        font-size: 1rem !important;
+        font-weight: 500 !important;
+        color: #334155;
+        padding: 1rem 0.5rem !important;
+        border-radius: 0.5rem !important;
+        text-decoration: none;
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    header.header nav.nav .nav__menu .nav__list .nav__link:hover {
+        background-color: rgba(37, 99, 235, 0.08);
+        color: #2563eb;
+    }
+
+    header.header nav.nav .nav__menu .nav__list .nav__link.active {
+        background-color: #0f172a;
+        color: #ffffff;
+    }
+
+    /* Close button: hidden by default, visible when menu is open */
+    header.header nav.nav .nav__menu .nav__close {
+        display: none;
+    }
+
+    header.header nav.nav .nav__menu.active .nav__close {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
         position: absolute !important;
         top: 1.5rem !important;
         right: 1.5rem !important;
@@ -280,6 +256,8 @@ header.header.scrolled {
         padding: 0.5rem !important;
         background: none !important;
         border: none !important;
+        min-width: 44px;
+        min-height: 44px;
     }
 }
 
@@ -475,7 +453,7 @@ a {
 /* M1: Increase touch target size on mobile (44x44px minimum) */
 @media (max-width: 768px) {
     /* Nav links - ensure minimum touch target */
-    header.header nav.nav .nav__menu:not(.active) .nav__list .nav__link {
+    header.header nav.nav .nav__menu.active .nav__list .nav__link {
         min-width: 44px;
         min-height: 44px;
         display: flex;
