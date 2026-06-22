@@ -126,13 +126,59 @@ header.header nav.nav .nav__menu .nav__close {
         display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
-        padding: 0.5rem 1rem !important;
+        padding: 0.4rem 0.75rem !important;
         width: auto !important;
         max-width: 100% !important;
     }
 
-    /* Hide nav menu off-screen by default */
+    /* Nav menu: inline in pill by default on mobile */
     header.header nav.nav .nav__menu {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0 !important;
+        position: static !important;
+        width: auto !important;
+        max-width: none !important;
+        height: auto !important;
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        z-index: auto !important;
+        overflow: visible !important;
+    }
+
+    /* Show only first 4 nav items in the pill */
+    header.header nav.nav .nav__menu:not(.active) .nav__list .nav__item:nth-child(n+5) {
+        display: none !important;
+    }
+
+    /* Nav list: horizontal in pill */
+    header.header nav.nav .nav__menu:not(.active) .nav__list {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 0 !important;
+        align-items: center !important;
+    }
+
+    /* Shrink nav links for mobile pill */
+    header.header nav.nav .nav__menu:not(.active) .nav__list .nav__link {
+        font-size: 0.82rem !important;
+        font-weight: 500 !important;
+        padding: 0.55rem 0.7rem !important;
+        border-radius: 9999px !important;
+        white-space: nowrap !important;
+    }
+
+    /* Close button hidden in pill mode */
+    header.header nav.nav .nav__menu:not(.active) .nav__close {
+        display: none !important;
+    }
+
+    /* When menu is active (slide panel open) */
+    header.header nav.nav .nav__menu.active {
         position: fixed !important;
         top: 0 !important;
         left: -85vw !important;
@@ -151,7 +197,9 @@ header.header nav.nav .nav__menu .nav__close {
         transition: left 0.3s ease !important;
         overflow-y: auto !important;
         display: block !important;
+        flex-direction: column !important;
         gap: 0 !important;
+        align-items: stretch !important;
     }
 
     /* Slide in when active */
@@ -159,13 +207,15 @@ header.header nav.nav .nav__menu .nav__close {
         left: 0 !important;
     }
 
-    header.header nav.nav .nav__menu .nav__list {
+    /* Show all items in slide panel */
+    header.header nav.nav .nav__menu.active .nav__list {
         flex-direction: column !important;
         gap: 0.5rem !important;
         display: flex !important;
     }
 
-    header.header nav.nav .nav__menu .nav__list .nav__link {
+    /* Reset link styles for slide panel */
+    header.header nav.nav .nav__menu.active .nav__list .nav__link {
         display: block !important;
         padding: 1rem !important;
         border-radius: 0.5rem !important;
