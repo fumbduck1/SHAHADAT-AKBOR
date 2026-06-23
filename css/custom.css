@@ -269,143 +269,6 @@ header.header.scrolled {
         min-width: 44px;
         min-height: 44px;
     }
-}
-
-@media (max-width: 768px) {
-    /* Hamburger toggle - ALWAYS visible on mobile */
-    header.header nav.nav .nav__toggle {
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        min-width: 44px;
-        min-height: 44px;
-        font-size: 1.25rem;
-        cursor: pointer;
-        color: #334155;
-        padding: 0.5rem;
-        background: none;
-        border: none;
-        border-radius: 0.5rem;
-    }
-
-    header.header {
-        position: fixed !important;
-        top: 1rem !important;
-        left: 50% !important;
-        right: auto !important;
-        transform: translateX(-50%) !important;
-        max-width: calc(100% - 2rem) !important;
-        width: auto !important;
-        background: rgba(255, 255, 255, 0.6) !important;
-        backdrop-filter: blur(20px) !important;
-        -webkit-backdrop-filter: blur(20px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.18) !important;
-        border-radius: 9999px !important;
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.12) !important;
-        z-index: 10002 !important;
-    }
-
-    header.header nav.nav {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        padding: 0.4rem 0.75rem !important;
-        width: auto !important;
-        max-width: 100% !important;
-    }
-
-    /* Nav menu: inline in pill by default on mobile (when NOT active) */
-    header.header nav.nav .nav__menu:not(.active) {
-        display: flex !important;
-        align-items: center !important;
-        gap: 0 !important;
-        position: static !important;
-        width: auto !important;
-        max-width: none !important;
-        height: auto !important;
-        background: transparent !important;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-        border: none !important;
-        border-radius: 0 !important;
-        padding: 0 !important;
-        z-index: auto !important;
-        overflow: visible !important;
-    }
-
-    /* Show only first 4 nav items in the pill */
-    header.header nav.nav .nav__menu:not(.active) .nav__list .nav__item:nth-child(n+5) {
-        display: none !important;
-    }
-
-    /* Nav list: horizontal in pill */
-    header.header nav.nav .nav__menu:not(.active) .nav__list {
-        display: flex !important;
-        flex-direction: row !important;
-        gap: 0 !important;
-        align-items: center !important;
-    }
-
-    /* Shrink nav links for mobile pill */
-    header.header nav.nav .nav__menu:not(.active) .nav__list .nav__link {
-        font-size: 0.82rem !important;
-        font-weight: 500 !important;
-        padding: 0.55rem 0.7rem !important;
-        border-radius: 9999px !important;
-        white-space: nowrap !important;
-    }
-
-    /* Close button hidden in pill mode */
-    header.header nav.nav .nav__menu:not(.active) .nav__close {
-        display: none !important;
-    }
-
-    /* When menu is active (slide panel open) */
-    header.header nav.nav .nav__menu.active {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: auto !important;
-        width: 80vw !important;
-        max-width: 320px !important;
-        height: 100vh !important;
-        height: 100dvh !important;
-        background: rgba(255, 255, 255, 0.98) !important;
-        backdrop-filter: blur(20px) !important;
-        -webkit-backdrop-filter: blur(20px) !important;
-        border: none !important;
-        border-radius: 0 !important;
-        padding: 5rem 1.5rem 1.5rem !important;
-        z-index: 10001 !important;
-        overflow-y: auto !important;
-        display: block !important;
-        flex-direction: column !important;
-        gap: 0 !important;
-        align-items: stretch !important;
-        transition: left 0.3s ease !important;
-    }
-
-    /* Show all items in slide panel */
-
-    /* Hide toggle when menu is open */
-    header.header nav.nav .nav__menu.active ~ .nav__toggle {
-        display: none !important;
-    }
-
-    /* Close button: only visible when menu is open */
-    header.header nav.nav .nav__menu.active .nav__close {
-        display: block !important;
-        position: absolute !important;
-        top: 1.5rem !important;
-        right: 1.5rem !important;
-        z-index: 10003 !important;
-        font-size: 1.5rem !important;
-        cursor: pointer !important;
-        color: #334155 !important;
-        padding: 0.5rem !important;
-        background: none !important;
-        border: none !important;
-    }
 
     /* Nav list: VERTICAL when slide panel is open */
     header.header nav.nav .nav__menu.active .nav__list {
@@ -444,8 +307,8 @@ header.header.scrolled {
         background-color: #0f172a;
         color: #ffffff;
     }
-
 }
+
 
 /* Hero gradient background */
 .hero-gradient {
