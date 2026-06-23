@@ -166,6 +166,30 @@ header.header.scrolled {
         border-radius: 0.5rem;
     }
 
+    /* Nav menu - always position: fixed for smooth transitions */
+    header.header nav.nav .nav__menu {
+        position: fixed !important;
+        top: 0 !important;
+        left: -100% !important; /* Hidden off-screen left */
+        width: 80vw !important;
+        max-width: 320px !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        background: rgba(255, 255, 255, 0.98) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 5rem 1.5rem 1.5rem !important;
+        z-index: 10001 !important;
+        overflow-y: auto !important;
+        display: block !important;
+        flex-direction: column !important;
+        gap: 0 !important;
+        align-items: stretch !important;
+        transition: left 0.3s ease !important;
+    }
+
     /* When menu is active (slide panel open) */
     header.header nav.nav .nav__menu.active {
         left: 0 !important; /* Slide in from left */
@@ -423,7 +447,7 @@ header.header.scrolled {
         border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
 
-    /* Nav links: block level for vertical stacking in slide panel */
+    /* Nav links: block level for vertical stacking */
     header.header nav.nav .nav__menu.active .nav__list .nav__link {
         display: block !important;
         width: 100% !important;
@@ -445,6 +469,7 @@ header.header.scrolled {
         background-color: #0f172a;
         color: #ffffff;
     }
+
 }
 
 /* Hero gradient background */
