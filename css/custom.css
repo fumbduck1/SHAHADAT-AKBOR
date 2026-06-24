@@ -2,7 +2,7 @@
    NAVIGATION - Glassmorphism Floating Pill
    ======================================== */
 
-/* Desktop: nav__menu IS the pill, header/hamburger hidden */
+/* ---- Desktop (>768px): #nav-menu IS the pill ---- */
 header.header {
     position: fixed;
     top: 2rem;
@@ -11,7 +11,7 @@ header.header {
     width: auto;
     max-width: 92%;
     z-index: 1030;
-    /* On desktop, header is invisible - nav__menu is the pill */
+    /* Invisible on desktop - #nav-menu is the pill */
     background: transparent;
     border: none;
     border-radius: 0;
@@ -29,8 +29,13 @@ header.header nav.nav {
     max-width: 100%;
 }
 
-/* Desktop: hide hamburger - not needed */
+/* Desktop: hide hamburger */
 header.header nav.nav .nav__toggle {
+    display: none;
+}
+
+/* Desktop: hide quick-access links (only for mobile pill) */
+header.header nav.nav .nav__quick {
     display: none;
 }
 
@@ -56,14 +61,12 @@ header.header nav.nav .nav__toggle {
     gap: 0.5rem;
 }
 
-/* Nav list: horizontal on desktop */
 #nav-menu .nav__list {
     display: flex;
     gap: 0.25rem;
     list-style: none;
 }
 
-/* Nav links: pill style on desktop */
 #nav-menu .nav__list .nav__link {
     font-size: 1rem;
     font-weight: 500;
@@ -92,12 +95,12 @@ header.header nav.nav .nav__toggle {
     color: #ffffff;
 }
 
-/* Desktop: hide close button (only for mobile slide panel) */
+/* Desktop: hide close button */
 #nav-menu .nav__close {
     display: none;
 }
 
-/* Desktop: header scrolled state */
+/* Desktop: scrolled state */
 header.header.scrolled {
     box-shadow: none !important;
 }
@@ -146,9 +149,13 @@ header.header.scrolled {
     visibility: visible;
 }
 
-/* Mobile Navigation */
+/* ========================================
+   Mobile Navigation (≤768px)
+   Header = pill with [☰] + 4 quick links
+   #nav-menu = full slide panel (8 links)
+   ======================================== */
 @media (max-width: 768px) {
-    /* Header = hamburger pill on mobile */
+    /* ---- Header IS the glassmorphism pill on mobile ---- */
     header.header {
         position: fixed !important;
         top: 1rem !important;
@@ -164,35 +171,84 @@ header.header.scrolled {
         border-radius: 9999px !important;
         box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.12) !important;
         z-index: 10002 !important;
+        overflow: hidden !important;
     }
 
     header.header nav.nav {
         display: flex !important;
-        justify-content: center !important;
         align-items: center !important;
-        padding: 0.4rem 0.75rem !important;
+        padding: 0.35rem 0.5rem 0.35rem 0.35rem !important;
         width: auto !important;
         max-width: 100% !important;
-        gap: 0.25rem !important;
+        gap: 0 !important;
     }
 
-    /* Hamburger toggle - ALWAYS visible on mobile */
+    /* Hamburger toggle - far right of pill */
     header.header nav.nav .nav__toggle {
         display: flex !important;
         align-items: center;
         justify-content: center;
-        min-width: 44px;
-        min-height: 44px;
-        font-size: 1.25rem;
+        min-width: 40px;
+        min-height: 40px;
+        font-size: 1.15rem;
         cursor: pointer;
         color: #334155;
         padding: 0.5rem;
         background: none;
         border: none;
-        border-radius: 0.5rem;
+        border-radius: 9999px;
+        flex-shrink: 0;
+        order: 2;
+        transition: background-color 0.2s ease;
     }
 
-    /* ===== NAV MENU: Full-height slide panel from left ===== */
+    header.header nav.nav .nav__toggle:active {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    /* Quick-access links - horizontal, compact, far left */
+    header.header nav.nav .nav__quick {
+        display: flex !important;
+        align-items: center;
+        list-style: none;
+        gap: 0;
+        margin: 0;
+        padding: 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        order: 1;
+    }
+
+    header.header nav.nav .nav__quick::-webkit-scrollbar {
+        display: none;
+    }
+
+    header.header nav.nav .nav__quick .nav__item {
+        flex-shrink: 0;
+    }
+
+    header.header nav.nav .nav__quick .nav__link {
+        font-size: 0.82rem !important;
+        font-weight: 500 !important;
+        color: #475569;
+        padding: 0.55rem 0.7rem !important;
+        border-radius: 9999px;
+        white-space: nowrap !important;
+        text-decoration: none;
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    header.header nav.nav .nav__quick .nav__link:active {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    header.header nav.nav .nav__quick .nav__link.active {
+        background-color: #0f172a;
+        color: #ffffff;
+    }
+
+    /* ---- #nav-menu: Full-height slide panel from left ---- */
     #nav-menu {
         position: fixed !important;
         top: 0 !important;
@@ -213,20 +269,19 @@ header.header.scrolled {
         flex-direction: column !important;
         gap: 0.25rem !important;
         align-items: stretch !important;
-        /* GPU-accelerated slide animation */
+        /* GPU-accelerated: hidden off-screen to the left */
         transform: translateX(-100%) !important;
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        /* Override desktop pill styles */
         box-shadow: none !important;
     }
 
-    /* Menu open state */
+    /* Menu open: slide in */
     #nav-menu.active {
         transform: translateX(0) !important;
         box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12) !important;
     }
 
-    /* Nav list: vertical on mobile */
+    /* Nav list: vertical */
     #nav-menu .nav__list {
         display: flex !important;
         flex-direction: column !important;
@@ -236,13 +291,11 @@ header.header.scrolled {
         list-style: none;
     }
 
-    /* Nav items: full width */
     #nav-menu .nav__list .nav__item {
         width: 100% !important;
-        border-bottom: none !important;
     }
 
-    /* Nav links: touch-friendly vertical links */
+    /* Nav links: touch-friendly vertical */
     #nav-menu .nav__list .nav__link {
         display: flex !important;
         width: 100% !important;
@@ -258,7 +311,6 @@ header.header.scrolled {
         white-space: nowrap;
     }
 
-    #nav-menu .nav__list .nav__link:hover,
     #nav-menu .nav__list .nav__link:active {
         background-color: rgba(37, 99, 235, 0.08);
         color: #2563eb;
@@ -269,12 +321,7 @@ header.header.scrolled {
         color: #ffffff;
     }
 
-    #nav-menu .nav__list .nav__link.active:hover {
-        background-color: #1e293b;
-        color: #ffffff;
-    }
-
-    /* Close button: visible only on mobile */
+    /* Close button */
     #nav-menu .nav__close {
         display: flex !important;
         align-items: center;
@@ -295,12 +342,13 @@ header.header.scrolled {
         transition: background-color 0.2s ease, color 0.2s ease !important;
     }
 
-    #nav-menu .nav__close:hover {
+    #nav-menu .nav__close:hover,
+    #nav-menu .nav__close:active {
         background: rgba(226, 232, 240, 0.9) !important;
         color: #0f172a !important;
     }
 
-    /* Hide hamburger when menu is open */
+    /* Hide hamburger pill when slide panel is open */
     header.header.nav-open {
         opacity: 0;
         pointer-events: none;
@@ -503,28 +551,23 @@ a {
     header.header nav.nav .nav__toggle {
         min-width: 44px;
         min-height: 44px;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
     }
     
     /* Close button touch target */
     #nav-menu .nav__close {
         min-width: 44px;
         min-height: 44px;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
     }
     
     /* Ensure all links in slide panel are touch-friendly */
     #nav-menu .nav__list .nav__link {
-        padding: 0.9rem 1rem !important;
-        font-size: 1.05rem !important;
-        border-radius: 0.75rem !important;
-        margin-bottom: 0 !important;
         min-height: 48px;
-        display: flex !important;
+    }
+    
+    /* Quick links touch targets */
+    header.header nav.nav .nav__quick .nav__link {
+        min-height: 40px;
+        display: flex;
         align-items: center;
     }
 }

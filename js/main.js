@@ -412,7 +412,9 @@ window.addEventListener('scroll', () => {
 function setActiveNavLink() {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     
-    navLinks.forEach(link => {
+    // Set active on both slide panel links AND quick-access links
+    const allNavLinks = document.querySelectorAll('.nav__link');
+    allNavLinks.forEach(link => {
         const href = link.getAttribute('href');
         if (href === currentPage) {
             link.classList.add('active');
