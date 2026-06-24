@@ -1,6 +1,8 @@
 /* ========================================
    NAVIGATION - Glassmorphism Floating Pill
    ======================================== */
+
+/* Desktop: nav__menu IS the pill, header/hamburger hidden */
 header.header {
     position: fixed;
     top: 2rem;
@@ -8,36 +10,61 @@ header.header {
     transform: translateX(-50%);
     width: auto;
     max-width: 92%;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 9999px;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.12);
     z-index: 1030;
+    /* On desktop, header is invisible - nav__menu is the pill */
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 
 header.header nav.nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 0;
     width: auto;
     max-width: 100%;
 }
 
-header.header nav.nav .nav__menu {
+/* Desktop: hide hamburger - not needed */
+header.header nav.nav .nav__toggle {
+    display: none;
+}
+
+/* Desktop: nav__menu is the glassmorphism pill */
+#nav-menu {
+    position: fixed;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 9999px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.12);
+    padding: 1rem 2rem;
+    z-index: 1030;
+    width: auto;
+    height: auto;
+    overflow: visible;
     gap: 0.5rem;
 }
 
-header.header nav.nav .nav__menu .nav__list {
+/* Nav list: horizontal on desktop */
+#nav-menu .nav__list {
     display: flex;
     gap: 0.25rem;
     list-style: none;
 }
 
-header.header nav.nav .nav__menu .nav__list .nav__link {
+/* Nav links: pill style on desktop */
+#nav-menu .nav__list .nav__link {
     font-size: 1rem;
     font-weight: 500;
     color: #334155;
@@ -49,40 +76,37 @@ header.header nav.nav .nav__menu .nav__list .nav__link {
     text-decoration: none;
 }
 
-header.header nav.nav .nav__menu .nav__list .nav__link:hover {
+#nav-menu .nav__list .nav__link:hover {
     background-color: rgba(37, 99, 235, 0.08);
     color: #2563eb;
     transform: translateY(-1px);
 }
 
-header.header nav.nav .nav__menu .nav__list .nav__link.active {
+#nav-menu .nav__list .nav__link.active {
     background-color: #0f172a;
     color: #ffffff;
 }
 
-header.header nav.nav .nav__menu .nav__list .nav__link.active:hover {
+#nav-menu .nav__list .nav__link.active:hover {
     background-color: #0f172a;
     color: #ffffff;
 }
 
-header.header nav.nav .nav__toggle,
-header.header nav.nav .nav__menu .nav__close {
+/* Desktop: hide close button (only for mobile slide panel) */
+#nav-menu .nav__close {
     display: none;
-    font-size: 1.25rem;
-    cursor: pointer;
-    color: #334155;
-    padding: 0.5rem;
-    background: none;
-    border: none;
 }
 
-
-/* P5: Scrolled state for header (replaces GSAP layout thrashing) */
+/* Desktop: header scrolled state */
 header.header.scrolled {
+    box-shadow: none !important;
+}
+
+#nav-menu.scrolled {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* P6: Reduce motion - disable magnetic button effect */
+/* P6: Reduce motion */
 @media (prefers-reduced-motion: reduce) {
     .btn {
         transition: none !important;
@@ -124,7 +148,7 @@ header.header.scrolled {
 
 /* Mobile Navigation */
 @media (max-width: 768px) {
-    /* Header styling - compact pill with only hamburger */
+    /* Header = hamburger pill on mobile */
     header.header {
         position: fixed !important;
         top: 1rem !important;
@@ -168,11 +192,11 @@ header.header.scrolled {
         border-radius: 0.5rem;
     }
 
-    /* ===== BASE MENU STYLES (both states) ===== */
-    /* Shared properties for menu panel */
-    header.header nav.nav .nav__menu {
+    /* ===== NAV MENU: Full-height slide panel from left ===== */
+    #nav-menu {
         position: fixed !important;
         top: 0 !important;
+        left: 0 !important;
         width: 80vw !important;
         max-width: 320px !important;
         height: 100vh !important;
@@ -185,43 +209,73 @@ header.header.scrolled {
         padding: 5rem 1.5rem 2rem !important;
         z-index: 10001 !important;
         overflow-y: auto !important;
-        display: block !important;
+        display: flex !important;
         flex-direction: column !important;
-        gap: 0 !important;
+        gap: 0.25rem !important;
         align-items: stretch !important;
-        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        /* GPU-accelerated slide animation */
+        transform: translateX(-100%) !important;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        /* Override desktop pill styles */
+        box-shadow: none !important;
     }
 
-    /* ===== PILL STATE (menu closed) ===== */
-    /* Menu slides off-screen to the left */
-    header.header nav.nav .nav__menu:not(.active) {
-        left: -100% !important;
-    }
-
-    /* Hide nav list in pill state - only hamburger visible */
-    header.header nav.nav .nav__menu:not(.active) .nav__list {
-        display: none !important;
-    }
-
-    /* Hide close button in pill state */
-    header.header nav.nav .nav__menu:not(.active) .nav__close {
-        display: none !important;
-    }
-
-    /* ===== SLIDE PANEL STATE (menu open) ===== */
-    /* Nav menu slides in from left */
-    header.header nav.nav .nav__menu.active {
-        left: 0 !important;
+    /* Menu open state */
+    #nav-menu.active {
+        transform: translateX(0) !important;
         box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12) !important;
     }
 
-    /* Hide hamburger toggle when slide panel is open */
-    header.header nav.nav .nav__menu.active ~ .nav__toggle {
-        display: none !important;
+    /* Nav list: vertical on mobile */
+    #nav-menu .nav__list {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.25rem !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        list-style: none;
     }
 
-    /* Close button: visible only in slide panel */
-    header.header nav.nav .nav__menu.active .nav__close {
+    /* Nav items: full width */
+    #nav-menu .nav__list .nav__item {
+        width: 100% !important;
+        border-bottom: none !important;
+    }
+
+    /* Nav links: touch-friendly vertical links */
+    #nav-menu .nav__list .nav__link {
+        display: flex !important;
+        width: 100% !important;
+        font-size: 1.05rem !important;
+        font-weight: 500 !important;
+        color: #334155;
+        padding: 0.9rem 1rem !important;
+        border-radius: 0.75rem !important;
+        text-decoration: none;
+        transition: background-color 0.2s ease, color 0.2s ease;
+        min-height: 48px;
+        align-items: center;
+        white-space: nowrap;
+    }
+
+    #nav-menu .nav__list .nav__link:hover,
+    #nav-menu .nav__list .nav__link:active {
+        background-color: rgba(37, 99, 235, 0.08);
+        color: #2563eb;
+    }
+
+    #nav-menu .nav__list .nav__link.active {
+        background-color: #0f172a;
+        color: #ffffff;
+    }
+
+    #nav-menu .nav__list .nav__link.active:hover {
+        background-color: #1e293b;
+        color: #ffffff;
+    }
+
+    /* Close button: visible only on mobile */
+    #nav-menu .nav__close {
         display: flex !important;
         align-items: center;
         justify-content: center;
@@ -241,54 +295,15 @@ header.header.scrolled {
         transition: background-color 0.2s ease, color 0.2s ease !important;
     }
 
-    header.header nav.nav .nav__menu.active .nav__close:hover {
+    #nav-menu .nav__close:hover {
         background: rgba(226, 232, 240, 0.9) !important;
         color: #0f172a !important;
     }
 
-    /* Nav list: VERTICAL when slide panel is open */
-    header.header nav.nav .nav__menu.active .nav__list {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 0.25rem !important;
-        align-items: stretch !important;
-        width: 100% !important;
-    }
-
-    /* Nav items: full width in vertical list */
-    header.header nav.nav .nav__menu.active .nav__list .nav__item {
-        width: 100% !important;
-        border-bottom: none !important;
-    }
-
-    /* Nav links: block level for vertical stacking with proper touch targets */
-    header.header nav.nav .nav__menu.active .nav__list .nav__link {
-        display: flex !important;
-        width: 100% !important;
-        font-size: 1.05rem !important;
-        font-weight: 500 !important;
-        color: #334155;
-        padding: 0.9rem 1rem !important;
-        border-radius: 0.75rem !important;
-        text-decoration: none;
-        transition: background-color 0.2s ease, color 0.2s ease;
-        min-height: 48px;
-        align-items: center;
-    }
-
-    header.header nav.nav .nav__menu.active .nav__list .nav__link:hover {
-        background-color: rgba(37, 99, 235, 0.08);
-        color: #2563eb;
-    }
-
-    header.header nav.nav .nav__menu.active .nav__list .nav__link.active {
-        background-color: #0f172a;
-        color: #ffffff;
-    }
-
-    header.header nav.nav .nav__menu.active .nav__list .nav__link.active:hover {
-        background-color: #1e293b;
-        color: #ffffff;
+    /* Hide hamburger when menu is open */
+    header.header.nav-open {
+        opacity: 0;
+        pointer-events: none;
     }
 }
 
@@ -494,7 +509,7 @@ a {
     }
     
     /* Close button touch target */
-    header.header nav.nav .nav__menu.active .nav__close {
+    #nav-menu .nav__close {
         min-width: 44px;
         min-height: 44px;
         display: flex !important;
@@ -503,7 +518,7 @@ a {
     }
     
     /* Ensure all links in slide panel are touch-friendly */
-    header.header nav.nav .nav__menu.active .nav__list .nav__link {
+    #nav-menu .nav__list .nav__link {
         padding: 0.9rem 1rem !important;
         font-size: 1.05rem !important;
         border-radius: 0.75rem !important;
@@ -536,7 +551,7 @@ a {
     }
 }
 
-/* M3: Fix 100vh issues on mobile browsers (address bar) - handled in mobile nav base styles */
+/* M3: Fix 100vh issues on mobile browsers - handled in #nav-menu styles above */
 
 /* M4: Ensure hero metrics are readable on small screens */
 @media (max-width: 380px) {

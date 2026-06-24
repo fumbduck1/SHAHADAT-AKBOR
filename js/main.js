@@ -60,8 +60,10 @@ if (navToggle) {
         const overlay = document.getElementById('nav-overlay');
         if (overlay) overlay.classList.add('active');
         navMenu.classList.add('active');
+        if (header) header.classList.add('nav-open');
         navToggle.setAttribute('aria-expanded', 'true');
-        navClose.setAttribute('aria-expanded', 'true');
+        if (navClose) navClose.setAttribute('aria-expanded', 'true');
+        navMenu.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
     });
 }
@@ -71,8 +73,10 @@ function closeMenu() {
     const overlay = document.getElementById('nav-overlay');
     if (navMenu) navMenu.classList.remove('active');
     if (overlay) overlay.classList.remove('active');
+    if (header) header.classList.remove('nav-open');
     if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
     if (navClose) navClose.setAttribute('aria-expanded', 'false');
+    if (navMenu) navMenu.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
 }
 
@@ -386,13 +390,15 @@ window.addEventListener('scroll', () => {
     requestAnimationFrame(() => {
         const currentScroll = window.pageYOffset;
         
-        if (header) {
-            if (currentScroll > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+    if (header || navMenu) {
+        if (currentScroll > 100) {
+            if (header) header.classList.add('scrolled');
+            if (navMenu) navMenu.classList.add('scrolled');
+        } else {
+            if (header) header.classList.remove('scrolled');
+            if (navMenu) navMenu.classList.remove('scrolled');
         }
+    }
         
         lastScroll = currentScroll;
         headerScrollTicking = false;
