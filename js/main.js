@@ -69,10 +69,10 @@ if (navToggle) {
 // Close menu
 function closeMenu() {
     const overlay = document.getElementById('nav-overlay');
-    navMenu.classList.remove('active');
+    if (navMenu) navMenu.classList.remove('active');
     if (overlay) overlay.classList.remove('active');
-    navToggle.setAttribute('aria-expanded', 'false');
-    navClose.setAttribute('aria-expanded', 'false');
+    if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+    if (navClose) navClose.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
 }
 

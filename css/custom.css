@@ -101,18 +101,20 @@ header.header.scrolled {
     padding-right: clamp(1rem, 4vw, 3rem);
 }
 
-/* Nav overlay */
+/* Nav overlay - dims background when slide menu is open */
 .nav__overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     z-index: 10000;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s ease;
 }
 
 .nav__overlay.active {
@@ -122,7 +124,7 @@ header.header.scrolled {
 
 /* Mobile Navigation */
 @media (max-width: 768px) {
-    /* Header styling */
+    /* Header styling - compact pill with only hamburger */
     header.header {
         position: fixed !important;
         top: 1rem !important;
@@ -166,11 +168,11 @@ header.header.scrolled {
         border-radius: 0.5rem;
     }
 
-    /* Nav menu - always position: fixed for smooth transitions */
+    /* ===== BASE MENU STYLES (both states) ===== */
+    /* Shared properties for menu panel */
     header.header nav.nav .nav__menu {
         position: fixed !important;
         top: 0 !important;
-        left: -100% !important; /* Hidden off-screen left */
         width: 80vw !important;
         max-width: 320px !important;
         height: 100vh !important;
@@ -180,70 +182,37 @@ header.header.scrolled {
         -webkit-backdrop-filter: blur(20px) !important;
         border: none !important;
         border-radius: 0 !important;
-        padding: 5rem 1.5rem 1.5rem !important;
+        padding: 5rem 1.5rem 2rem !important;
         z-index: 10001 !important;
         overflow-y: auto !important;
         display: block !important;
         flex-direction: column !important;
         gap: 0 !important;
         align-items: stretch !important;
-        transition: left 0.3s ease !important;
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
 
-    /* When menu is active (slide panel open) */
-    header.header nav.nav .nav__menu.active {
-        left: 0 !important; /* Slide in from left */
-    }
-
-    /* Pill state styles - show as compact menu in header */
-    /* We override specific properties to make it look like a pill */
+    /* ===== PILL STATE (menu closed) ===== */
+    /* Menu slides off-screen to the left */
     header.header nav.nav .nav__menu:not(.active) {
-        /* Position it to appear in the header area */
-        top: 1rem !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        /* Make it compact */
-        width: auto !important;
-        height: auto !important;
-        max-width: none !important;
-        /* Reduce padding */
-        padding: 0.4rem 0.75rem !important;
-        /* Show only first 4 items */
-        /* We'll hide items 5-8 */
-        /* Background to match header */
-        background: rgba(255, 255, 255, 0.6) !important;
-        backdrop-filter: blur(20px) !important;
-        -webkit-backdrop-filter: blur(20px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.18) !important;
-        border-radius: 9999px !important;
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.12) !important;
+        left: -100% !important;
     }
 
-    /* Hide items 5-8 in the pill (only show Home, About, Projects, Experience) */
-    header.header nav.nav .nav__menu:not(.active) .nav__list .nav__item:nth-child(n+5) {
+    /* Hide nav list in pill state - only hamburger visible */
+    header.header nav.nav .nav__menu:not(.active) .nav__list {
         display: none !important;
     }
 
-    /* Nav list: horizontal in pill */
-    header.header nav.nav .nav__menu:not(.active) .nav__list {
-        display: flex !important;
-        flex-direction: row !important;
-        gap: 0 !important;
-        align-items: center !important;
-    }
-
-    /* Nav links: compact in pill */
-    header.header nav.nav .nav__menu:not(.active) .nav__list .nav__link {
-        font-size: 0.82rem !important;
-        font-weight: 500 !important;
-        padding: 0.55rem 0.7rem !important;
-        border-radius: 9999px !important;
-        white-space: nowrap !important;
-    }
-
-    /* Close button: always hidden (only shown in slide panel) */
+    /* Hide close button in pill state */
     header.header nav.nav .nav__menu:not(.active) .nav__close {
         display: none !important;
+    }
+
+    /* ===== SLIDE PANEL STATE (menu open) ===== */
+    /* Nav menu slides in from left */
+    header.header nav.nav .nav__menu.active {
+        left: 0 !important;
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12) !important;
     }
 
     /* Hide hamburger toggle when slide panel is open */
@@ -257,24 +226,31 @@ header.header.scrolled {
         align-items: center;
         justify-content: center;
         position: absolute !important;
-        top: 1.5rem !important;
-        right: 1.5rem !important;
+        top: 1rem !important;
+        right: 1rem !important;
         z-index: 10003 !important;
-        font-size: 1.5rem !important;
+        font-size: 1.75rem !important;
         cursor: pointer !important;
-        color: #334155 !important;
+        color: #64748b !important;
         padding: 0.5rem !important;
-        background: none !important;
-        border: none !important;
+        background: rgba(241, 245, 249, 0.8) !important;
+        border: 1px solid rgba(226, 232, 240, 0.6) !important;
+        border-radius: 50% !important;
         min-width: 44px;
         min-height: 44px;
+        transition: background-color 0.2s ease, color 0.2s ease !important;
+    }
+
+    header.header nav.nav .nav__menu.active .nav__close:hover {
+        background: rgba(226, 232, 240, 0.9) !important;
+        color: #0f172a !important;
     }
 
     /* Nav list: VERTICAL when slide panel is open */
     header.header nav.nav .nav__menu.active .nav__list {
         display: flex !important;
         flex-direction: column !important;
-        gap: 0 !important;
+        gap: 0.25rem !important;
         align-items: stretch !important;
         width: 100% !important;
     }
@@ -282,20 +258,22 @@ header.header.scrolled {
     /* Nav items: full width in vertical list */
     header.header nav.nav .nav__menu.active .nav__list .nav__item {
         width: 100% !important;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        border-bottom: none !important;
     }
 
-    /* Nav links: block level for vertical stacking */
+    /* Nav links: block level for vertical stacking with proper touch targets */
     header.header nav.nav .nav__menu.active .nav__list .nav__link {
-        display: block !important;
+        display: flex !important;
         width: 100% !important;
-        font-size: 1rem !important;
+        font-size: 1.05rem !important;
         font-weight: 500 !important;
         color: #334155;
-        padding: 1rem 0.5rem !important;
-        border-radius: 0.5rem !important;
+        padding: 0.9rem 1rem !important;
+        border-radius: 0.75rem !important;
         text-decoration: none;
         transition: background-color 0.2s ease, color 0.2s ease;
+        min-height: 48px;
+        align-items: center;
     }
 
     header.header nav.nav .nav__menu.active .nav__list .nav__link:hover {
@@ -305,6 +283,11 @@ header.header.scrolled {
 
     header.header nav.nav .nav__menu.active .nav__list .nav__link.active {
         background-color: #0f172a;
+        color: #ffffff;
+    }
+
+    header.header nav.nav .nav__menu.active .nav__list .nav__link.active:hover {
+        background-color: #1e293b;
         color: #ffffff;
     }
 }
@@ -501,15 +484,6 @@ a {
 
 /* M1: Increase touch target size on mobile (44x44px minimum) */
 @media (max-width: 768px) {
-    /* Nav links - ensure minimum touch target */
-    header.header nav.nav .nav__menu:not(.active) .nav__list .nav__link {
-        min-width: 44px;
-        min-height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
     /* Toggle button touch target */
     header.header nav.nav .nav__toggle {
         min-width: 44px;
@@ -528,12 +502,15 @@ a {
         justify-content: center;
     }
     
-    /* Ensure all buttons in slide panel are touch-friendly */
+    /* Ensure all links in slide panel are touch-friendly */
     header.header nav.nav .nav__menu.active .nav__list .nav__link {
-        padding: 1rem 1.5rem !important;
-        font-size: 1rem !important;
-        border-radius: 0.5rem !important;
-        margin-bottom: 0.25rem !important;
+        padding: 0.9rem 1rem !important;
+        font-size: 1.05rem !important;
+        border-radius: 0.75rem !important;
+        margin-bottom: 0 !important;
+        min-height: 48px;
+        display: flex !important;
+        align-items: center;
     }
 }
 
@@ -559,12 +536,7 @@ a {
     }
 }
 
-/* M3: Fix 100vh issues on mobile browsers (address bar) */
-@supports (height: 100dvh) {
-    header.header nav.nav .nav__menu.active {
-        height: 100dvh !important;
-    }
-}
+/* M3: Fix 100vh issues on mobile browsers (address bar) - handled in mobile nav base styles */
 
 /* M4: Ensure hero metrics are readable on small screens */
 @media (max-width: 380px) {
