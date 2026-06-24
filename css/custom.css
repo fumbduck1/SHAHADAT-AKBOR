@@ -171,7 +171,7 @@ header.header.scrolled {
         border-radius: 9999px !important;
         box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.12) !important;
         z-index: 10002 !important;
-        overflow: hidden !important;
+        overflow: visible !important;
     }
 
     header.header nav.nav {
@@ -180,7 +180,7 @@ header.header.scrolled {
         padding: 0.35rem 0.5rem 0.35rem 0.35rem !important;
         width: auto !important;
         max-width: 100% !important;
-        gap: 0 !important;
+        gap: 0.15rem !important;
     }
 
     /* Hamburger toggle - far right of pill */
@@ -209,6 +209,7 @@ header.header.scrolled {
     /* Quick-access links - horizontal, compact, far left */
     header.header nav.nav .nav__quick {
         display: flex !important;
+        flex-wrap: nowrap !important;
         align-items: center;
         list-style: none;
         gap: 0;
@@ -218,6 +219,22 @@ header.header.scrolled {
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
         order: 1;
+    }
+
+    header.header nav.nav .nav__quick .nav__item {
+        flex-shrink: 0;
+    }
+
+    header.header nav.nav .nav__quick .nav__link {
+        font-size: 0.82rem !important;
+        font-weight: 500 !important;
+        color: #475569;
+        padding: 0.55rem 0.7rem !important;
+        border-radius: 9999px;
+        white-space: nowrap !important;
+        text-decoration: none;
+        transition: background-color 0.2s ease, color 0.2s ease;
+        flex-shrink: 0;
     }
 
     header.header nav.nav .nav__quick::-webkit-scrollbar {
